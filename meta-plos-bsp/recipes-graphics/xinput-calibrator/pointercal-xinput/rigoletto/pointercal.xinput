@@ -1,0 +1,2 @@
+xinput set-int-prop "tsc2004" "Evdev Axis Calibration" 32 3904 110 3793 129
+xinput set-int-prop "tsc2004" "Evdev Axes Swap" 8 0

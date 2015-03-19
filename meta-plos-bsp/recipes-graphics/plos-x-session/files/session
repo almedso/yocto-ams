@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Very simple session manager for Mini X
+# derived from original min-x-session script
+#
+
+# Uncomment below to enable parsing of debian menu entrys
+# export MB_USE_DEB_MENUS=1 
+
+MINI_X_SESSION_DIR=/etc/mini_x/session.d
+if [ -d "$MINI_X_SESSION_DIR" ]; then
+	# Execute session file on behalf of file owner
+	find $MINI_X_SESSION_DIR -type f | while read SESSIONFILE; do
+		set +e
+		USERNAME=`stat -c %U $SESSIONFILE`
+		# Using su rather than sudo as latest 1.8.1 cause failure [YOCTO #1211]
+#		su -l -c '$SESSIONFILE&' $USERNAME
+		sudo -b -i -u $USERNAME $SESSIONFILE&
+		set -e
+	done
+fi
+
+# The resolution fits to the 4.3 inch resistive touch display LCD8000-43T-EX1
+xrandr -s 480x272
+
+exec matchbox-window-manager -use_cursor no -use_titlebar no

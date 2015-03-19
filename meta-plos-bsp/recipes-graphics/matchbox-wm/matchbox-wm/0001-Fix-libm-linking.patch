@@ -1,0 +1,47 @@
+From 7ca65677a654fb8bf5a4a9388988660bf0d19413 Mon Sep 17 00:00:00 2001
+From: Christoph Settgast <christoph.settgast@methodpark.de>
+Date: Wed, 9 Apr 2014 09:44:32 +0200
+Subject: [PATCH] Fix libm linking
+
+---
+ configure.ac    |    5 ++++-
+ src/Makefile.am |    2 +-
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 38add5f..d4442eb 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -13,6 +13,9 @@ AC_PROG_CC
+ AC_HEADER_SYS_WAIT
+ AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
+ 
++AC_CHECK_LIBM
++AC_SUBST(LIBM)
++
+ SUPPORTS_PNG=0
+ SUPPORTS_JPEG=0
+ SUPPORTS_XFT=0
+@@ -532,4 +535,4 @@ echo "
+ 
+ 
+ 
+-"
+\ No newline at end of file
++"
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 8d1434b..aa79dae 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -20,7 +20,7 @@ matchbox_remote_LDADD = $(LIBMB_LIBS)
+ 
+ matchbox_remote_SOURCES = matchbox-remote.c 
+ 
+-matchbox_window_manager_LDADD = $(LIBMB_LIBS) $(COMPO_LIBS) $(EXPAT_LIBS) $(SN_LIBS) $(GCONF_LIBS) $(XFIXES_LIBS) $(XCURSOR_LIBS)
++matchbox_window_manager_LDADD = $(LIBMB_LIBS) $(COMPO_LIBS) $(EXPAT_LIBS) $(SN_LIBS) $(GCONF_LIBS) $(XFIXES_LIBS) $(XCURSOR_LIBS) $(LIBM)
+ 
+ matchbox_window_manager_SOURCES =                        \
+ 		   main.c structs.h wm.c wm.h            \
+-- 
+1.7.9.5
+

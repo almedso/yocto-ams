@@ -1,0 +1,25 @@
+From 1fc54b86e75e3957dcd5598124091d60a6d97230 Mon Sep 17 00:00:00 2001
+From: Volker Kempert <volker.kempert@pixmeter.com>
+Date: Thu, 19 Mar 2015 13:29:54 +0100
+Subject: [PATCH 2/2] Change default rootfs device to mmcblk1p2 (uSD slot)
+
+---
+ include/configs/mx6solo_RIoTboard.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/configs/mx6solo_RIoTboard.h b/include/configs/mx6solo_RIoTboard.h
+index c9da116..dd69351 100644
+--- a/include/configs/mx6solo_RIoTboard.h
++++ b/include/configs/mx6solo_RIoTboard.h
+@@ -20,7 +20,7 @@
+ #define CONFIG_MACH_TYPE	4000
+ #define CONFIG_MXC_UART_BASE	UART2_BASE
+ #define CONFIG_CONSOLE_DEV		"ttymxc1"
+-#define CONFIG_MMCROOT			"/dev/mmcblk0p2"
++#define CONFIG_MMCROOT			"/dev/mmcblk1p2"
+ 
+ #include "mx6qsabre_common.h"
+ #include <asm/arch/imx-regs.h>
+-- 
+1.9.1
+
