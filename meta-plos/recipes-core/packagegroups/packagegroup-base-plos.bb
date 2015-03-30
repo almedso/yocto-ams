@@ -12,10 +12,8 @@ RCONFLICTS_packagegroup-base-plos = "packagegroup-plos-base"
 RDEPENDS_${PN} = " \
     formfactor \
     timestamp-service \
-    matchbox-wm \
     plos-x-session \
     pointercal-xinput \
     apache2 \
     webmin \
-    firefox \
 "
