@@ -12,8 +12,6 @@ RCONFLICTS_packagegroup-base-plos = "packagegroup-plos-base"
 RDEPENDS_${PN} = " \
     formfactor \
     timestamp-service \
-    plos-x-session \
-    pointercal-xinput \
     apache2 \
     webmin \
 "
