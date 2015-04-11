@@ -11,8 +11,6 @@ LICENSE = "MIT"
 IMAGE_FEATURES += " \
     package-management \
     ssh-server-openssh \
-"
+    "
 
 inherit plos-image
-
-IMAGE_FEATURE_remove = "gstreamer"
