@@ -1,0 +1,17 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn-emba.socket
+After=network.target
+
+[Service]
+PIDFile=/run/gunicorn/pid
+User=emba
+Group=emba
+WorkingDirectory=/var/lib/emba
+ExecStart=/usr/bin/gunicorn --pid /run/gunicorn/pid manage:app
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
