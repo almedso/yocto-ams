@@ -26,8 +26,14 @@ RDEPENDS_${PN} += " \
         python-html \
 "
 
-FILES_${PN} += "${systemd_unitdir}/system \
-                /var/lib/emba \
+FILES_${PN} += "$ \
+        {systemd_unitdir}/system \
+        /var/lib/emba \
+        ${sysconfdir} \
+"
+
+CONFFILES_${PN} += " \
+        ${sysconfdir}/gunicorn-emba.conf \
 "
 
 SYSTEMD_SERVICE_${PN} = "gunicorn-emba.service"
@@ -35,6 +41,7 @@ SYSTEMD_SERVICE_${PN} = "gunicorn-emba.service"
 do_install_append() {
         install -d ${D}${systemd_unitdir}/system
         install -m 0644 ${THISDIR}/${PN}/gunicorn-emba.service ${D}${systemd_unitdir}/system
+        install -d ${D}${sysconfdir}
         install -m 0644 ${THISDIR}/${PN}/gunicorn-emba.conf ${D}${sysconfdir}
         install -d ${D}/var/lib/emba
 }
