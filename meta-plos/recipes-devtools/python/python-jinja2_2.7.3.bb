@@ -12,4 +12,7 @@ S = "${WORKDIR}/Jinja2-${PV}"
 
 inherit setuptools
 
-RDEPENDS_${PN} += "python-markupsafe"
+RDEPENDS_${PN} += " \
+    python-markupsafe \
+    python-shell \
+"
