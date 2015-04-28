@@ -20,22 +20,22 @@ RDEPENDS_${PN} += " \
         python-flask \
         python-flask-wtf \
         python-flask-script \
-        python-flask-bcrypt \
+        python-flask-login \
         python-setuptools \
+        python-pkgutil \
+        python-html \
 "
 
 FILES_${PN} += "${systemd_unitdir}/system \
-                ${systemd_unitdir}/system/tempfiles.d/gunicorn-emba.conf \
-               "
+                /var/lib/emba \
+"
 
 SYSTEMD_SERVICE_${PN} = "gunicorn-emba.service"
 
 do_install_append() {
         install -d ${D}${systemd_unitdir}/system
-        install -d ${D}${systemd_unitdir}/system/tempfiles.d
-        install -m 0644 ${THISDIR}/${PN}/gunicorn-emba.service ${D}${systemd_unitdir}/system/
-        install -m 0644 ${THISDIR}/${PN}/gunicorn-emba.socket ${D}${systemd_unitdir}/system/
-        install -m 0644 ${THISDIR}/${PN}/gunicorn-emba.conf ${D}${systemd_unitdir}/system/tempfiles.d/
-
+        install -m 0644 ${THISDIR}/${PN}/gunicorn-emba.service ${D}${systemd_unitdir}/system
+        install -m 0644 ${THISDIR}/${PN}/gunicorn-emba.conf ${D}${sysconfdir}
+        install -d ${D}/var/lib/emba
 }
 

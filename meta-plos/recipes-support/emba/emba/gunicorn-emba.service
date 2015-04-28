@@ -1,15 +1,15 @@
 [Unit]
-Description=gunicorn daemon
-Requires=gunicorn-emba.socket
+Description=Emba service (Gunicorn)
 After=network.target
 
 [Service]
-PIDFile=/run/gunicorn/pid
-User=emba
-Group=emba
-WorkingDirectory=/var/lib/emba
-ExecStart=/usr/bin/gunicorn --pid /run/gunicorn/pid manage:app
-ExecReload=/bin/kill -s HUP $MAINPID
+Type=forking
+User=root
+Group=root
+RuntimeDirectory=gunicorn-emba
+PIDFile=%t/gunicorn-emba/gunicorn-emba.pid
+Environment="EMBA_ENV=prod"
+ExecStart=/usr/bin/gunicorn --pid %t/gunicorn-emba/gunicorn-emba.pid --config /etc/gunicorn-emba.conf --daemon emba.wsgi:application
 ExecStop=/bin/kill -s TERM $MAINPID
 PrivateTmp=true
 
