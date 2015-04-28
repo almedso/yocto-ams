@@ -12,5 +12,3 @@ IMAGE_FEATURES += " \
     package-management \
     ssh-server-openssh \
     "
-
-inherit plos-image

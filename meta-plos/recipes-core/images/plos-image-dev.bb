@@ -1,7 +1,7 @@
 SUMMARY = "A console-only image that fully supports the target device \
 hardware for development provided by plos."
 
-LICENSE = "MIT"
+require plos-image-base.bb
 
 IMAGE_FEATURES += " \
     debug-tweaks \
@@ -14,5 +14,3 @@ IMAGE_FEATURES += " \
     package-management \
     ssh-server-openssh \
 "
-
-inherit plos-image
