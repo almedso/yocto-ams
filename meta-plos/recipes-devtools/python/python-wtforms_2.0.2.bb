@@ -11,3 +11,7 @@ SRC_URI[sha256sum] = "10737758ceae03b53021f3aa7e81bfc8dd6f679c879ffeb5e64ac6570f
 S = "${WORKDIR}/WTForms-${PV}"
 
 inherit setuptools
+
+RDEPENDS_${PN} += " \
+    python-numbers \
+"
