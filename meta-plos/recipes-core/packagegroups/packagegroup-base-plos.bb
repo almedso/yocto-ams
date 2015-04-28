@@ -12,6 +12,6 @@ RCONFLICTS_packagegroup-base-plos = "packagegroup-plos-base"
 RDEPENDS_${PN} = " \
     formfactor \
     timestamp-service \
-    apache2 \
-    webmin \
+    emba \
 "
+

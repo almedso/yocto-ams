@@ -22,5 +22,6 @@ SERBUSTOOLS = " \
 RDEPENDS_${PN} = " \
     ${TSTOOLS} \
     ${SERBUSTOOLS} \
+    webmin \
 "
 

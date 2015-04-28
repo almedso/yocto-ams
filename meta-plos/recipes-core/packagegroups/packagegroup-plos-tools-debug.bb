@@ -5,5 +5,6 @@ PR = "r1"
 inherit packagegroup
 
 RDEPENDS_${PN} = " \
+    i2c-tools \
 "
 
