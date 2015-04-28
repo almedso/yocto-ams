@@ -11,3 +11,7 @@ SRC_URI[sha256sum] = "9cf783990b1a99173e707a5768610800aa87775e9d86e211d17180d5b6
 S = "${WORKDIR}/Werkzeug-${PV}"
 
 inherit setuptools
+
+RDEPENDS_${PN} += " \
+    python-pprint \
+"
