@@ -12,4 +12,10 @@ S = "${WORKDIR}/Flask-${PV}"
 
 inherit setuptools
 
-RDEPENDS_${PN} += "python-werkzeug (>= 0.7) python-jinja2 (>= 2.4) python-itsdangerous (>= 0.21)"
+RDEPENDS_${PN} += " \
+    python-werkzeug (>= 0.7) \
+    python-jinja2 (>= 2.4) \
+    python-itsdangerous (>= 0.21) \
+    python-pkgutil \
+    python-html \
+"
