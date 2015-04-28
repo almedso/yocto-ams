@@ -11,3 +11,7 @@ SRC_URI[sha256sum] = "cbb3fcf8d3e33df861709ecaf89d9e6629cff0a217bc2848f1b41cd30d
 S = "${WORKDIR}/itsdangerous-${PV}"
 
 inherit setuptools
+
+RDEPENDS_${PN} += " \
+    python-json \
+"
