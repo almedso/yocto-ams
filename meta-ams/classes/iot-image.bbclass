@@ -1,6 +1,6 @@
 # Common code for generating plos reference images
 #
-# Copyright (C) 2015 Volker Kempert
+# Copyright (C) 2015-2018 Volker Kempert
 # Copyright (C) 2015 Stephan Linz
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=ec3a9a9bfa0a9cb7512518a7c2db7d1d"
