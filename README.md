@@ -1,8 +1,11 @@
-Pixmeter Linux OS (PLOS)
-========================
+# almedso Yocto based Linux applications (ams)
 
-PLOS is an integration of various components to form a complete prepackaged
+ams is an integration of various components to form a complete prepackaged
 build system and development environment derived from Poky.
 
-See details in [Poky README](http://git.yoctoproject.org/cgit/cgit.cgi/poky/plain/README "Yocto project").
+iot image(s) are by intention simulating iot devices that are characterized by
 
+* no display, no keyboard, no pointing device
+* ip network support
+* nodejs eco system
+* python eco system
