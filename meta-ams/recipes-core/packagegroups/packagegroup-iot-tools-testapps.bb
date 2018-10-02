@@ -1,4 +1,4 @@
-SUMMMARY = "PLOS Testing tools/applications"
+SUMMMARY = "IOT Testing tools/applications"
 LICENSE = "MIT"
 PR = "r1"
 

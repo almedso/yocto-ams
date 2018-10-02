@@ -1,9 +1,9 @@
-require plos-image-base.bb
+require iot-image-base.bb
 
-SUMMARY = "A product image capable of allowing an plos \
+SUMMARY = "A product image capable of allowing an iot \
 device to boot. It also provides full feature support."
 
-DESCRIPTION = "A product image capable of allowing an plos \
+DESCRIPTION = "A product image capable of allowing an iot \
 device to boot. It also provides full feature support."
 
 LICENSE = "MIT"

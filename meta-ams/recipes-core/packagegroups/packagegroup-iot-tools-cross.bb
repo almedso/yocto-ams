@@ -1,4 +1,4 @@
-SUMMMARY = "PLOS cross tools"
+SUMMMARY = "IOT cross tools"
 LICENSE = "MIT"
 PR = "r1"
 

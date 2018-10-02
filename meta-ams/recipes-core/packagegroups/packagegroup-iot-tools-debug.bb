@@ -1,4 +1,4 @@
-SUMMMARY = "PLOS Debugging tools"
+SUMMMARY = "IOT Debugging tools"
 LICENSE = "MIT"
 PR = "r1"
 

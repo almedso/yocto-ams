@@ -1,7 +1,7 @@
 SUMMARY = "A console-only image that fully supports the target device \
-hardware provided by plos."
+hardware provided by ams."
 
-inherit plos-image
+inherit iot-image
 
 LICENSE = "MIT"
 

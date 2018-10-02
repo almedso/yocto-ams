@@ -1,4 +1,4 @@
-SUMMMARY = "PLOS Profiling tools"
+SUMMMARY = "IOT Profiling tools"
 LICENSE = "MIT"
 PR = "r1"
 
