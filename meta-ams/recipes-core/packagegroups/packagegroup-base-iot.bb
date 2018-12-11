@@ -12,6 +12,7 @@ RCONFLICTS_packagegroup-base-iot = "packagegroup-iot-base"
 RDEPENDS_${PN} = " \
     formfactor \
     timestamp-service \
-    emba \
+    mosquitto \
+    ams-ref-pwa \
 "
 
