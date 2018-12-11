@@ -3,7 +3,7 @@
 # Copyright (C) 2015-2018 Volker Kempert
 # Copyright (C) 2015 Stephan Linz
 
-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=ec3a9a9bfa0a9cb7512518a7c2db7d1d"
+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
 
 # IMAGE_FEATURES control content of the iot reference images
 #
