@@ -27,6 +27,5 @@ RDEPENDS_${PN} += " \
     python-unixadmin \
     python-argparse \
     python-multiprocessing \
-    python-importlib \
 "
 
