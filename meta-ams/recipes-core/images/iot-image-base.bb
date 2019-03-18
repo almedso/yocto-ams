@@ -6,7 +6,6 @@ inherit iot-image
 LICENSE = "MIT"
 
 CORE_IMAGE_EXTRA_INSTALL += " \
-    dhcp-client \
-    resolvconf \
     connman \
 "
+
