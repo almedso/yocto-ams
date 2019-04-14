@@ -1,14 +1,10 @@
-require iot-image-base.bb
-
-SUMMARY = "A product image capable of allowing an iot \
-device to boot. It also provides full feature support."
-
+SUMMARY = "IOT product-grade image"
 DESCRIPTION = "A product image capable of allowing an iot \
 device to boot. It also provides full feature support."
-
 LICENSE = "MIT"
 
-IMAGE_FEATURES += " \
-    package-management \
-    ssh-server-openssh \
-    "
+require iot-image.inc
+PR="1.${PR_INC}"
+
+CORE_IMAGE_EXTRA_INSTALL += " \
+"
