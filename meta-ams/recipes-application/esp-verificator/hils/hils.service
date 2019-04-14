@@ -1,0 +1,12 @@
+[Unit]
+Description=ESP Verificator - HIL Simulator
+After=network.target
+
+[Service]
+User=root
+Group=root
+Environment="EMBA_ENV=prod"
+ExecStart=/usr/bin/hilsd
+
+[Install]
+WantedBy=multi-user.target
