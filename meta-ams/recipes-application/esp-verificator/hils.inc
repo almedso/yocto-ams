@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d
 
 INC_PR = "r0"
 
-nherit gitpkgv setuptools3 systemd
+inherit gitpkgv setuptools3 systemd
 
 PREFERED_VERSION_python = "3.5%"
 DEPENDS_${PN} += "${PYTHON_PN}-modules"
@@ -25,7 +25,6 @@ RDEPENDS_${PN} += " \
         ${PYTHON_PN}-requests \
         ${PYTHON_PN}-twisted \
         glibc-utils \
-        glibc-locale \
 "
 # note: glibc-utils and glibc-locale is required for python?-click
 
