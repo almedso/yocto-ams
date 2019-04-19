@@ -13,9 +13,9 @@ RDEPENDS_${PN} = " \
     bash \
     git \
     openssh-sftp-server \
-    python-dbg \
-    python-setuptools \
-    python-virtualenv \
+    ${PYTHON_PN}-dbg \
+    python-setuptools3 \
+    ${PYTHON_PN}-virtualenv \
     vim \
     wget \
 "

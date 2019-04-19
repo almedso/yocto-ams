@@ -3,6 +3,8 @@ DESCRIPTION = "AMS Image Basics"
 LICENSE = "MIT"
 PR_INC = "r1"
 
+inherit core-image
+
 export IMAGE_BASE_NAME = "iot-image"
 
 IMAGE_INSTALL_append = " \
@@ -22,8 +24,3 @@ IMAGE_FEATURES_append= " \
 IMAGE_FEATURES_remove = " \
     splash \
     "
-
-# this should ideally go to machine definition
-# so qemu does not really require an sd card image
-IMAGE_FSTYPES += "wic"
-WKS_FILE ?= "sdimage-bootpart.wks"

@@ -6,7 +6,7 @@ inherit packagegroup
 
 RDEPENDS_${PN} = " \
 	openssh-sftp-server \
-	python-virtualenv \
+	${PYTHON_PN}-virtualenv \
 	vim \
 "
 

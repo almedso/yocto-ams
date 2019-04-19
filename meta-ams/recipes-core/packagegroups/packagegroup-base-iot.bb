@@ -14,6 +14,6 @@ RDEPENDS_${PN} = " \
     timestamp-service \
     mosquitto \
     ams-ref-pwa \
-    trsa \
+    hils \
 "
 
