@@ -1,7 +1,10 @@
+CONF_VERSION = "2"
 DISTRO ?= 'ams'
 
+PACKAGE_FEED_URIS ?= "https://ams.almedso.de/feeds/${DISTRO}"
+PACKAGE_FEED_BASE_PATHS ?= "ci release"
+
 PACKAGE_CLASSES ?= "package_ipk"
-EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
 
 USER_CLASSES ?= "buildstats image-mklibs image-prelink"
 PATCHRESOLVE = "noop"
@@ -19,27 +22,36 @@ BB_DISKMON_DIRS ??= "\
 # qemu specifics
 PACKAGECONFIG_append_pn-qemu-native = " sdl"
 PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
+
+# default machines
 MACHINE ?= 'qemuarm'
-
-
-CONF_VERSION = "1"
-
-BB_NUMBER_THREADS = '4'
-PARALLEL_MAKE = '-j 4'
-
-# overwrite in site.conf
-DL_DIR ?= "${TOPDIR}/downloads/"
-
-# Fix the temp dir such that later rsync can refer to output
-TMPDIR = "${TOPDIR}/tmp"
-
-# raspberry predefinitions
+MACHINE ?= 'qemuarma9'
 MACHINE ?= 'raspberrypi0-wifi'
 MACHINE ?= 'raspberrypi3'
+MACHINE ?= 'imx6dl-riotboard'
 
 # freescale/nxp predefinitions
-MACHINE ?= 'imx6dl-riotboard'
 ACCEPT_FSL_EULA = "1"
+
+# raspberry predefinitions
+# 
+
+BB_NUMBER_THREADS ?= '4'
+PARALLEL_MAKE ?= '-j 4'
+
+# overwrite in site.conf
+DL_DIR ?= "${TOPDIR}/downloads-cache/"
+SSTATE_DIR ?= "${TOPDIR}/sstate-cache"
+
+# Fix the temp dir such that later rsync can refer to output
+# make sure custom glibc recipes do not overwrite TMPDIR
+TCLIBCAPPEND = ""
+TMPDIR = "${TOPDIR}/tmp"
+TMPDIR = "${TOPDIR}/tmp-${DISTRO}"
 
 GLIBC_GENERATE_LOCALES ?= "en_US.UTF-8 de_DE.UTF-8"
 IMAGE_LINGUAS ?= "en-us de-de"
+
+BB_GENERATE_MIRROR_TARBALLS = "0"
+INHERIT += "rm_work"
+RM_OLD_IMAGE = "1"
