@@ -4,11 +4,11 @@ LICENSE = "MIT"
 PR_INC = "r1"
 
 inherit core-image
+require rootfs-post-install.inc
 
-export IMAGE_BASE_NAME = "iot-image"
 
 IMAGE_INSTALL_append = " \
-    packagegroup-iot-base \
+    packagegroup-base-ams \
     connman \
     "
 

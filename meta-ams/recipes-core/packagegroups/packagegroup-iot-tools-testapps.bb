@@ -10,9 +10,9 @@ USE_TS = " \
 "
 
 # Different touchscreen tools
-#TSTOOLS = " \
-#    ${@base_contains('MACHINE_FEATURES', 'touchscreen', '${USE_TS}', '',d)} \
-#"
+TSTOOLS = " \
+    ${@bb.utils.contains('MACHINE_FEATURES', 'touchscreen', '${USE_TS}', '',d)} \
+"
 
 # Different simple serial bus tools
 SERBUSTOOLS = " \
