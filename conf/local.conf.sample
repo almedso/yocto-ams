@@ -29,11 +29,12 @@ MACHINE ?= 'qemuarma9'
 MACHINE ?= 'raspberrypi0-wifi'
 MACHINE ?= 'raspberrypi3'
 MACHINE ?= 'imx6dl-riotboard'
+MACHINE ?= 'rigoletto'
 
 # freescale/nxp predefinitions
 ACCEPT_FSL_EULA = "1"
 
-# raspberry predefinitions
+# raspberry pre-definitions
 # 
 
 BB_NUMBER_THREADS ?= '4'
