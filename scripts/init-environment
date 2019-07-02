@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+#
+# Copyright (c) 2019, almedso GmbH
+# SPDX-License-Identifier: MIT
+# 
+
+[ "$DEBUG" == 'true' ] && set -x  # aka set -o xtrace
+set -o pipefail
+set -o errexit  # aka set -e
+
+CWD=$(pwd)
+PROGNAME="init-environment"
+
+clean_up ()
+{
+   unset CWD ARGS PROGNAME 
+   unset BUILD_DIR CLEAN_BUILD INCLUDE_BUILD_HISTORY
+}
+
+init_variables () {
+    # input -possible injected from environments
+    YOCTO_DOWNLOAD_DIR=${YOCTO_DOWNLOAD_DIR:-"/yocto/download-cache"}
+    PACKAGE_FEED_URI=${PACKAGE_FEED_URI:-"http://yocto.medops.de"}
+    PACKAGE_FEED_BASE_PATHS=${PACKAGE_FEED_BASE_PATHS:-"feeds/ci"}
+    BUILD_DIR=${BUILD_DIR:-"build"}
+
+    # input flags - possible injected
+    CLEAN_BUILD=${CLEAN_BUILD:-"false"}
+    INCLUDE_BUILD_HISTORY=${INCLUDE_BUILD_HISTORY:-"false"}
+
+    # defaults of internally computed vars
+    PACKAGE_FEED_SYNC_TARGET="$PUBLISH_TARGET/feeds"
+}
+
+
+usage ()
+{
+   echo -e "\nUsage: source $PROGNAME
+
+   Establish a build environment:
+   - create local.conf (if it not exists)
+   - create site.conf (if it not exists)
+
+   Control variables (to be evaluated when sourced)
+
+   CLEAN_BUILD
+      Flag if true it removes the builddir befor building
+   INCLUDE_BUILD_HISTORY
+      Record build changes via git build history
+   BUILD_DIR
+      specifies build directory location default is 'build'
+
+   site.conf is build according to environment variables:
+      YOCTO_DOWNLOAD_DIR (if not set /yocto/download-cache is used)
+      PACKAGE_FEED_URI (if not set http://yocto.medops.de is used )
+      PACKAGE_FEED_BASE_PATHS (if not set feeds/ci is used)
+      PARALLEL_MAKE & BB_NUMBER_THREADS is set according to computing capabilities
+   "
+}
+
+sanity_checks ()
+{
+   if [ "$(whoami)" = "root" ]; then
+      echo "ERROR: do not use the BSP as root. Exiting..."
+      cleanup_up
+      exit 1
+   fi
+
+}
+
+
+write_site_conf ()
+{
+   # write site.conf only if it does not exist
+   # i.e. never ever modify if it exists
+   if [ -d conf ] && [ ! -f conf/site.conf ]; then
+
+      echo "DL_DIR = \"$YOCTO_DOWNLOAD_DIR\" " > conf/site.conf
+      if [ -n "${PACKAGE_FEED_URI}" ]; then
+         echo "PACKAGE_FEED_URI = \"${PACKAGE_FEED_URI}/\" " >> conf/site.conf
+      fi
+      if [ -n "${PACKAGE_FEED_BASE_PATHS}" ]; then
+          echo "PACKAGE_FEED_BASE_PATHS = \"${PACKAGE_FEED_BASE_PATHS}\" " >> conf/site.conf
+      fi
+      if [ "${INCLUDE_BUILD_HISTORY}" == 'true' ]; then
+         echo "INHERIT += \"buildhistory\" " >> conf/site.conf
+         echo "BUILDHISTORY_COMMIT = \"1\" " >> conf/site.conf
+         echo "BUILDHISTORY_DIR = \"\${TOPDIR}/buildhistory\" " >> conf/site.conf
+      fi
+      local NCPU=$(grep -c processor /proc/cpuinfo)
+      echo "BB_NUMBER_THREADS = \"${NCPU}\" " >> conf/site.conf
+      echo "PARALLEL_MAKE = \"-j ${NCPU}\" " >> conf/site.conf
+   fi
+}
+
+init_bitbake ()
+{
+    [ "${CLEAN_BUILD}" == 'true' ] && rm -rf ${BUILD_DIR}   # init a fresh environment;
+    TEMPLATECONF=$(pwd)/sources/ams/conf source sources/poky/oe-init-build-env ${BUILD_DIR}
+    # now we cd'ed into the ${BUILD_DIR}
+    write_site_conf
+}
+
+main ()
+{
+   init_variables
+   sanity_checks
+   init_bitbake
+   clean_up
+}
+
+# execute main
+if [ "${BASH_SOURCE[0]}" != "${0}" ] ; then
+   # callage via sourcing => ok
+   main
+else
+   echo "!!! ERROR: This script should be sourced !!!"
+   usage
+   exit 1
+fi
