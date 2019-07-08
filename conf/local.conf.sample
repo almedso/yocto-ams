@@ -1,4 +1,4 @@
-CONF_VERSION = "2"
+CONF_VERSION = "1"
 DISTRO ?= 'ams'
 
 PACKAGE_FEED_URIS ?= "https://ams.almedso.de/feeds/${DISTRO}"
