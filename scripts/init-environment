@@ -76,6 +76,9 @@ write_site_conf ()
    if [ -d conf ] && [ ! -f conf/site.conf ]; then
 
       echo "DL_DIR = \"$YOCTO_DOWNLOAD_DIR\" " > conf/site.conf
+      if [ -n "${DISTRO}" ]; then
+         echo "DISTRO = \"${DISTRO}\" " >> conf/site.conf
+      fi
       if [ -n "${PACKAGE_FEED_URI}" ]; then
          echo "PACKAGE_FEED_URI = \"${PACKAGE_FEED_URI}/\" " >> conf/site.conf
       fi
