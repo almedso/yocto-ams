@@ -12,8 +12,13 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d
 
 INC_PR = "r0"
 
+PREFERRED_VERSION_nodejs = "10.7.0"
 
-inherit gitpkgv angular-cli
+inherit gitpkgv
+
+inherit npm-install-global
+
+BBCLASSEXTEND = "native nativesdk"
 
 WEB_TARGET_HOME = "/var/lib/${PN}"
 B = "${S}/build"
@@ -35,7 +40,12 @@ FILES_${PN} += "\
 CONFFILES_${PN} += " \
 "
 
-do_install_append() {
+do_compile() {
+        cd ${S}
+        ng build --prod
+}
+
+do_install() {
         cd ${B}  # find with exec and {} need to work with relative directories
         # create all directories
         find . -type d -exec install -d "${D}${WEB_TARGET_HOME}/{}" \;
