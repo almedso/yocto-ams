@@ -15,7 +15,8 @@ SRC_URI[sha256sum] = "9461737689323f6740766f4a690b7570812b1eb78abf471f7a21c74b4c
 INSANE_SKIP_${PN} += "file-rdeps"
 
 # angular8 Requires minimum node version of 8.9 - 10.16.0 is the latest stable version
-PREFERRED_VERSION_nodejs = "10.16.0"
+# requires npm 6.1 version (for proper install) - which comes along with 10.7.0 node version
+PREFERRED_VERSION_nodejs = "10.7.0"
 
 
 # npm > version 5 is less lazy - a none-existing node_modules folder will be created
