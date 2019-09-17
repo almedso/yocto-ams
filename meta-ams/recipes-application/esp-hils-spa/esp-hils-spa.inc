@@ -27,7 +27,7 @@ RDEPENDS_${PN} += " \
         nginx \
 "
 
-DEPENDS_${PN} += " \
+DEPENDS += " \
         nodejs-native \
         npm-native \
 "
