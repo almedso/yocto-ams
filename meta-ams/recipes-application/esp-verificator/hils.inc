@@ -15,7 +15,7 @@ INC_PR = "r0"
 inherit gitpkgv setuptools3 systemd
 
 PREFERED_VERSION_python = "3.5%"
-DEPENDS_${PN} += "${PYTHON_PN}-modules"
+DEPENDS += "${PYTHON_PN}-modules"
 RDEPENDS_${PN} += " \
         ${PYTHON_PN}-modules \
         ${PYTHON_PN}-click \
