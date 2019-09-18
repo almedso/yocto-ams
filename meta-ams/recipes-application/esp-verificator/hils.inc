@@ -7,7 +7,7 @@ BUGTRACKER = "http://gitlab.com/alemdso/esp-validator"
 # SECTION = "unknown/unknown"
 
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE.MIT;md5=030cb33d2af49ccebca74d0588b84a21 \
                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
 INC_PR = "r0"
@@ -15,9 +15,8 @@ INC_PR = "r0"
 inherit gitpkgv setuptools3 systemd
 
 PREFERED_VERSION_python = "3.5%"
-DEPENDS += "${PYTHON_PN}-modules"
+# DEPENDS += "${PYTHON_PN}-modules"
 RDEPENDS_${PN} += " \
-        ${PYTHON_PN}-modules \
         ${PYTHON_PN}-click \
         ${PYTHON_PN}-flask \
         ${PYTHON_PN}-flask-restful \

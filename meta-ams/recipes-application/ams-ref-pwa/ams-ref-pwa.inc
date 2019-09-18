@@ -7,7 +7,7 @@ BUGTRACKER = "http://github.com/almedso/emba/issues"
 # SECTION = "unknown/unknown"
 
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=b97a012949927931feb7793eee5ed924 \
                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
 INC_PR = "r0"
@@ -22,7 +22,7 @@ RDEPENDS_${PN} += " \
         nginx \
 "
 
-DEPENDS += " \
+DDEPENDS += " \
         nodejs-native \
         npm-native \
 "
