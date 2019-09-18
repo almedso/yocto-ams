@@ -15,6 +15,9 @@ clean_up ()
 {
    unset CWD ARGS PROGNAME 
    unset BUILD_DIR CLEAN_BUILD INCLUDE_BUILD_HISTORY
+   set +x  # aka set +o xtrace
+   set +o pipefail
+   set +o errexit  # aka set +e
 }
 
 init_variables () {
@@ -119,5 +122,6 @@ if [ "${BASH_SOURCE[0]}" != "${0}" ] ; then
 else
    echo "!!! ERROR: This script should be sourced !!!"
    usage
+   clean_up
    exit 1
 fi
