@@ -6,6 +6,10 @@ PR_INC = "r1"
 inherit core-image
 require rootfs-post-install.inc
 
+KERNEL_DEVICETREE += " \
+    ${@bb.utils.contains('MACHINE_FEATURES', 'ads7846-touch', 'overlays/ads7846.dtbo', '', d)} \
+"
+
 
 IMAGE_INSTALL_append = " \
     packagegroup-base-ams \
