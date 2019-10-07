@@ -1,8 +1,14 @@
-#!/usr/bin/env bash
 #
 # Copyright (c) 2019, almedso GmbH
 # SPDX-License-Identifier: MIT
-# 
+#
+# source this script from bash shell
+
+if ! ps -o command -p $$ | grep bash -q ; then
+   echo "ERROR: This script shall be sourced from bash shell"
+   echo "       Sourcing the script failed"
+   return 1
+fi
 
 [ "$DEBUG" == 'true' ] && set -x  # aka set -o xtrace
 set -o pipefail
@@ -21,20 +27,14 @@ clean_up ()
 }
 
 init_variables () {
-    # input -possible injected from environments
-    YOCTO_DOWNLOAD_DIR=${YOCTO_DOWNLOAD_DIR:-"/yocto/download-cache"}
-    PACKAGE_FEED_URI=${PACKAGE_FEED_URI:-"http://yocto.medops.de"}
-    PACKAGE_FEED_BASE_PATHS=${PACKAGE_FEED_BASE_PATHS:-"feeds/ci"}
+    # input - possibly injected from environment
+    PACKAGE_FEED_BASE_PATHS=${PACKAGE_FEED_BASE_PATHS:-"feeds"}
     BUILD_DIR=${BUILD_DIR:-"build"}
 
-    # input flags - possible injected
+    # input flags - possibly injected
     CLEAN_BUILD=${CLEAN_BUILD:-"false"}
     INCLUDE_BUILD_HISTORY=${INCLUDE_BUILD_HISTORY:-"false"}
-
-    # defaults of internally computed vars
-    PACKAGE_FEED_SYNC_TARGET="$PUBLISH_TARGET/feeds"
 }
-
 
 usage ()
 {
@@ -47,30 +47,46 @@ usage ()
    Control variables (to be evaluated when sourced)
 
    CLEAN_BUILD
-      Flag if true it removes the builddir befor building
+      Flag if true it removes the builddir before building
+      Default is false
    INCLUDE_BUILD_HISTORY
       Record build changes via git build history
+      Default is false
    BUILD_DIR
       specifies build directory location default is 'build'
 
    site.conf is build according to environment variables:
-      YOCTO_DOWNLOAD_DIR (if not set /yocto/download-cache is used)
-      PACKAGE_FEED_URI (if not set http://yocto.medops.de is used )
-      PACKAGE_FEED_BASE_PATHS (if not set feeds/ci is used)
+      YOCTO_DOWNLOAD_DIR (if not set - nothing is added to site.conf)
+      PACKAGE_FEED_URI (if not set - nothing is added to site.conf)
+      PACKAGE_FEED_BASE_PATHS (if not set feeds is used)
+      DISTRO (if not set - nothing is added to site.conf)
+
+      Furthermore:
       PARALLEL_MAKE & BB_NUMBER_THREADS is set according to computing capabilities
    "
 }
 
 sanity_checks ()
 {
+
    if [ "$(whoami)" = "root" ]; then
-      echo "ERROR: do not use the BSP as root. Exiting..."
-      cleanup_up
-      exit 1
+      echo "ERROR: do not use the BSP as root."
+      echo "       Sourcing the script failed"
+      return 1
    fi
-
+   if [ ! -d "$(pwd)/sources/ams" ]; then
+      echo "ERROR: ./sources/ams does not exist"
+      echo "       This script should be invoked from yocto project root directory"
+      echo "       Sourcing the script failed"
+      return 1
+   fi
+   if [ ! -d "$(pwd)/sources/poky" ]; then
+      echo "ERROR: ./sources/poky does not exist"
+      echo "       This script should be invoked from yocto project root directory"
+      echo "       Sourcing the script failed"
+      return 1
+   fi
 }
-
 
 write_site_conf ()
 {
@@ -110,8 +126,9 @@ init_bitbake ()
 main ()
 {
    init_variables
-   sanity_checks
-   init_bitbake
+   if sanity_checks; then
+      init_bitbake
+   fi
    clean_up
 }
 
