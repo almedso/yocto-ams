@@ -57,6 +57,7 @@ usage ()
 
    site.conf is build according to environment variables:
       YOCTO_DOWNLOAD_DIR (if not set - nothing is added to site.conf)
+      YOCTO_SSTATE_DIR (if not set - nothing is added to site.conf)
       PACKAGE_FEED_URI (if not set - nothing is added to site.conf)
       PACKAGE_FEED_BASE_PATHS (if not set feeds is used)
       DISTRO (if not set - nothing is added to site.conf)
@@ -97,6 +98,9 @@ write_site_conf ()
       echo "DL_DIR = \"$YOCTO_DOWNLOAD_DIR\" " > conf/site.conf
       if [ -n "${DISTRO}" ]; then
          echo "DISTRO = \"${DISTRO}\" " >> conf/site.conf
+      fi
+      if [ -n "${YOCTO_SSTATE_DIR}" ]; then
+        echo "SSTATE_DIR = \"${YOCTO_SSTATE_DIR}\" " > conf/site.conf
       fi
       if [ -n "${PACKAGE_FEED_URI}" ]; then
          echo "PACKAGE_FEED_URI = \"${PACKAGE_FEED_URI}/\" " >> conf/site.conf
