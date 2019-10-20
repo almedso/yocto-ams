@@ -25,6 +25,8 @@ BBLAYERS = " \
   \
   ${BSPDIR}/sources/meta-nodejs \
   \
+  ${BSPDIR}/sources/meta-qt5 \
+  \
   ${BSPDIR}/sources/ams/meta-ams \
   ${BSPDIR}/sources/ams/meta-ams-bsp \
 "
