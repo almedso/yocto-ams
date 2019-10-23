@@ -6,7 +6,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI += " file://ws800x480.edid"
 
-FILES_${PN}_append = " boot/ws800x480.edid"
+FILES_${PN}_append = " bcm2835-bootfiles/ws800x480.edid"
 
 do_deploy_append() {
 
