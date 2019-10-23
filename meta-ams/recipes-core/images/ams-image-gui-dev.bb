@@ -24,6 +24,7 @@ IMAGE_INSTALL_append += " \
     clutter-1.0-examples \
     gtk+3-demo \
     libdrm-tests \
+    qtwebengine \
     qt5-demo-app-b2open \
     weston \
     weston-init \
