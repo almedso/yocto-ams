@@ -42,7 +42,7 @@ PARALLEL_MAKE ?= '-j 4'
 
 # overwrite in site.conf
 DL_DIR ?= "${TOPDIR}/downloads-cache/"
-SSTATE_DIR ?= "${TOPDIR}/sstate-cache"
+SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
 
 # Fix the temp dir such that later rsync can refer to output
 # make sure custom glibc recipes do not overwrite TMPDIR
