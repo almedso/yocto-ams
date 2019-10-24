@@ -39,7 +39,6 @@ node () {
         myImage.inside("""
             --env YOCTO_VERSION=${YOCTO_VERSION} \
             --env DISTRO=${DISTRO} \
-            --volume yocto-root:/yocto/root \
             --volume yocto-cache:/yocto/cache \
             --volume yocto-publish:/yocto/publish \
             --user ${user_id}:${group_id} \
