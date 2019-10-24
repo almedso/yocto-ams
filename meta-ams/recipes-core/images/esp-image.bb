@@ -6,6 +6,9 @@ require include/ams-image.inc
 
 PR = "1.0.${PR_INC}"
 
+# overwrite image name - to find it in tmp* tree
+export IMAGE_BASENAME = "esp-image"
+
 CORE_IMAGE_EXTRA_INSTALL += " \
   hils \
 "
