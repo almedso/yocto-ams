@@ -7,7 +7,7 @@ require include/ams-image.inc
 PR = "1.0.${PR_INC}"
 
 # overwrite image name - to find it in tmp* tree
-export IMAGE_BASENAME = "ams-image-dev"
+export IMAGE_BASENAME = "ams-image-ptest"
 
 IMAGE_FEATURES_append = " \
     ptest-pkgs \
