@@ -12,6 +12,7 @@ node () {
             [ machine: "ricardo", image: "ams-image", publish: false ],
             [ machine: "ricardo", image: "ams-image-dev", publish: true ],
             [ machine: "ricardo", image: "esp-image", publish: true ],
+            [ machine: "ricardo", image: "docker-ce-image", publish: true ],
 
             [ machine: "rigoletto", image: "ams-image-minimal", publish: true ],
             [ machine: "rigoletto", image: "ams-image", publish: true ],
