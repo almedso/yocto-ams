@@ -23,7 +23,10 @@ node () {
             [ machine: "rodolfo", image: "esp-image", publish: true ],
 
             [ machine: "ruiz", image: "ams-image-minimal", publish: false ],
-            [ machine: "ruiz", image: "ams-image-dev", publish: true ]
+            [ machine: "ruiz", image: "ams-image-dev", publish: true ],
+
+            [ machine: "roderigo", image: "brick-image", publish: true ]
+
         ]
         // End Input
 
