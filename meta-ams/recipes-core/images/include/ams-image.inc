@@ -13,7 +13,6 @@ KERNEL_DEVICETREE += " \
 
 IMAGE_INSTALL_append = " \
     packagegroup-base-ams \
-    connman \
     "
 
 IMAGE_INSTALL_remove = " \
