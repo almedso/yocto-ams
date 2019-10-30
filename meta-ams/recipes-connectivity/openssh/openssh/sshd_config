@@ -1,0 +1,17 @@
+# The default requires explicit activation of protocol 1
+Protocol 2
+
+# Authentication
+PermitRootLogin no
+AuthorizedKeysFile .ssh/authorized_keys
+PermitEmptyPasswords no
+
+ChallengeResponseAuthentication no
+
+UsePAM yes
+
+Compression no
+ClientAliveInterval 15
+ClientAliveCountMax 4
+
+Subsystem       sftp    /usr/libexec/sftp-server
