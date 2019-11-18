@@ -9,6 +9,6 @@ PR = "1.0.${PR_INC}"
 # overwrite image name - to find it in tmp* tree
 export IMAGE_BASENAME = "brick-image"
 
-CORE_IMAGE_EXTRA_INSTALL += " \
+CORE_IMAGE_EXTRA_INSTALL += "\
   brick-daemon \
 "

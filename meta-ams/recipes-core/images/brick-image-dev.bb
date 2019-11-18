@@ -14,6 +14,7 @@ IMAGE_FEATURES_append = " \
     allow-empty-password \
    "
 
-IMAGE_EXTRA_INSTALL += " \
+CORE_IMAGE_EXTRA_INSTALL += "\
   brick-daemon \
+  weather-station \
 "
