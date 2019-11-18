@@ -24,6 +24,7 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-raspberrypi \
   \
   ${BSPDIR}/sources/meta-nodejs \
+  ${BSPDIR}/sources/meta-rust-bin \
   \
   ${BSPDIR}/sources/meta-qt5 \
   \
