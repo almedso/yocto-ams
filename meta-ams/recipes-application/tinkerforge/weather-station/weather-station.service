@@ -1,0 +1,11 @@
+[Unit]
+Description=Weather Station
+After=network.target
+
+[Service]
+User=root
+Group=root
+ExecStart=/usr/bin/weather-station
+
+[Install]
+WantedBy=multi-user.target
