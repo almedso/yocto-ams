@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = " \
    file://${WORKDIR}/git/src/daemonlib/license.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
    "
 
-INC_PR = "r0"
+INC_PR = "r1"
 
 inherit gitpkgv systemd
 
@@ -33,6 +33,8 @@ do_install () {
    # if not removed
    rmdir ${D}/var/run
 }
+
+SYSTEMD_SERVICE_${PN} = "brickd.service"
 
 PARALLEL_MAKE = ""
 
