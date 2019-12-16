@@ -1,11 +1,13 @@
 [Unit]
 Description=Weather Station
-After=network.target
+After=network.target brickd.service
 
 [Service]
 User=root
 Group=root
 ExecStart=/usr/bin/weather-station
+Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target

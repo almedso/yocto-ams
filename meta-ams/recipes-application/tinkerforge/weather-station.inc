@@ -3,9 +3,9 @@ HOMEPAGE = "git@gitlab.com:volker-kempert/tinkerforge-weatherstation.git"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=cc38aedb66ffade44ebffd945e837209"
 
-INC_PR = "r0"
+INC_PR = "r1"
 
-inherit cargo
+inherit cargo systemd
 
 FILES_${PN} += "\
         ${systemd_system_unitdir}/${PN}.service \
