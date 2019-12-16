@@ -11,4 +11,5 @@ export IMAGE_BASENAME = "brick-image"
 
 CORE_IMAGE_EXTRA_INSTALL += "\
   brick-daemon \
+  weather-station \
 "
