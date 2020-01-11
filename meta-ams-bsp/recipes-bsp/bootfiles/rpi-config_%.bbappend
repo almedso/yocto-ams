@@ -1,12 +1,5 @@
+PR_append = ".ams.3"
 
-
-PR_append = ".ams.1"
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-
-SRC_URI += " file://ws800x480.edid"
-
-FILES_${PN}_append = " bcm2835-bootfiles/ws800x480.edid"
 
 do_deploy_append() {
 
@@ -25,9 +18,16 @@ do_deploy_append() {
         echo "hdmi_drive=1" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
         echo "hdmi_ignore_edid=0xa5000080" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
 
+        # remaining safe mode settings see
+        # https://www.raspberrypi.org/documentation/configuration/config-txt/video.md
+        echo "disable_overscan=0" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+        echo "overscan_left=24" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+        echo "overscan_right=24" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+        echo "overscan_top=24" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+        echo "overscan_bottom=24" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+
         echo "edid_content_type=0" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
         echo "hdmi_edid_file=1" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-        echo "hdmi_edid_filename=ws800x480.edid" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
 
 
         echo "" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
@@ -36,16 +36,10 @@ do_deploy_append() {
         echo "dtoverlay=ads7846,cs=1,penirq=25,penirq_pull=2,speed=50000,keep_vref_on=0,swapxy=0,pmax=255,xohms=150,xmin=200,xmax=3900,ymin=200,ymax=39001" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
 
         echo "" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+        echo "# Audio settings taken over from Raspberrian for this display" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+        echo "dtparam=audis=on" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+
+        echo "" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
     fi
 
-    install -d ${D}/boot/xdg/weston
-    install -m 0644 ${WORKDIR}/ws800x480.edid ${D}/boot
-
-
 }
-
-
-
-
-
-
