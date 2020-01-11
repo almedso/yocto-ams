@@ -1,6 +1,7 @@
 require brick-daemon.inc
 
-PV = "0.1+git${SRCPV}"
+# PV = "0.1+git${SRCPV}"
+PV = "0.1"
 PKGV = "0.1+git${GITPKGV}"
 PR = "${INC_PR}.1"
 
@@ -12,6 +13,6 @@ SRC_URI = " \
 
 SRCREV_FORMAT = "brickd_daemonlib"
 
-SRCREV_brickd = "${AUTOREV}"
+SRCREV = "${AUTOREV}"
 SRCREV_daemonlib = "${AUTOREV}"
 S = "${WORKDIR}/git/brickd"
