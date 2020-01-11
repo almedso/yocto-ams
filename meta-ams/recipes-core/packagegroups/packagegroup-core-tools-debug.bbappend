@@ -24,5 +24,9 @@ RDEPENDS_${PN}_append = " \
     vim \
     wget \
     wireshark \
+    ${DETAILED_EXTRAS} \
     ${EXTRAS} \
     "
+
+# raspberrypi graphics stuff
+DETAILED_EXTRAS = "userland"
