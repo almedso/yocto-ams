@@ -25,6 +25,7 @@ IMAGE_INSTALL_append += " \
     gtk+3-demo \
     libdrm-tests \
     qt5-browser \
+    qt5-simple \
     qtwayland \
     weston \
     weston-init \
