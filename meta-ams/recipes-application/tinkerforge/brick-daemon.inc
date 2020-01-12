@@ -11,7 +11,11 @@ LIC_FILES_CHKSUM = " \
    file://${WORKDIR}/git/src/daemonlib/license.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
    "
 
-INC_PR = "r1"
+INC_PR = "r2"
+
+# There are two sources in different git repos that need to be made available into one
+# source area
+# They are differently tagged as well.
 
 inherit gitpkgv systemd
 
