@@ -28,5 +28,4 @@ RDEPENDS_${PN}_append = " \
     ${EXTRAS} \
     "
 
-# raspberrypi graphics stuff
-DETAILED_EXTRAS = "userland"
+DETAILED_EXTRAS = ""
