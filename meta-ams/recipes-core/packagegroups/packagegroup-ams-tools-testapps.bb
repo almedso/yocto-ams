@@ -19,9 +19,24 @@ SERBUSTOOLS = " \
     i2c-tools \
 "
 
+GUI_SAMPLES_AND_TOOLS = " \
+    clutter-1.0-examples \
+    gtk+3-demo \
+    libdrm-tests \
+    qt5-simple \
+    qt5-opengles2-test \
+    qt5ledscreen \
+    qtsmarthome \
+    qt5everywheredemo \
+    qt5nmapper \
+    weston \
+    weston-examples \
+    weston-init \
+"
+
 RDEPENDS_${PN} = " \
     ${TSTOOLS} \
     ${SERBUSTOOLS} \
-    webmin \
+    ${GUI_SAMPLES_AND_TOOLS} \
 "
 

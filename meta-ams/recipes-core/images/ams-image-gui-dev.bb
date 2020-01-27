@@ -21,15 +21,8 @@ IMAGE_FEATURES_append = " \
    "
 
 IMAGE_INSTALL_append += " \
-    clutter-1.0-examples \
-    gtk+3-demo \
-    libdrm-tests \
+    qt-env \
     qt5-browser \
-    qt5-simple \
-    qtwayland \
-    weston \
-    weston-init \
-    weston-examples \
     nginx \
 "
 
