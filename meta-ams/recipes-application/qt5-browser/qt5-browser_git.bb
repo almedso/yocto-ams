@@ -5,14 +5,24 @@ DESCRIPTION = "Application Qt5 browser"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=a4da52e2ccbb1d4dfb1c9a26e5ba67a0"
 
-inherit gitpkgv qmake5
+
+SRC_URI = "git://github.com/almedso/yocto-qt5-browser.git;branch=master"
+SRCREV = "${AUTOREV}"
+
+BASE_VERSION = "0.3"
+PR = ".r2"
+PKGV = "${BASE_VERSION}+git${GITPKGV}"
+PV = "${BASE_VERSION}+git${SRCPV}"
+
+inherit gitpkgv
+inherit qmake5 systemd
 
 DEPENDS += "\
     qtbase \
+    qtvirtualkeyboard \
     qtgraphicaleffects \
     qtmultimedia \
     qtquickcontrols2 \
-    qtquickcontrols \
     qtwebengine \
     qtwebsockets \
     qttools-native \
@@ -30,8 +40,6 @@ RDEPENDS_${PN} += "\
     qtwebsockets \
     "
 
-SRC_URI = "git://github.com/almedso/yocto-qt5-browser.git;branch=master"
-SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git"
 
