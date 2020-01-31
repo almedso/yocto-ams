@@ -1,0 +1,16 @@
+
+; Add fonts path to prevent warnings
+QT_QPA_FONTDIR=/usr/share/fonts/truetype
+
+; Keep showing the cursor for now:
+QT_QPA_EGLFS_HIDECURSOR=0
+
+; Also use tslib:
+QT_QPA_GENERIC_PLUGINS=tslib
+
+; Uncomment this to disable everything but tslib:
+;QT_QPA_EGLFS_DISABLE_INPUT=1
+
+; Hardcode the tslib device to the touchscreen tfp401 device for now:
+TSLIB_TSDEVICE="/dev/input/by-id/usb-Microchip_Technology_Inc._AR1100_HID-MOUSE-event-mouse"
+
