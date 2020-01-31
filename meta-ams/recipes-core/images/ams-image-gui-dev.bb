@@ -23,6 +23,6 @@ IMAGE_FEATURES_append = " \
 IMAGE_INSTALL_append += " \
     qt-env \
     qt5-browser \
-    nginx \
+    emb-spa \
 "
 

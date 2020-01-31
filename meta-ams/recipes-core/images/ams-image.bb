@@ -12,4 +12,6 @@ export IMAGE_BASENAME = "ams-image"
 IMAGE_FEATURES_append = " \
 "
 IMAGE_INSTALL_append = " \
+    hils \
+    emb-spa \
     "

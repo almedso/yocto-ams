@@ -11,4 +11,5 @@ export IMAGE_BASENAME = "esp-image"
 
 CORE_IMAGE_EXTRA_INSTALL += " \
   hils \
+  emb-spa \
 "
