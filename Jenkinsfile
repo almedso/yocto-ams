@@ -3,7 +3,7 @@ node () {
     withEnv([
         'DISTRO=ams',
         'RELEASE=current',
-        'YOCTO_VERSION=warrior-next'])
+        'YOCTO_VERSION=zeus-next'])
     {
 
         // Input list images machine comibinations to build
