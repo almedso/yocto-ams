@@ -18,14 +18,17 @@ RDEPENDS_${PN} += "\
 
 HAS_WAYLAND = "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 1, 0, d)}"
 
-FILES_${PN} += "${sysconfdir}/profile.d/qt5-env.sh"
+FILES_${PN} += " \
+    ${sysconfdir}/profile.d/qt5-env.sh \
+    "
 
 
 do_install() {
-    install -d ${D}${sysconfdir}/profile.d
-    install -m 0755 qt5-env.sh ${D}${sysconfdir}/profile.d
+    install -d -m 0755 ${D}${sysconfdir}/profile.d
 
     if [ ${HAS_WAYLAND} -eq 1 ]; then
-        cat qt5-env-wayland.sh >> ${D}${sysconfdir}/profile.d/qt5-env.sh
+        install -m 0644 qt5-env-wayland.sh ${D}${sysconfdir}/profile.d/qt5-env.sh
+    else
+        install -m 0644 qt5-env.sh ${D}${sysconfdir}/profile.d
     fi
 }

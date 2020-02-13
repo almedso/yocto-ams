@@ -12,3 +12,8 @@ export QT_QPA_EGLFS_WIDTH=800
 export QT_QPA_EGLFS_HEIGHT=480
 
 export QT_QPA_EGLFS_ROTATION=90
+
+# Some more details to show
+export QT_QPA_EGLFS_DEBUG=1
+export QSG_INFO=1
+export QT_LOGGING_RULES=qt.qpa.*=true
