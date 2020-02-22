@@ -16,7 +16,10 @@ PACKAGECONFIG_append = " networkd resolved timesyncd"
 # Make sure we get wpa-supplicant service available at runtime
 # in order to connect to wireless networks
 # see  https://hub.mender.io/t/how-to-configure-networking-using-systemd-in-yocto-project/1097
-RDEPENDS_${PN}_append = " wpa-supplicant "
+
+RDEPENDS_${PN}_append = " \
+    ${@bb.utils.contains('MACHINE_FEATURES','wifi','wpa-supplicant','',d)} \
+"
 
 FILES_${PN} += "\
     ${sysconfdir}/systemd/network/10-dhcp.network \

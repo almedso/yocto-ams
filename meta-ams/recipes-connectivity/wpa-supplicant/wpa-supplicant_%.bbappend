@@ -3,7 +3,9 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 SRC_URI += "file://wpa_supplicant-wlan0.conf"
 
 SYSTEMD_AUTO_ENABLE = "enable"
-SYSTEMD_SERVICE_${PN}_append = " wpa_supplicant@wlan0.service "
+SYSTEMD_SERVICE_${PN}_append = " \
+   ${@bb.utils.contains('MACHINE_FEATURES','wifi','wpa_supplicant@wlan0.service','',d)} \
+"
 
 do_install_append () {
    install -d ${D}${sysconfdir}/wpa_supplicant/
