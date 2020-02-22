@@ -45,4 +45,14 @@ S = "${WORKDIR}/git"
 
 FILES_${PN} += "/usr/bin/qt5-browser"
 
-inherit qmake5
+FILES_${PN} += "\
+        ${systemd_system_unitdir}/${PN}.service \
+"
+
+SYSTEMD_SERVICE_${PN} = "${PN}.service"
+
+do_install_append() {
+        install -d ${D}${systemd_unitdir}/system
+        install -m 0644 ${THISDIR}/files/${PN}.service ${D}${systemd_system_unitdir}
+}
+

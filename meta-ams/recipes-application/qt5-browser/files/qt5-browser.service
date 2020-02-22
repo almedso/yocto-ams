@@ -1,0 +1,10 @@
+[Unit]
+Description=Browser Service
+After=weston.service
+
+[Service]
+Environment=XDG_RUNTIME_DIR=/run/user/0
+ExecStart=/usr/bin/qt5-browser --platform wayland --no-sandbox -l 480 -w 800
+
+[Install]
+WantedBy=multi-user.target
