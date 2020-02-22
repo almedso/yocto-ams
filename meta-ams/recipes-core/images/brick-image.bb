@@ -9,7 +9,7 @@ PR = "1.0.${PR_INC}"
 # overwrite image name - to find it in tmp* tree
 export IMAGE_BASENAME = "brick-image"
 
-CORE_IMAGE_EXTRA_INSTALL += "\
+IMAGE_INSTALL_append = " \
   brick-daemon \
   weather-station \
 "

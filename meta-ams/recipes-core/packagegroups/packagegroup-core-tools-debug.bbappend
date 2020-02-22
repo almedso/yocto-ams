@@ -1,5 +1,4 @@
 SUMMMARY = "AMS Base System tools-debug (image feature)"
-LICENSE = "CLOSED"
 PR_append = ".ams.1"
 
 
@@ -14,13 +13,15 @@ RDEPENDS_${PN}_append = " \
     devmem2 \
     git \
     ethtool \
+    htop \
     i2c-tools \
-    openssh-sftp-server \
+    minicom \
     parted \
     setserial \
     socat \
     strace \
     tcpdump \
+    tmux \
     vim \
     wget \
     wireshark \

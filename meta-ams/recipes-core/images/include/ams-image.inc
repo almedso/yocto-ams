@@ -1,5 +1,3 @@
-SUMMARY = "AMS Image Basics"
-DESCRIPTION = "AMS Image Basics"
 LICENSE = "MIT"
 PR_INC = "r1"
 
