@@ -2,7 +2,7 @@ server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
-    root /var/www/aws-ref-wpa/html;
+    root /var/www/ams-ref-spa/html;
 
     try_files $uri $uri/ /index.html;
 
