@@ -13,9 +13,9 @@ node () {
             [ machine: "ricardo", image: "ams-image-dev", publish: true ],
             [ machine: "ricardo", image: "esp-image", publish: true ],
 
-            [ machine: "rigoletto", image: "ams-image-minimal", publish: true ],
-            [ machine: "rigoletto", image: "ams-image", publish: true ],
-            [ machine: "rigoletto", image: "ams-image-dev", publish: true ],
+            // [ machine: "rigoletto", image: "ams-image-minimal", publish: true ],
+            // [ machine: "rigoletto", image: "ams-image", publish: true ],
+            // [ machine: "rigoletto", image: "ams-image-dev", publish: true ],
 
             [ machine: "rodolfo", image: "ams-image-minimal", publish: true ],
             [ machine: "rodolfo", image: "ams-image", publish: false ],
@@ -23,9 +23,11 @@ node () {
             [ machine: "rodolfo", image: "esp-image", publish: true ],
 
             [ machine: "ruiz", image: "ams-image-minimal", publish: false ],
-            [ machine: "ruiz", image: "ams-image-dev", publish: true ],
+            [ machine: "ruiz", image: "ams-image-gui-dev", publish: true ],
 
-            [ machine: "roderigo", image: "brick-image", publish: true ]
+            [ machine: "roderigo", image: "brick-image", publish: true ],
+
+            [ machine: "quirin", image: "ams-image-gui-dev", publish: true ]
 
         ]
         // End Input
