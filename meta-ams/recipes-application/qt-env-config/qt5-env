@@ -14,3 +14,9 @@ QT_QPA_GENERIC_PLUGINS=tslib
 ; Hardcode the tslib device to the touchscreen tfp401 device for now:
 TSLIB_TSDEVICE="/dev/input/by-id/usb-Microchip_Technology_Inc._AR1100_HID-MOUSE-event-mouse"
 
+; Set virtual keyboard
+QT_IM_MODULE=qtvirtualkeyboard
+
+; for qt browser no sandbox
+QTWEBENGINE_DISABLE_SANDBOX=true
+
