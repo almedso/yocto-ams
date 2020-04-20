@@ -3,36 +3,36 @@
 # qemu on x86
 - machine: quirin
   image: ams-image-minimal
-  publish: true
+  publish: wic
 - machine: quirin
   image: ams-image-gui-dev
-  publish: true
+  publish: wic
 - machine: quirin
   image: brick-image-dev
-  publish: true
+  publish: wic
 - machine: quirin
   image: esp-image-dev
-  publish: true
+  publish: wic
 - machine: quirin
   image: ams-image-ptest
-  publish: true
+  publish: wic
 
 # raspi 3 with gui
 - machine: ruiz
   image: ams-image-gui-dev
-  publish: true
+  publish: wic
 
 # raspi 3
 - machine: ricardo
   image: esp-image-dev
-  publish: true
+  publish: wic
 
 # raspi 2 mit usb-wifi
 - machine: roderigo
   image: brick-image-dev
-  publish: true
+  publish: wic
 
 # raspi zero with wifi on board
 - machine: rodolfo
   image: esp-image-dev
-  publish: true
+  publish: wic
