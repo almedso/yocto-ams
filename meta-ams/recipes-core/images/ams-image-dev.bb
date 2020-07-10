@@ -11,4 +11,5 @@ export IMAGE_BASENAME = "ams-image-dev"
 
 IMAGE_INSTALL_append = " \
     packagegroup-ams-tools \
+    rpi-hwctl \
     "
