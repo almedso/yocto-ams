@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d
 INC_PR = "r0"
 
 
-inherit setuptools gitpkgv systemd
+inherit setuptools3 gitpkgv systemd
 
 RDEPENDS_${PN} += " \
         gunicorn \

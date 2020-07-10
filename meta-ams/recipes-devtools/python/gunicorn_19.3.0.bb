@@ -16,7 +16,7 @@ SRC_URI = "https://pypi.python.org/packages/source/g/gunicorn/${PN}-${PV}.tar.gz
 SRC_URI[md5sum] = "faa3e80661efd67e5e06bba32699af20"
 SRC_URI[sha256sum] = "8bc835082882ad9a012cd790c460011e4d96bf3512d98a04d3dabbe45393a089"
 
-inherit setuptools
+inherit setuptools3
 
 RDEPENDS_${PN} += " \
     python-netclient \
