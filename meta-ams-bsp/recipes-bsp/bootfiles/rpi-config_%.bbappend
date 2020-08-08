@@ -50,6 +50,9 @@ do_deploy_append() {
         echo "" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
     fi
 
+    # enable i2c-0 device
+    echo "dtparam=i2c_vc=on" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+
     # Waveshare "R" 800x480" Resistive touch (http://www.waveshare.com/5inch-HDMI-LCD.htm)
     if [ "${WAVESHARE_800X480_RPI}" = "1" ]; then
         install -d ${DEPLOYDIR}/${PN}
