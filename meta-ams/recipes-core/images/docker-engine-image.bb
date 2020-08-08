@@ -1,13 +1,13 @@
-SUMMARY = "Tinkerforge brick-daemon image"
-DESCRIPTION = "Tinkerforge brick-daemon image - allow to work as hub for e.g. weather station"
+SUMMARY = "Docker Engine Image"
+DESCRIPTION = "Docker Engie Image"
 LICENSE = "MIT"
 
 require include/ams-image.inc
 
-PR = "1.0.${PR_INC}"
+PR = "1.1.${PR_INC}"
 
 # overwrite image name - to find it in tmp* tree
-export IMAGE_BASENAME = "brick-image"
+export IMAGE_BASENAME = "docker-engine-image"
 
 IMAGE_INSTALL_append = " \
   docker-ce \
