@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if py.test ; then
+    echo "PASS: hils"
+else
+    echo "FAIL: hils"
+fi

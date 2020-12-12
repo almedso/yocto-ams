@@ -1,0 +1,14 @@
+[Unit]
+Description=RaspberryPi show IP address on explorer700
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=root
+Group=root
+Type=oneshot
+ExecStart=/usr/bin/explorer700-show-ip
+
+
+[Install]
+WantedBy=multi-user.target

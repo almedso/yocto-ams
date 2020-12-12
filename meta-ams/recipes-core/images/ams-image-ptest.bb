@@ -17,6 +17,7 @@ IMAGE_INSTALL_append = " \
     glibc-utils \
     e2fsprogs-ptest \
     zlib-ptest \
+    hils-ptest \
     "
 
 # Additional image linguas are required if ptest shall work

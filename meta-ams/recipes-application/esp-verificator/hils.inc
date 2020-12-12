@@ -13,9 +13,13 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE.MIT;md5=030cb33d2af49ccebca74d058
 INC_PR = "r0"
 
 inherit gitpkgv setuptools3 systemd
+inherit ptest
+
+# here appending is unconditional, since it does not hurt
+SRC_URI += "file://run-ptest"
 
 PREFERED_VERSION_python = "3.5%"
-# DEPENDS += "${PYTHON_PN}-modules"
+
 RDEPENDS_${PN} += " \
         ${PYTHON_PN}-click \
         ${PYTHON_PN}-flask \
@@ -45,3 +49,11 @@ do_install_append() {
         install -m 0644 ${THISDIR}/${PN}/${PN}.conf ${D}${sysconfdir}
 
 }
+
+#do_install_ptest() {
+#       maybe do not do anything
+#}
+
+RDEPENDS_${PN}-ptest += " \
+        ${PYTHON_PN}-pytest \
+"
