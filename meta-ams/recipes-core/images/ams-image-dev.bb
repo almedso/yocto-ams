@@ -12,10 +12,10 @@ export IMAGE_BASENAME = "ams-image-dev"
 IMAGE_INSTALL_append = " \
     packagegroup-ams-tools \
     packagegroup-explore700 \
-    packagegroup-imaging \
     "
 
 
 OTHER_PACKAGES_IMAGE_INSTALL_append = " \
     winterling \
+    jupyter \
     "
