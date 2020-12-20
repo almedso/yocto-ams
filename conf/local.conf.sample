@@ -61,3 +61,7 @@ IMAGE_LINGUAS ?= "en-us de-de"
 BB_GENERATE_MIRROR_TARBALLS = "0"
 INHERIT += "rm_work"
 RM_OLD_IMAGE = "1"
+
+# in order to translate lapack fortran support (libgfortran) is required.
+# fortran support is enabled via
+FORTRAN_forcevariable = ",fortran"
