@@ -18,13 +18,13 @@ RDEPENDS_${PN}_append = " \
     minicom \
     parted \
     setserial \
+    sshfs-fuse \
     socat \
     strace \
     tcpdump \
     tmux \
     vim \
     wget \
-    wireshark \
     ${DETAILED_EXTRAS} \
     ${EXTRAS} \
     "

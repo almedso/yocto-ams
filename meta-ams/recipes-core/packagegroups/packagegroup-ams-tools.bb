@@ -23,7 +23,7 @@ SERBUSTOOLS = " \
 RDEPENDS_${PN} = " \
     ${TSTOOLS} \
     ${SERBUSTOOLS} \
-    can-tools \
+    can-config \
     can-utils \
 "
 
