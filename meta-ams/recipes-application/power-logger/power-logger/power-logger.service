@@ -1,0 +1,11 @@
+[Unit]
+Description=Solar Logger
+After=network.target
+
+[Service]
+User=root
+Group=root
+ExecStart=/usr/bin/pcl --host camtic-abcdef --storage /var/www/ams-ref-spa/html
+
+[Install]
+WantedBy=multi-user.target
