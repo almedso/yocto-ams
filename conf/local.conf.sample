@@ -52,7 +52,6 @@ SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
 # Fix the temp dir such that later rsync can refer to output
 # make sure custom glibc recipes do not overwrite TMPDIR
 TCLIBCAPPEND = ""
-TMPDIR = "${TOPDIR}/tmp"
 TMPDIR = "${TOPDIR}/tmp-${DISTRO}"
 
 GLIBC_GENERATE_LOCALES ?= "en_US.UTF-8 de_DE.UTF-8"
