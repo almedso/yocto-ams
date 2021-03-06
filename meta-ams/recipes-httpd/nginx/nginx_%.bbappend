@@ -1,4 +1,4 @@
-PR_append = ".ams.3"
+PR_append = ".ams.4"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 SRC_URI += "file://ams-ref-spa.site"

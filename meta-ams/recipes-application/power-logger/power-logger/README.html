@@ -1,0 +1,65 @@
+<html>
+<body>
+<h1>README</h1>
+
+This is a little readme for power logger customized raspi distribution.
+
+
+<h2>The Power Logger</h2>
+
+<p>
+
+The power logger application runs as  systemd service, named *power-logger*.
+</p><p>
+
+Use systemctl to manage
+```
+systemctl status power-logger.service
+systemctl start power-logger.service
+systemctl stop power-logger.service
+```
+</p><p>
+
+The service file is specified at the usual place:
+
+```
+vi /etc/systemd/system/multi-user.target.wants/power-logger.service
+```
+</p><p>
+
+The power power consumption logger application *pcl* can be explored by
+</p><p>
+
+```
+pcl --help
+usage: pcl [-h] [--host HOST] [--storage STORAGE] [-p PERIOD]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --host HOST           The the hostname: if not set cmatic-D9CD14 is used if host is set to 'simulate' artificial values (0.1) are delivered without invoking the web service
+  --storage STORAGE     Set a storage directory: if not set current directory is used
+  -p PERIOD, --period PERIOD
+                        Period where the readout happens (in seconds), if not set the program reads once and writes to console
+
+```
+</p>
+
+<h2>Web publishing</h2>
+
+<p>
+
+Web publishing is done via nginx service.
+</p><p>
+
+```
+systemctl status nginx.service
+```
+</p><p>
+
+The service serves standard port 80 via http.
+The local directory root that is served is */var/www/ams-ref-spa/html*.
+This is where the power-logger service writes into.
+</p>
+
+</body>
+</html>

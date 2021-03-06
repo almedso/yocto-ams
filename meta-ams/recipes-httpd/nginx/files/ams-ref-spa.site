@@ -6,5 +6,7 @@ server {
 
     try_files $uri $uri/ /index.html;
 
+    autoindex on;
+
     server_name _;
 }

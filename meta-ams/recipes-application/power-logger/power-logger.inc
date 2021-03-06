@@ -9,7 +9,7 @@ BUGTRACKER = "https://github.com/volker-kempert/power-logger"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5f304fef41dfb5905b37457a44bc19b5"
 
-INC_PR = "r0"
+INC_PR = "r3"
 
 inherit setuptools3 systemd
 
@@ -29,4 +29,10 @@ SYSTEMD_SERVICE_${PN} = "${PN}.service"
 do_install_append() {
         install -d ${D}${systemd_unitdir}/system
         install -m 0644 ${THISDIR}/${PN}/${PN}.service ${D}${systemd_system_unitdir}
+
+        # prepare the directory to write to
+        install --mode=0777 --directory ${D}/var/www/ams-ref-spa/html
+
+        # Write a readme to be visible on the web
+        install -m 0644 ${THISDIR}/${PN}/README.html ${D}/var/www/ams-ref-spa/html
 }

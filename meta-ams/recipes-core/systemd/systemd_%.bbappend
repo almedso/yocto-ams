@@ -1,9 +1,10 @@
-PR_append = ".ams.1"
+PR_append = ".ams.3"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 SRC_URI_append = " \
-    file://10-dhcp.network \
+    file://10-wlan.network \
+    file://20-eth.network \
 "
 # enable networkd, resolved and timesyncd
 # networkd - configures networks appropriately
@@ -22,10 +23,12 @@ RDEPENDS_${PN}_append = " \
 "
 
 FILES_${PN} += "\
-    ${sysconfdir}/systemd/network/10-dhcp.network \
+    ${sysconfdir}/systemd/network/10-wlan.network \
+    ${sysconfdir}/systemd/network/20-eth.network \
 "
 
 do_install_append() {
     install -d ${D}${sysconfdir}/systemd/network
-    install -m 0644 ${WORKDIR}/10-dhcp.network ${D}${sysconfdir}/systemd/network
+    install -m 0644 ${WORKDIR}/10-wlan.network ${D}${sysconfdir}/systemd/network
+    install -m 0644 ${WORKDIR}/20-eth.network ${D}${sysconfdir}/systemd/network
 }
