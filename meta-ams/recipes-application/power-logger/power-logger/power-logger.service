@@ -1,11 +1,16 @@
 [Unit]
 Description=Solar Logger
-After=network.target
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+StartLimitIntervalSec=500
+StartLimitBurst=5
 
 [Service]
 User=root
 Group=root
 ExecStart=/usr/bin/pcl --period 60 --storage /var/www/ams-ref-spa/html
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
