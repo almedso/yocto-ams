@@ -20,7 +20,7 @@ SRC_URI += "file://run-ptest"
 
 PREFERED_VERSION_python = "3.5%"
 
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
         ${PYTHON_PN}-click \
         ${PYTHON_PN}-flask \
         ${PYTHON_PN}-flask-restful \
@@ -31,18 +31,18 @@ RDEPENDS_${PN} += " \
 "
 # note: glibc-utils and glibc-locale is required for python?-click
 
-FILES_${PN} += "\
+FILES:${PN} += "\
         ${systemd_system_unitdir}/${PN}.service \
         ${sysconfdir}/${PN}.conf \
 "
 
-CONFFILES_${PN} += " \
+CONFFILES:${PN} += " \
         ${sysconfdir}/${PN}.conf \
 "
 
-SYSTEMD_SERVICE_${PN} = "${PN}.service"
+SYSTEMD_SERVICE:${PN} = "${PN}.service"
 
-do_install_append() {
+do_install:append() {
         install -d ${D}${systemd_unitdir}/system
         install -m 0644 ${THISDIR}/${PN}/${PN}.service ${D}${systemd_system_unitdir}
         install -d ${D}${sysconfdir}
@@ -54,6 +54,6 @@ do_install_append() {
 #       maybe do not do anything
 #}
 
-RDEPENDS_${PN}-ptest += " \
+RDEPENDS:${PN}-ptest += " \
         ${PYTHON_PN}-pytest \
 "

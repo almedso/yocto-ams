@@ -7,18 +7,18 @@ INC_PR = "r1"
 
 inherit cargo systemd
 
-FILES_${PN} += "\
+FILES:${PN} += "\
         ${systemd_system_unitdir}/${PN}.service \
         ${sysconfdir}/${PN}.toml \
 "
 
-CONFFILES_${PN} += " \
+CONFFILES:${PN} += " \
         ${sysconfdir}/${PN}.toml \
 "
 
-SYSTEMD_SERVICE_${PN} = "${PN}.service"
+SYSTEMD_SERVICE:${PN} = "${PN}.service"
 
-do_install_append() {
+do_install:append() {
         install -d ${D}${systemd_unitdir}/system
         install -m 0644 ${THISDIR}/${PN}/${PN}.service ${D}${systemd_system_unitdir}
         install -d ${D}${sysconfdir}

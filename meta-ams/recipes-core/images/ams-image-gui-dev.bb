@@ -10,7 +10,7 @@ PR = "1.2.${PR_INC}"
 export IMAGE_BASENAME = "ams-image-gui-dev"
 
 
-IMAGE_INSTALL_append += " \
+IMAGE_INSTALL:append += " \
     packagegroup-ams-tools \
     packagegroup-gui \
 "

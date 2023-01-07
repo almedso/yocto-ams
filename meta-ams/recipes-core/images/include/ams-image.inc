@@ -9,19 +9,19 @@ KERNEL_DEVICETREE += " \
 "
 
 
-IMAGE_INSTALL_append = " \
+IMAGE_INSTALL:append = " \
     packagegroup-base-ams \
     "
 
-IMAGE_INSTALL_remove = " \
+IMAGE_INSTALL:remove = " \
     netkit-telnet \
     "
 
-IMAGE_FEATURES_append= " \
+IMAGE_FEATURES:append= " \
     package-management \
     ssh-server-openssh \
     "
 
-IMAGE_FEATURES_remove = " \
+IMAGE_FEATURES:remove = " \
     splash \
     "

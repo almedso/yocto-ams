@@ -8,7 +8,7 @@ inherit pypi
 SRC_URI[md5sum] = "45409cbfa3927bdd2f3ee914dd5b1060"
 SRC_URI[sha256sum] = "ffb9ef1de172603304d9d2819af6f5ece76f2e85ec10692a524dd876e72bf277"
 
-RDEPENDS_${PN}_class-target += "\
+RDEPENDS:${PN}_class-target += "\
     ${PYTHON_PN}-datetime \
     ${PYTHON_PN}-doctest \
     ${PYTHON_PN}-io \

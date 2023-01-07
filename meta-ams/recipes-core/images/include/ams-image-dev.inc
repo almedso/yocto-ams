@@ -1,8 +1,8 @@
-PR_INC_append = ".dev.1"
+PR_INC:append = ".dev.1"
 
 require ams-image.inc
 
-IMAGE_FEATURES_append= " \
+IMAGE_FEATURES:append= " \
     debug-tweaks \
     tools-debug \
     tools-profile \

@@ -11,7 +11,7 @@ export IMAGE_BASENAME = "ams-image-ptest"
 
 # IMAGE_FEATURES += "ptest-pkgs"
 
-IMAGE_INSTALL_append = " \
+IMAGE_INSTALL:append = " \
     packagegroup-ams-tools \
     localedef \
     glibc-utils \

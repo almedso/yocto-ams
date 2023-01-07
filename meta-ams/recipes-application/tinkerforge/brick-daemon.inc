@@ -19,7 +19,7 @@ INC_PR = "r2"
 
 inherit gitpkgv systemd
 
-FILES_${PN}_append = "\
+FILES:${PN}:append = "\
    /lib/systemd/system/brickd.service \
    /lib/systemd/system/brickd-resume.service \
 "
@@ -38,7 +38,7 @@ do_install () {
    rmdir ${D}/var/run
 }
 
-SYSTEMD_SERVICE_${PN} = "brickd.service"
+SYSTEMD_SERVICE:${PN} = "brickd.service"
 
 PARALLEL_MAKE = ""
 
@@ -50,6 +50,6 @@ DEPENDS = " \
    libusb \
 "
 
-RDPENDS_${PN} = " \
+RDPENDS:${PN} = " \
    libusb \
 "

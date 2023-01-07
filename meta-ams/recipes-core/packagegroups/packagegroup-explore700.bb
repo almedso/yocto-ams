@@ -4,9 +4,9 @@ PR = "r1"
 
 inherit packagegroup
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     rpi-hwctl \
 "
 
-RDEPENDS_${PN}-dev = " \
+RDEPENDS:${PN}-dev = " \
 "

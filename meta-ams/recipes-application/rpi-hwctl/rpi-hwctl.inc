@@ -9,19 +9,19 @@ inherit cargo systemd
 
 # CARGO_FEATURES = "feature1 feature2"
 
-FILES_${PN} += "\
+FILES:${PN} += "\
         ${systemd_system_unitdir}/${PN}.service \
         ${systemd_system_unitdir}/${PN}-once.service \
         ${sysconfdir}/${PN}.toml \
 "
 
-CONFFILES_${PN} += " \
+CONFFILES:${PN} += " \
         ${sysconfdir}/${PN}.toml \
 "
 
-SYSTEMD_SERVICE_${PN} = " ${PN}.service ${PN}-once.service"
+SYSTEMD_SERVICE:${PN} = " ${PN}.service ${PN}-once.service"
 
-do_install_append() {
+do_install:append() {
         install -d ${D}${systemd_unitdir}/system
         install -m 0644 ${THISDIR}/${PN}/${PN}.service ${D}${systemd_system_unitdir}
         install -m 0644 ${THISDIR}/${PN}/${PN}-once.service ${D}${systemd_system_unitdir}

@@ -11,7 +11,7 @@ PYPI_PACKAGE="canopen"
 inherit pypi setuptools3
 DEPENDS += "${PYTHON_PN}-setuptools-scm-native"
 
-RDEPENDS_${PN} += "\
+RDEPENDS:${PN} += "\
     ${PYTHON_PN}-modules \
     ${PYTHON_PN}-can \
 "

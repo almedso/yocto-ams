@@ -4,10 +4,10 @@ PR = "r1"
 
 inherit packagegroup
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     hils \
     emb-spa \
 "
 
-RDEPENDS_${PN}-dev = " \
+RDEPENDS:${PN}-dev = " \
 "

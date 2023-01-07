@@ -1,15 +1,15 @@
-PR_append = ".ams.4"
+PR:append = ".ams.4"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 SRC_URI += "file://ws800x480.edid"
 
 # Raspberrypi 3 requires the specific name edid.data
 # only raspberrypi 4 allows more
 # https://www.raspberrypi.org/documentation/configuration/config-txt/video.md
-FILES_${PN}_append = " ${BOOTFILES_DIR_NAME}/edid.dat"
+FILES:${PN}:append = " ${BOOTFILES_DIR_NAME}/edid.dat"
 
-do_deploy_append() {
+do_deploy:append() {
 
     bbnote "Append config file dependend on machine configuration"
 

@@ -1,5 +1,5 @@
 SUMMMARY = "AMS Base System tools-debug (image feature)"
-PR_append = ".ams.1"
+PR:append = ".ams.1"
 
 
 EXTRAS = "\
@@ -8,13 +8,14 @@ EXTRAS = "\
     udev-extraconf \
 "
 
-RDEPENDS_${PN}_append = " \
+RDEPENDS:${PN}:append = " \
     curl \
     devmem2 \
     git \
     ethtool \
     htop \
     i2c-tools \
+    libgpiod \
     minicom \
     parted \
     setserial \

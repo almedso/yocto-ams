@@ -9,7 +9,7 @@ PR = "1.1.${PR_INC}"
 # overwrite image name - to find it in tmp* tree
 export IMAGE_BASENAME = "docker-engine-image"
 
-IMAGE_INSTALL_append = " \
+IMAGE_INSTALL:append = " \
   docker-ce \
   python3-docker-compose \
 "

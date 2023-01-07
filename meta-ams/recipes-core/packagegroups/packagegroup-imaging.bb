@@ -4,7 +4,7 @@ PR = "r1"
 
 inherit packagegroup
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     opencv \
     libopencv-core \
     libopencv-imgproc \
@@ -13,6 +13,6 @@ RDEPENDS_${PN} = " \
     python3-scipy \
 "
 
-RDEPENDS_${PN}-dev = " \
+RDEPENDS:${PN}-dev = " \
 "
 

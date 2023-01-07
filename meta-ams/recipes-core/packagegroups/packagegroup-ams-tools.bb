@@ -20,12 +20,12 @@ SERBUSTOOLS = " \
     i2c-tools \
 "
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     ${TSTOOLS} \
     ${SERBUSTOOLS} \
     can-config \
     can-utils \
 "
 
-RDEPENDS_${PN}-dev = " \
+RDEPENDS:${PN}-dev = " \
 "

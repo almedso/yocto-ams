@@ -18,7 +18,7 @@ SRC_URI[sha256sum] = "8bc835082882ad9a012cd790c460011e4d96bf3512d98a04d3dabbe453
 
 inherit setuptools3
 
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
     python-netclient \
     python-email \
     python-fcntl \

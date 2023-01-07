@@ -4,7 +4,7 @@ PR = "r1"
 
 inherit packagegroup
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     qt-env \
     qt5-browser \
     emb-spa \
@@ -12,7 +12,7 @@ RDEPENDS_${PN} = " \
     weston-init \
 "
 
-RDEPENDS_${PN}-dev = " \
+RDEPENDS:${PN}-dev = " \
     ${GUI_SAMPLES} \
 "
 

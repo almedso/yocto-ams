@@ -12,7 +12,7 @@ SRC_URI[md5sum] = "ecf5c58e4df1d257abf1634d51cb9205"
 SRC_URI[sha256sum] = "ddae76784574cc4c172f3d5edd7308be16078dd3b977e8746860c76c195fa707"
 
 DEPENDS += "${PYTHON_PN}-numpy ${PYTHON_PN}-numpy-native lapack ${PYTHON_PN}-pybind11-native"
-RDEPENDS_${PN} += "${PYTHON_PN}-numpy lapack"
+RDEPENDS:${PN} += "${PYTHON_PN}-numpy lapack"
 
 CLEANBROKEN = "1"
 
@@ -30,8 +30,8 @@ export FARCH = "${TUNE_CCARGS}"
 # executable, but OE sets it to include some flags as well. So we split
 # the existing LDSHARED variable into the base executable and flags, and
 # prepend the flags into LDFLAGS
-LDFLAGS_prepend := "${@" ".join(d.getVar('LDSHARED', True).split()[1:])} "
+LDFLAGS:prepend := "${@" ".join(d.getVar('LDSHARED', True).split()[1:])} "
 export LDSHARED := "${@d.getVar('LDSHARED', True).split()[0]}"
 
 # Tell Numpy to look in target sysroot site-packages directory for libraries
-LDFLAGS_append = " -L${STAGING_LIBDIR}/${PYTHON_DIR}/site-packages/numpy/core/lib"
+LDFLAGS:append = " -L${STAGING_LIBDIR}/${PYTHON_DIR}/site-packages/numpy/core/lib"

@@ -10,7 +10,7 @@ PYPI_PACKAGE="canprog"
 inherit pypi setuptools3
 DEPENDS += "${PYTHON_PN}-setuptools-scm-native"
 
-RDEPENDS_${PN} += "\
+RDEPENDS:${PN} += "\
     ${PYTHON_PN}-can \
     ${PYTHON_PN}-intelhex \
 "

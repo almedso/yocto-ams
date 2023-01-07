@@ -9,7 +9,7 @@ PR = "1.0.${PR_INC}"
 # overwrite image name - to find it in tmp* tree
 export IMAGE_BASENAME = "camera-image-dev"
 
-IMAGE_INSTALL_append = " \
+IMAGE_INSTALL:append = " \
     packagegroup-ams-tools \
     packagegroup-imaging \
     jupyter \
@@ -17,5 +17,5 @@ IMAGE_INSTALL_append = " \
 
 
 # will not be installed
-OTHER_PACKAGES_IMAGE_INSTALL_append = " \
+OTHER_PACKAGES_IMAGE_INSTALL:append = " \
     "

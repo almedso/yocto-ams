@@ -19,7 +19,7 @@ NETWORK_FEATURE = "\
     wpa-supplicant \
 "
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     ${OPERATOR_FEATURE} \
     ${NETWORK_FEATURE} \
     bash \

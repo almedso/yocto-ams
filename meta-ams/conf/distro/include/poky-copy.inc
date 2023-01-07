@@ -16,10 +16,10 @@ SDK_NAME = "${DISTRO}-${TCLIBC}-${SDKMACHINE}-${IMAGE_BASENAME}-${TUNE_PKGARCH}-
 SDKPATH = "/opt/${DISTRO}/${SDK_VERSION}"
 
 POKYQEMUDEPS = "${@bb.utils.contains("INCOMPATIBLE_LICENSE", "GPL-3.0", "", "packagegroup-core-device-devel",d)}"
-DISTRO_EXTRA_RDEPENDS_append_qemuarm = " ${POKYQEMUDEPS}"
-DISTRO_EXTRA_RDEPENDS_append_qemuarm64 = " ${POKYQEMUDEPS}"
-DISTRO_EXTRA_RDEPENDS_append_qemuppc = " ${POKYQEMUDEPS}"
-DISTRO_EXTRA_RDEPENDS_append_qemux86-64 = " ${POKYQEMUDEPS}"
+DISTRO_EXTRA_RDEPENDS:append:qemuarm = " ${POKYQEMUDEPS}"
+DISTRO_EXTRA_RDEPENDS:append:qemuarm64 = " ${POKYQEMUDEPS}"
+DISTRO_EXTRA_RDEPENDS:append:qemuppc = " ${POKYQEMUDEPS}"
+DISTRO_EXTRA_RDEPENDS:append:qemux86-64 = " ${POKYQEMUDEPS}"
 
 TCLIBCAPPEND = ""
 
@@ -51,8 +51,8 @@ INHERIT += "poky-sanity"
 WARN_TO_ERROR_QA = "already-stripped compile-host-path install-host-path \
                     installed-vs-shipped ldflags pn-overrides rpaths staticdev \
                     unknown-configure-option useless-rpaths"
-WARN_QA_remove = "${WARN_TO_ERROR_QA}"
-ERROR_QA_append = " ${WARN_TO_ERROR_QA}"
+WARN_QA:remove = "${WARN_TO_ERROR_QA}"
+ERROR_QA:append = " ${WARN_TO_ERROR_QA}"
 
 require conf/distro/include/no-static-libs.inc
 require conf/distro/include/yocto-uninative.inc

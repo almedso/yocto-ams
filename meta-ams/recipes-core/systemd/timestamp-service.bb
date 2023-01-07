@@ -25,7 +25,7 @@ do_install () {
 
 NATIVE_SYSTEMD_SUPPORT = "1"
 SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE_${PN} = "timestamp.service"
+SYSTEMD_SERVICE:${PN} = "timestamp.service"
 
-FILES_${PN} += "${systemd_unitdir}/system"
+FILES:${PN} += "${systemd_unitdir}/system"
 

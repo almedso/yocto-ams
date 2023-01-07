@@ -9,7 +9,7 @@ PR = "1.0.${PR_INC}"
 # overwrite image name - to find it in tmp* tree
 export IMAGE_BASENAME = "powlog-image"
 
-IMAGE_INSTALL_append = " \
+IMAGE_INSTALL:append = " \
     power-logger \
     openssh \
     useradd-operator \

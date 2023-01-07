@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE.MIT;md5=030cb33d2af49ccebca74d058
 INC_PR = "r2"
 
 DEPENDS = "nodejs-native"
-RDEPENDS_${PN} = "nginx"
+RDEPENDS:${PN} = "nginx"
 
 SPA_TARGET_LOCATION = "/var/www/ams-ref-spa/html"
 
@@ -25,7 +25,7 @@ do_compile () {
     ./node_modules/@angular/cli/bin/ng build --prod
 }
 
-FILES_${PN} = "\
+FILES:${PN} = "\
         ${SPA_TARGET_LOCATION}/** \
 "
 

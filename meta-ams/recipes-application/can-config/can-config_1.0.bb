@@ -6,16 +6,16 @@ PR = "1"
 
 inherit systemd
 
-RDEPENDS_${PN} += "\
+RDEPENDS:${PN} += "\
     "
 
-FILES_${PN} += "\
+FILES:${PN} += "\
         ${systemd_system_unitdir}/${PN}.service \
 "
 
-SYSTEMD_SERVICE_${PN} = " ${PN}.service"
+SYSTEMD_SERVICE:${PN} = " ${PN}.service"
 
-do_install_append() {
+do_install:append() {
         install -d ${D}${systemd_unitdir}/system
         install -m 0644 ${THISDIR}/${PN}/${PN}.service ${D}${systemd_system_unitdir}
 }
