@@ -19,7 +19,7 @@ PROGNAME="init-environment"
 
 clean_up ()
 {
-   unset CWD ARGS PROGNAME 
+   unset CWD ARGS PROGNAME
    unset BUILD_DIR CLEAN_BUILD INCLUDE_BUILD_HISTORY
    set +x  # aka set +o xtrace
    set +o pipefail
@@ -122,7 +122,7 @@ write_site_conf ()
 init_bitbake ()
 {
     [ "${CLEAN_BUILD}" == 'true' ] && rm -rf ${BUILD_DIR}   # init a fresh environment;
-    TEMPLATECONF=$(pwd)/sources/ams/conf source sources/poky/oe-init-build-env ${BUILD_DIR}
+    TEMPLATECONF=$(pwd)/sources/ams/meta-ams/conf/templates/minimal source sources/poky/oe-init-build-env ${BUILD_DIR}
     # now we cd'ed into the ${BUILD_DIR}
     write_site_conf
 }
