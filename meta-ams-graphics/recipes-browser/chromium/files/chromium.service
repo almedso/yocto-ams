@@ -1,0 +1,21 @@
+[Unit]
+Description=Chromium Browser on Wayland
+Wants=weston@root.service
+
+[Service]
+# Unfortunately must be root due to Weston also running as root!
+User=root
+Type=simple
+Environment=XDG_RUNTIME_DIR=/run/user/0
+Environment=WAYLAND_DISPLAY=wayland-0
+StandardOutput=null
+StandardError=null
+
+# Chromium's start options were taken from:
+# https://karo-electronics.github.io/docs/yocto-guide/yocto-sumo-guide/Chromium.html
+
+ExecStart=/usr/bin/chromium --no-sandbox --disable-infobar --disable-session-crashed-bubble --noerrdialogs --no-errors --disable-gpu --disable-pinch --disable-features="OverscrollHistoryNavigation" --kiosk "file:///var/reactui/index.html"
+
+[Install]
+WantedBy=multi-user.target
+
