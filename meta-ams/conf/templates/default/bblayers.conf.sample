@@ -20,6 +20,14 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-openembedded/meta-webserver \
   \
   ${BSPDIR}/sources/meta-raspberrypi \
+  ${BSPDIR}/sources/meta-imx/meta-bsp \
+  ${BSPDIR}/sources/meta-imx/meta-sdk \
+  ${BSPDIR}/sources/meta-imx/meta-ml \
+  ${BSPDIR}/sources/meta-freescale \
+  ${BSPDIR}/sources/meta-freescale-3rdparty \
+  ${BSPDIR}/sources/meta-freescale-distro \
+  ${BSPDIR}/sources/meta-rauc \
+  ${BSPDIR}/sources/meta-phytec \
   \
   ${BSPDIR}/sources/meta-rust \
   \
