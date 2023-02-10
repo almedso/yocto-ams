@@ -1,70 +1,93 @@
-#
-# Copyright (c) 2019, almedso GmbH
+#!/usr/bin/env bash
+#-----------------------------------------------------------------------------
+# Copyright (c) 2019, 2020, 2021 almedso GmbH
 # SPDX-License-Identifier: MIT
 #
-# source this script from bash shell
-
-if ! ps -o command -p $$ | grep bash -q ; then
-   echo "ERROR: This script shall be sourced from bash shell"
-   echo "       Sourcing the script failed"
-   return 1
-fi
+# !!! THIS SCRIPT NEEDS TO BE SOURCED. !!!
+# !!! if not sourced it writes what it would do. !!!
+#
+#-----------------------------------------------------------------------------
+# Notes to the maintainer of this script.
+#
+# - DO NOT modify this script in project root folder. It is just copied from
+#   its original location at "sources/ams/scripts/ams-init-build-env"
+#
+# - Never return with exit code different from 0 because the shell just
+#   terminates and the terminal session might be gone.
+# - Sourcing a script does not allow to pass on command line arguments.
+#   All varialbilities need to be injected by environment variables
+#
+#-----------------------------------------------------------------------------
+# Global variables
+#
 
 [ "$DEBUG" == 'true' ] && set -x  # aka set -o xtrace
-set -o pipefail
-set -o errexit  # aka set -e
 
-CWD=$(pwd)
-PROGNAME="init-environment"
+
+#-----------------------------------------------------------------------------
+# Local functions
 
 clean_up ()
 {
    unset CWD ARGS PROGNAME
-   unset BUILD_DIR CLEAN_BUILD INCLUDE_BUILD_HISTORY
+   unset BUILD_DIR
+   unset AMS_SCRIPT_VERSION
+   unset AMS_BUILD_DIR
+   unset AMS_TEMPLATE_LAYER_ROOT_DIR
+   unset OPTIND
    set +x  # aka set +o xtrace
    set +o pipefail
-   set +o errexit  # aka set +e
 }
 
 init_variables () {
     # input - possibly injected from environment
-    PACKAGE_FEED_BASE_PATHS=${PACKAGE_FEED_BASE_PATHS:-"feeds"}
-    BUILD_DIR=${BUILD_DIR:-"build"}
+    AMS_PACKAGE_FEED_BASE_PATHS=${PACKAGE_FEED_BASE_PATHS:-"feeds"}
+    AMS_BUILD_DIR=${BUILD_DIR:-"build"}
 
-    # input flags - possibly injected
-    CLEAN_BUILD=${CLEAN_BUILD:-"false"}
-    INCLUDE_BUILD_HISTORY=${INCLUDE_BUILD_HISTORY:-"false"}
 }
 
 usage ()
 {
-   echo -e "\nUsage: source $PROGNAME
+   echo -e "\nUsage: source $PROGNAME template_dir
 
-   Establish a build environment:
-   - create local.conf (if it not exists)
-   - create site.conf (if it not exists)
+   Establish a new build environment in '$BUILD_DIR':
+   - create local.conf from template
+   - create bblayer.conf from template
+   - optionally create site.conf from existing site.conf.sample in project dir.
+
 
    Control variables (to be evaluated when sourced)
 
-   CLEAN_BUILD
-      Flag if true it removes the builddir before building
-      Default is false
-   INCLUDE_BUILD_HISTORY
-      Record build changes via git build history
-      Default is false
    BUILD_DIR
-      specifies build directory location default is 'build'
+      specifies build directory location; default is 'build'
 
-   site.conf is build according to environment variables:
-      YOCTO_DOWNLOAD_DIR (if not set - nothing is added to site.conf)
-      YOCTO_SSTATE_DIR (if not set - nothing is added to site.conf)
-      PACKAGE_FEED_URI (if not set - nothing is added to site.conf)
-      PACKAGE_FEED_BASE_PATHS (if not set feeds is used)
-      DISTRO (if not set - nothing is added to site.conf)
+
+   TEMPLATE_LAYER_ROOT_DIR
+      specifies the Layer where the template is created from
+	  default is 'sources/ams/meta-ams'
+   TEMPLATE
+      specifies the templates to be applied in case; default 'default'
+
+   if site.conf does not exist it is build.
+   if a site.conf.sample template exists in project root it is used
+   if no template exists site.conf is generated
+      DL_DIR (if not set - "/yocto/cache/download" is added to site.conf)
+      SSTATE_DIR (if not set - "/yocto/cache/${DISTRO}-${YOCTO_VERSION}" is added to site.conf)
 
       Furthermore:
       PARALLEL_MAKE & BB_NUMBER_THREADS is set according to computing capabilities
    "
+}
+
+# TODO remove if linked and not copied.
+keep_this_script_in_sync () {
+	# if this script differes from source copy it over from its original place
+	if ! cmp -s ${MKP_SCRIPTPATH}/${MKP_SCRIPTNAME} ${MKP_SCRIPTPATH}/sources/meta-digi/sdk/${MKP_SCRIPTNAME}; then
+		install -m 0555 ${MKP_SCRIPTPATH}/sources/meta-digi/sdk/${MKP_SCRIPTNAME} ${MKP_SCRIPTPATH}/${MKP_SCRIPTNAME}
+		printf "\n${MKP_GREEN}[INFO]:${MKP_NONE} %s\n" "the '${MKP_SCRIPTNAME}' script has been updated."
+		printf "\nPlease run '. ${BASH_SOURCE}' again.\n\n"
+		return
+	fi
 }
 
 sanity_checks ()
@@ -89,40 +112,64 @@ sanity_checks ()
    fi
 }
 
+# Expected optional parameters:
+# $1 = template - default is not-set
+# $2 = template - default is meta-ams
+#
+# Result as site effect if template folder exists
+# TEMPLATECONF var set
+# BUILD_DIR variable is set
+set_layer_and_template_vars ()
+{
+	local TEMPLATE=${1:-"not-set"}
+	local LAYER=${2:-"meta-ams"}
+	if [ "${TEMPLATE}" != "not-set" ]; then
+	 	TEMPLATECONF=$(pwd)/$(find sources -type d -name ${LAYER})/conf/templates/${TEMPLATE}
+		if [ -d ${TEMPLATECONF} ]; then
+			BUILD_DIR="build-${TEMPLATE}"
+		else
+			echo "ERROR: template and layer do not point to a valid template directory"
+			echo "       ${TEMPLATECONF} does not exist"
+            echo "       Sourcing the script failed"
+			unset TEMPLATECONF
+            return 1
+		fi
+    fi
+	printf "\nUse template ${TEMPLATE} from layer ${LAYER}\n\n"
+}
+
 write_site_conf ()
 {
-   # write site.conf only if it does not exist
-   # i.e. never ever modify if it exists
-   if [ -d conf ] && [ ! -f conf/site.conf ]; then
-
-      echo "DL_DIR = \"$YOCTO_DOWNLOAD_DIR\" " > conf/site.conf
-      if [ -n "${DISTRO}" ]; then
-         echo "DISTRO = \"${DISTRO}\" " >> conf/site.conf
-      fi
-      if [ -n "${YOCTO_SSTATE_DIR}" ]; then
-        echo "SSTATE_DIR = \"${YOCTO_SSTATE_DIR}\" " > conf/site.conf
-      fi
-      if [ -n "${PACKAGE_FEED_URI}" ]; then
-         echo "PACKAGE_FEED_URI = \"${PACKAGE_FEED_URI}/\" " >> conf/site.conf
-      fi
-      if [ -n "${PACKAGE_FEED_BASE_PATHS}" ]; then
-          echo "PACKAGE_FEED_BASE_PATHS = \"${PACKAGE_FEED_BASE_PATHS}\" " >> conf/site.conf
-      fi
-      if [ "${INCLUDE_BUILD_HISTORY}" == 'true' ]; then
-         echo "INHERIT += \"buildhistory\" " >> conf/site.conf
-         echo "BUILDHISTORY_COMMIT = \"1\" " >> conf/site.conf
-         echo "BUILDHISTORY_DIR = \"\${TOPDIR}/buildhistory\" " >> conf/site.conf
-      fi
-      local NCPU=$(grep -c processor /proc/cpuinfo)
-      echo "BB_NUMBER_THREADS = \"${NCPU}\" " >> conf/site.conf
-      echo "PARALLEL_MAKE = \"-j ${NCPU}\" " >> conf/site.conf
+	# when called currend working directory is already the build directory
+   	if [ -d conf ] && [ ! -f conf/site.conf ]; then
+		local SITECONF=""
+   		# write site.conf only if it does not exist
+   		# i.e. never ever modify if it exists or the conf directory does not exist
+		ls ../site.conff
+       	if [ -f ../site.conf.sample ]; then
+			SITECONF="../site.conf.sample"
+		fi
+       	if [ -f ../site.conf ]; then
+			SITECONF="../site.conf"
+		fi
+        if [ -n ${SITECONF} ]; then
+			printf "\n Update site.conf - from sample in project root\n"
+		    cp $SITECONF conf/site.conf
+		    local NCPU=$(grep -c processor /proc/cpuinfo)
+		    echo "BB_NUMBER_THREADS = \"${NCPU}\" " >> conf/site.conf
+		    echo "PARALLEL_MAKE = \"-j ${NCPU}\" " >> conf/site.conf
+   	   	else
+			echo "\n site.conf template not found, no site.conf established\n"
+		fi
    fi
 }
 
 init_bitbake ()
 {
-    [ "${CLEAN_BUILD}" == 'true' ] && rm -rf ${BUILD_DIR}   # init a fresh environment;
-    TEMPLATECONF=$(pwd)/sources/ams/meta-ams/conf/templates/minimal source sources/poky/oe-init-build-env ${BUILD_DIR}
+    export TEMPLATECONF=$(pwd)/sources/ams/meta-ams/conf/templates/minimal
+	source sources/poky/oe-init-build-env ${BUILD_DIR}
+	unset TEMPLATECONF
+	unset BUILD_DIR
     # now we cd'ed into the ${BUILD_DIR}
     write_site_conf
 }
@@ -130,19 +177,33 @@ init_bitbake ()
 main ()
 {
    init_variables
+   set_layer_and_template_vars $1 $2
    if sanity_checks; then
       init_bitbake
+      write_site_conf
    fi
    clean_up
 }
 
 # execute main
 if [ "${BASH_SOURCE[0]}" != "${0}" ] ; then
-   # callage via sourcing => ok
-   main
+   	# callage via sourcing => ok
+   	case ${BASH_SOURCE[0]} in
+	   	ams-init-build-env)
+   		   	main default
+		  	;;
+	   	phyimx8-init-build-env)
+   		   	main phyimx8 meta-ams-bsp
+		  	;;
+	   	stm32m-init-build-env)
+   		   	main stmp32m meta-ams-bsp
+		  	;;
+	   	*)
+   		   	main $1 $2
+		  	;;
+	esac
 else
    echo "!!! ERROR: This script should be sourced !!!"
    usage
-   clean_up
    exit 1
 fi
