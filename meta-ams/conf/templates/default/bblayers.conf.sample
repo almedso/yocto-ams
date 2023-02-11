@@ -21,8 +21,6 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-raspberrypi \
   \
   ${BSPDIR}/sources/meta-rust \
-  ${BSPDIR}/sources/meta-jupyter \
-  ${BSPDIR}/sources/meta-scipy \
   \
   ${BSPDIR}/sources/ams/meta-ams \
   ${BSPDIR}/sources/ams/meta-ams-bsp \
@@ -36,4 +34,6 @@ excluded = " \
   ${BSPDIR}/sources/meta-freescale-distro \
   \
   ${BSPDIR}/sources/meta-qt6 \
+  ${BSPDIR}/sources/meta-jupyter \
+  ${BSPDIR}/sources/meta-scipy \
 "
