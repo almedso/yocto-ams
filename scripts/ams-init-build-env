@@ -145,7 +145,6 @@ write_site_conf ()
 		local SITECONF=""
    		# write site.conf only if it does not exist
    		# i.e. never ever modify if it exists or the conf directory does not exist
-		ls ../site.conff
        	if [ -f ../site.conf.sample ]; then
 			SITECONF="../site.conf.sample"
 		fi
@@ -153,20 +152,19 @@ write_site_conf ()
 			SITECONF="../site.conf"
 		fi
         if [ -n ${SITECONF} ]; then
-			printf "\n Update site.conf - from sample in project root\n"
+			printf "\nUpdate site.conf - from sample in project root\n"
 		    cp $SITECONF conf/site.conf
 		    local NCPU=$(grep -c processor /proc/cpuinfo)
 		    echo "BB_NUMBER_THREADS = \"${NCPU}\" " >> conf/site.conf
 		    echo "PARALLEL_MAKE = \"-j ${NCPU}\" " >> conf/site.conf
    	   	else
-			echo "\n site.conf template not found, no site.conf established\n"
+			printf "\nSite.conf template not found, no site.conf established\n"
 		fi
    fi
 }
 
 init_bitbake ()
 {
-    export TEMPLATECONF=$(pwd)/sources/ams/meta-ams/conf/templates/minimal
 	source sources/poky/oe-init-build-env ${BUILD_DIR}
 	unset TEMPLATECONF
 	unset BUILD_DIR
