@@ -18,16 +18,9 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-openembedded/meta-multimedia \
   ${BSPDIR}/sources/meta-openembedded/meta-webserver \
   \
-  ${BSPDIR}/sources/meta-virtualization \
-  \
-  ${BSPDIR}/sources/meta-freescale \
-  ${BSPDIR}/sources/meta-freescale-3rdparty \
-  ${BSPDIR}/sources/meta-freescale-distro \
-  \
   ${BSPDIR}/sources/meta-raspberrypi \
   \
   ${BSPDIR}/sources/meta-rust-bin \
-  ${BSPDIR}/sources/meta-qt6 \
   ${BSPDIR}/sources/meta-jupyter \
   ${BSPDIR}/sources/meta-scipy \
   \
@@ -36,4 +29,11 @@ BBLAYERS = " \
 "
 
 # core layer same as openembedded-core/meta
-excluded = " ${BSPDIR}/sources/poky/meta "
+excluded = " \
+  ${BSPDIR}/sources/poky/meta \
+  ${BSPDIR}/sources/meta-freescale \
+  ${BSPDIR}/sources/meta-freescale-3rdparty \
+  ${BSPDIR}/sources/meta-freescale-distro \
+  \
+  ${BSPDIR}/sources/meta-qt6 \
+"
