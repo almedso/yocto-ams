@@ -1,8 +1,6 @@
 CONF_VERSION = "1"
-DISTRO ?= 'ams'
-
-PACKAGE_FEED_URIS ?= "https://ams.almedso.de/feeds/${DISTRO}"
-PACKAGE_FEED_BASE_PATHS ?= "ci release"
+DISTRO = 'ams'
+YOCTO_VERSION = 'hardknott'
 
 PACKAGE_CLASSES ?= "package_ipk"
 
@@ -40,10 +38,7 @@ MACHINE ?= 'quirin'
 ACCEPT_FSL_EULA = "1"
 
 # raspberry pre-definitions
-# 
-
-BB_NUMBER_THREADS ?= '4'
-PARALLEL_MAKE ?= '-j 4'
+#
 
 # overwrite in site.conf
 DL_DIR ?= "${TOPDIR}/downloads-cache/"
