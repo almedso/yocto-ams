@@ -12,16 +12,6 @@ PATCHRESOLVE = "noop"
 # global configuration #
 ########################
 
-# overwrite in site.conf
-DL_DIR ?= "${TOPDIR}/downloads-cache/"
-SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
-
-# License Handling
-#  - Uncomment for i.MX6 proprietary GPU libraries
-#LICENSE_FLAGS_WHITELIST += "license-nxp_v14-june-2016_imx-gpu-viv"
-#  - Uncomment for Freescale i.MX6 VPU firmware blobs
-#LICENSE_FLAGS_WHITELIST += "license-freescale_v12-march-2016_firmware-imx"
-
 # build artifacts are deployed here
 # DEPLOY_DIR = "${TOPDIR}/deploy"
 
@@ -45,10 +35,6 @@ BB_DISKMON_DIRS ??= "\
     ABORT,${SSTATE_DIR},100M,1K \
     ABORT,/tmp,10M,1K"
 
-# overwrite in site.conf
-DL_DIR ?= "${TOPDIR}/downloads-cache/"
-SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
-
 # Fix the temp dir such that later rsync can refer to output
 # make sure custom glibc recipes do not overwrite TMPDIR
 TCLIBCAPPEND = ""
@@ -60,18 +46,9 @@ IMAGE_LINGUAS ?= "en-us de-de"
 BB_GENERATE_MIRROR_TARBALLS = "0"
 INHERIT += "rm_work"
 
-#######################
-# Image configuration #
-#######################
-
-# The following line disables the autostart of the phytec-qtdemo by
-# default, but you can start the demo anytime using
-#  $ systemctl start phytec-qtdemo.service
-#SYSTEMD_AUTO_ENABLE_pn-phytec-qtdemo = "disable"
-
 # You can disable and enable FSTYPES as you wish. e.g. 'ext4'.
 # This variable is ordering dependend.
-IMAGE_FSTYPES = "tar.gz wic ubifs emmc"
+IMAGE_FSTYPES = "tar.gz wic emmc"
 
 # To change the variable for any imx8 machine:
 IMAGE_FSTYPES_mx8 = "tar.gz wic emmc"
@@ -111,13 +88,6 @@ EXTRA_IMAGE_FEATURES = ""
 #EXTRA_IMAGE_FEATURES += "dbg-pkgs"
 # - "Installs debugging tools such as strace and gdb."
 #EXTRA_IMAGE_FEATURES += "tools-debug"
-
-######################
-# rauc configuration #
-######################
-
-# certificate location for signing bundles
-#CERT_PATH = "${TOPDIR}/../sources/meta-ampliphy/openssl-ca"
 
 # Uncomment to accept NXP EULA (needed, if any NXP / freescale layer is used)
 # EULA can then be found under ../sources/meta-freescale/EULA
