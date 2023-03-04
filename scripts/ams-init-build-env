@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #-----------------------------------------------------------------------------
-# Copyright (c) 2019, 2020, 2021 almedso GmbH
+# Copyright (c) 2019-2023, almedso GmbH
 # SPDX-License-Identifier: MIT
 #
 # !!! THIS SCRIPT NEEDS TO BE SOURCED. !!!
@@ -29,21 +29,10 @@
 
 clean_up ()
 {
-   unset CWD ARGS PROGNAME
-   unset BUILD_DIR
-   unset AMS_SCRIPT_VERSION
    unset AMS_BUILD_DIR
    unset AMS_TEMPLATE_LAYER_ROOT_DIR
-   unset OPTIND
    set +x  # aka set +o xtrace
    set +o pipefail
-}
-
-init_variables () {
-    # input - possibly injected from environment
-    AMS_PACKAGE_FEED_BASE_PATHS=${PACKAGE_FEED_BASE_PATHS:-"feeds"}
-    AMS_BUILD_DIR=${BUILD_DIR:-"build"}
-
 }
 
 usage ()
@@ -68,26 +57,11 @@ usage ()
    TEMPLATE
       specifies the templates to be applied in case; default 'default'
 
-   if site.conf does not exist it is build.
-   if a site.conf.sample template exists in project root it is used
-   if no template exists site.conf is generated
-      DL_DIR (if not set - "/yocto/cache/download" is added to site.conf)
-      SSTATE_DIR (if not set - "/yocto/cache/${DISTRO}-${YOCTO_VERSION}" is added to site.conf)
+   If a site.conf.sample template or a site.conf exists in project root it is used
 
-      Furthermore:
-      PARALLEL_MAKE & BB_NUMBER_THREADS is set according to computing capabilities
+   Furthermore, site.conf is extended (if it exits):
+   PARALLEL_MAKE & BB_NUMBER_THREADS is set according to computing capabilities
    "
-}
-
-# TODO remove if linked and not copied.
-keep_this_script_in_sync () {
-	# if this script differes from source copy it over from its original place
-	if ! cmp -s ${MKP_SCRIPTPATH}/${MKP_SCRIPTNAME} ${MKP_SCRIPTPATH}/sources/meta-digi/sdk/${MKP_SCRIPTNAME}; then
-		install -m 0555 ${MKP_SCRIPTPATH}/sources/meta-digi/sdk/${MKP_SCRIPTNAME} ${MKP_SCRIPTPATH}/${MKP_SCRIPTNAME}
-		printf "\n${MKP_GREEN}[INFO]:${MKP_NONE} %s\n" "the '${MKP_SCRIPTNAME}' script has been updated."
-		printf "\nPlease run '. ${BASH_SOURCE}' again.\n\n"
-		return
-	fi
 }
 
 sanity_checks ()
@@ -114,7 +88,7 @@ sanity_checks ()
 
 # Expected optional parameters:
 # $1 = template - default is not-set
-# $2 = template - default is meta-ams
+# $2 = layer - default is meta-ams
 #
 # Result as site effect if template folder exists
 # TEMPLATECONF var set
@@ -124,13 +98,15 @@ set_layer_and_template_vars ()
 	local TEMPLATE=${1:-"not-set"}
 	local LAYER=${2:-"meta-ams"}
 	if [ "${TEMPLATE}" != "not-set" ]; then
-	 	TEMPLATECONF=$(pwd)/$(find sources -type d -name ${LAYER})/conf/templates/${TEMPLATE}
+		local LAYER_REL_PATH=$(find sources -type d -name ${LAYER} &2>/dev/null)
+		TEMPLATECONF="$(pwd)/${LAYER_REL_PATH}/conf/templates/${TEMPLATE}"
 		if [ -d ${TEMPLATECONF} ]; then
 			BUILD_DIR="build-${TEMPLATE}"
 		else
 			echo "ERROR: template and layer do not point to a valid template directory"
-			echo "       ${TEMPLATECONF} does not exist"
             echo "       Sourcing the script failed"
+			echo "TEMPLATECONF=${TEMPLATECONF}"
+			echo "LAYER_REL_PATH=${LAYER_REL_PATH}"
 			unset TEMPLATECONF
             return 1
 		fi
@@ -174,7 +150,6 @@ init_bitbake ()
 
 main ()
 {
-   init_variables
    set_layer_and_template_vars $1 $2
    if sanity_checks; then
       init_bitbake
