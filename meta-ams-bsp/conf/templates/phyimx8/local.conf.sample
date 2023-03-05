@@ -1,9 +1,8 @@
-CONF_VERSION = "2"
+CONF_VERSION = "3"
 
 MACHINE ?= "phyboard-polis-imx8mm-4"
-
-
-DISTRO ?= 'ams'
+MACHINE ?= "phyboard-polis-imx8mm"
+DISTRO ?= 'ams-bsp'
 
 USER_CLASSES ?= "buildstats "
 PATCHRESOLVE = "noop"

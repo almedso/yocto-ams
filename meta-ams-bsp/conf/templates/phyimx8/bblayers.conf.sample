@@ -1,6 +1,6 @@
-# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
+# LCONF_VERSION is increased each time build/conf/bblayers.conf
 # changes incompatibly
-POKY_BBLAYERS_CONF_VERSION = "2"
+LCONF_VERSION = "3"
 
 BBPATH = "${TOPDIR}"
 BBFILES ?= ""
@@ -31,11 +31,18 @@ BBLAYERS += "\
   ${OEROOT}/../meta-freescale-3rdparty \
   ${OEROOT}/../meta-freescale-distro \
   ${OEROOT}/../meta-nxp-demo-experience \
-  ${OEROOT}/../meta-python2 \
   ${OEROOT}/../meta-qt5 \
   ${OEROOT}/../meta-rauc \
   ${OEROOT}/../meta-phytec \
   ${OEROOT}/../meta-ampliphy \
   ${OEROOT}/../meta-security \
   ${OEROOT}/../meta-security/meta-tpm \
+  \
+  ${OEROOT}/../ams/meta-ams-bsp/ \
+  ${OEROOT}/../ams/meta-ams-bsp-phytecimx8/ \
+  "
+# Python2 layer needed by meta-imx/meta-bsp to deal with diskutil (old setuptools)
+BBLAYERS += " ${OEROOT}/../meta-python2 "
+
+REMOVED_LAYERS = "\
   "
