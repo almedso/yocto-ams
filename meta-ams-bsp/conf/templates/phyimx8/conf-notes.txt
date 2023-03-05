@@ -8,7 +8,7 @@
 Welcome to almedso BSP-Yocto Linux buildsystem.
 
 Default distro: ams-bsp
-Default machine: phytec-polis-imx8mm
+Default machine: phyboard-polis-imx8mm
 
 Run
 

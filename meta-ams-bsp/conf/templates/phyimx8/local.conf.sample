@@ -1,4 +1,4 @@
-CONF_VERSION = "3"
+# CONF_VERSION = "7"
 
 MACHINE ?= "phyboard-polis-imx8mm-4"
 MACHINE ?= "phyboard-polis-imx8mm"
