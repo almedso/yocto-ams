@@ -1,0 +1,72 @@
+# LAYER_CONF_VERSION is increased each time build/conf/bbsources.conf
+# changes incompatibly
+LCONF_VERSION = "7"
+
+BBPATH = "${TOPDIR}"
+BBFILES ?= ""
+OEROOT := "${@os.path.abspath(os.path.dirname(d.getVar('FILE')) + '/../..')}"
+
+#--------------------------
+# Layers var definition for buildsystem
+#
+OPENEMBEDDED = "${OPENEMBEDDED_NON_REMOVABLE}"
+
+OPENEMBEDDED_NON_REMOVABLE = "${OEROOT}/sources/openembedded-core/meta"
+
+POKY  = "${POKY_NON_REMOVABLE}"
+POKY += "${OEROOT}/sources/poky/meta-yocto-bsp"
+
+POKY_NON_REMOVABLE  = "${OEROOT}/sources/poky/meta"
+POKY_NON_REMOVABLE += "${OEROOT}/sources/poky/meta-yocto"
+
+#--------------------------
+#
+BASELAYERS ?= " \
+    ${OEROOT}/sources/meta-openembedded/meta-gnome \
+    ${OEROOT}/sources/meta-openembedded/meta-initramfs \
+    ${OEROOT}/sources/meta-openembedded/meta-multimedia \
+    ${OEROOT}/sources/meta-openembedded/meta-networking \
+    ${OEROOT}/sources/meta-openembedded/meta-webserver \
+    ${OEROOT}/sources/meta-openembedded/meta-filesystems \
+    ${OEROOT}/sources/meta-openembedded/meta-perl \
+"
+
+BBLAYERS_NON_REMOVABLE ?= " \
+    ${@'${OPENEMBEDDED_NON_REMOVABLE}' if os.path.isfile('${OEROOT}/sources/openembedded-core/meta/conf/layer.conf') else '${POKY_NON_REMOVABLE}'} \
+  "
+
+BSPLAYER ?= " \
+    ${@'${OEROOT}/sources/meta-st/meta-st-cannes2' if os.path.isfile('${OEROOT}/sources/meta-st/meta-st-cannes2/conf/layer.conf') else ''} \
+    ${@'${OEROOT}/sources/meta-st/meta-st-stm32mp' if os.path.isfile('${OEROOT}/sources/meta-st/meta-st-stm32mp/conf/layer.conf') else ''} \
+    "
+
+# Qt5
+ADDONSLAYERS += "${@'${OEROOT}/sources/meta-qt5' if os.path.isfile('${OEROOT}/sources/meta-qt5/conf/layer.conf') else ''}"
+
+# Security layer
+ADDONSLAYERS += " \
+    ${@'${OEROOT}/sources/meta-security \
+    ${OEROOT}/sources/meta-security/meta-tpm' \
+    if os.path.isfile('${OEROOT}/sources/meta-security/conf/layer.conf') else ''} \
+    "
+
+# specific to framework
+FRAMEWORKLAYERS += "${@'${OEROOT}/sources/meta-st/meta-st-openstlinux' if os.path.isfile('${OEROOT}/sources/meta-st/meta-st-openstlinux/conf/layer.conf') else ''}"
+
+
+AMSLAYERS = " \
+	${OEROOT}/sources/ams/meta-ams-bsp \
+"
+# add BSP layer
+BBLAYERS += " \
+    ${OPENEMBEDDED} \
+    ${BASELAYERS} \
+    ${BSPLAYER} \
+    ${ADDONSLAYERS} \
+    ${FRAMEWORKLAYERS} \
+	${AMSLAYERS} \
+    "
+
+# BSP dependencies"
+BBLAYERS =+ "${OEROOT}/sources/meta-openembedded/meta-oe"
+BBLAYERS =+ "${OEROOT}/sources/meta-openembedded/meta-python"
