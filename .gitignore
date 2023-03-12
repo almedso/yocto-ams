@@ -1,2 +1,4 @@
 # Editor specific stuff
+*.swo
 *.swp
+
