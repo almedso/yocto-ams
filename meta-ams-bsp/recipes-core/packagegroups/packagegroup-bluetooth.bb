@@ -1,4 +1,4 @@
-DESCRIPTION = "bluetooth tools used on Phytec boards"
+DESCRIPTION = "Bluetooth tools"
 LICENSE = "MIT"
 
 inherit packagegroup
