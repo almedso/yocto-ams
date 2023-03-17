@@ -28,8 +28,7 @@ RDEPENDS_${PN} = " \
     gst-plugin-i2c \
 "
 
-RDEPENDS_${PN}_append_mx8mm = " \
-    phytec-camera-examples-imx8mm \
+RDEPENDS_${PN}:append:mx8mm = " \
     bvtest \
     gstreamer1.0-plugins-bad-geometrictransform \
     gstreamer1.0-plugins-bad-zbar \
