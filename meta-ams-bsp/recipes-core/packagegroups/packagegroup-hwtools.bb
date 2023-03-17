@@ -1,4 +1,4 @@
-DESCRIPTION = "Hardware development tools used on Phytec boards"
+DESCRIPTION = "Hardware development tools"
 LICENSE = "MIT"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
@@ -33,7 +33,6 @@ RDEPENDS_${PN} = " \
     rs485test \
     libgpiod \
     libgpiod-tools \
-    phytool \
     ${@bb.utils.contains("MACHINE_FEATURES", "can", "can-utils can-utils-cantest libsocketcan", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "resistivetouch", "tslib-conf tslib-calibrate tslib-tests", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "pci", "pciutils", "", d)} \
@@ -43,16 +42,7 @@ RDEPENDS_${PN} = " \
     stressapptest \
 "
 
-REMOVED_FROM_DEPENDS = " \
-    kmsxx \
-    rauc-flash-nand \
-    nandflipbits \
-    flashbench \
-"
-
 # Those packages depend on a specific SoC architecture
-RDEPENDS_${PN}_append_arm = " arm-memspeed"
-RDEPENDS_${PN}_append_mx6 = " mmdc bbu"
-RDEPENDS_${PN}_append_mx6ul = " mmdc bbu"
-RDEPENDS_${PN}_append_rk3288 = " rkeeprom"
-RDEPENDS_${PN}_append_ti33x = " phyedit bbu"
+RDEPENDS_${PN}:append:arm = " arm-memspeed"
+RDEPENDS_${PN}:append:mx6 = " mmdc bbu"
+RDEPENDS_${PN}:append:mx6ul = " mmdc bbu"
