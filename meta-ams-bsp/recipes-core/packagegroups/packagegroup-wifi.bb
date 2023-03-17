@@ -1,4 +1,4 @@
-DESCRIPTION = "Phytec wifi software"
+DESCRIPTION = "Wifi tooling software"
 LICENSE = "MIT"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
