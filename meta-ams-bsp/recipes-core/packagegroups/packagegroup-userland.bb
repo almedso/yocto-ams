@@ -1,4 +1,4 @@
-DESCRIPTION = "Userland softwareservices found in all Phytec BSPs"
+DESCRIPTION = "Userland software services for bsp development"
 LICENSE = "MIT"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
@@ -6,13 +6,16 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS_${PN} = " \
+    crda \
     gdbserver \
-    strace \
+    git \
+    htop \
+    kbd \
+    kbd-keymaps \
     openssh \
     openssh-sftp-server \
     rsync \
-    htop \
-    crda \
-    kbd \
-    kbd-keymaps \
+    strace \
+    tmux \
+    vim \
 "
