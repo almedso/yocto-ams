@@ -1,5 +1,5 @@
-SUMMARY = "Phytec's headless image"
-DESCRIPTION = "no graphics support in this image"
+SUMMARY = "BSP development image"
+DESCRIPTION = "Contains tooling to establish a new BSP"
 LICENSE = "MIT"
 inherit core-image
 
@@ -19,6 +19,5 @@ IMAGE_INSTALL = " \
     tzdata \
 "
 
-IMAGE_INSTALL_append_update = " packagegroup-update"
-
-IMAGE_INSTALL_append_mx8m = " firmwared"
+IMAGE_INSTALL:append:update = " packagegroup-update"
+IMAGE_INSTALL:append:mx8m = " firmwared"
