@@ -1,4 +1,4 @@
-DESCRIPTION = "Benchmark tools used on Phytec boards"
+DESCRIPTION = "Benchmark tools used for benchmarking"
 LICENSE = "MIT"
 
 inherit packagegroup
