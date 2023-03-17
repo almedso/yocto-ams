@@ -1,4 +1,4 @@
-DESCRIPTION = "Cellular data tools used on Phytec boards"
+DESCRIPTION = "Cellular data tools"
 LICENSE = "MIT"
 
 inherit packagegroup
