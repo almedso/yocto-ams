@@ -1,9 +1,10 @@
 DESCRIPTION = "Bluetooth tools"
 LICENSE = "MIT"
+PR = "r1"
 
 inherit packagegroup
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     bluez5 \
     bluez5-testtools \
     bluez5-obex \
