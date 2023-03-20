@@ -1,8 +1,9 @@
 DESCRIPTION = "Cellular data tools"
 LICENSE = "MIT"
+PR = "r1"
 
 inherit packagegroup
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     modemmanager \
 "
