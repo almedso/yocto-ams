@@ -1,12 +1,12 @@
 SUMMARY = "BSP development image"
-DESCRIPTION = "Contains tooling to establish a new BSP"
+DESCRIPTION = "Image that contains tooling to establish a new BSP"
 LICENSE = "MIT"
+
 inherit core-image
 
-IMAGE_ROOTFS_SIZE ?= "8192"
+IMAGE_ROOTFS_SIZE ?= "2048"
 
 IMAGE_INSTALL = " \
-    packagegroup-machine-base \
     packagegroup-core-boot \
     packagegroup-hwtools \
     packagegroup-benchmark \
@@ -19,5 +19,13 @@ IMAGE_INSTALL = " \
     tzdata \
 "
 
-IMAGE_INSTALL:append:update = " packagegroup-update"
 IMAGE_INSTALL:append:mx8m = " firmwared"
+
+IMAGE_FEATURES:append = " \
+    debug-tweaks \
+    tools-debug \
+    tools-profile \
+"
+
+IMAGE_LINGUAS = " "
+
