@@ -11,9 +11,6 @@ PATCHRESOLVE = "noop"
 # global configuration #
 ########################
 
-# build artifacts are deployed here
-# DEPLOY_DIR = "${TOPDIR}/deploy"
-
 # enable bitbakes git shallow functionality: this reduces download volume
 # from 7.3G to 1.6 G as of sumo. If you need the git history of a project,
 # you can run a "git remote update" in the tmp dir, as the remotes are
@@ -47,7 +44,7 @@ INHERIT += "rm_work"
 
 # You can disable and enable FSTYPES as you wish. e.g. 'ext4'.
 # This variable is ordering dependend.
-IMAGE_FSTYPES = "tar.gz wic emmc"
+IMAGE_FSTYPES = "tar.gz wic"
 
 # To change the variable for any imx8 machine:
 IMAGE_FSTYPES_mx8 = "tar.gz wic emmc"
@@ -78,15 +75,6 @@ IMAGE_ROOTFS_EXTRA_SPACE = "524288"
 #   "Through these variables, you can add several different predefined
 #    packages such as development utilities or packages with debug information
 #    needed to investigate application problems or profile applications
-EXTRA_IMAGE_FEATURES = ""
-# - "Makes an image suitable for development (e.g. allows root logins without
-#    passwords and enables post-installation logging)"
-# EXTRA_IMAGE_FEATURES += "debug-tweaks"
-# - "Installs debug symbol packages for all packages installed in a given
-#    image."
-#EXTRA_IMAGE_FEATURES += "dbg-pkgs"
-# - "Installs debugging tools such as strace and gdb."
-#EXTRA_IMAGE_FEATURES += "tools-debug"
 
 # Uncomment to accept NXP EULA (needed, if any NXP / freescale layer is used)
 # EULA can then be found under ../sources/meta-freescale/EULA

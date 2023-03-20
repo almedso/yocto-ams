@@ -21,28 +21,12 @@ BBLAYERS += "\
   ${OEROOT}/../meta-openembedded/meta-multimedia \
   ${OEROOT}/../meta-openembedded/meta-filesystems \
   ${OEROOT}/../meta-openembedded/meta-perl \
-  ${OEROOT}/../meta-openembedded/meta-gnome \
-  ${OEROOT}/../meta-imx/meta-bsp \
-  ${OEROOT}/../meta-imx/meta-sdk \
-  ${OEROOT}/../meta-imx/meta-ml \
-  ${OEROOT}/../meta-browser/meta-chromium \
-  ${OEROOT}/../meta-clang \
   ${OEROOT}/../meta-freescale \
-  ${OEROOT}/../meta-freescale-3rdparty \
-  ${OEROOT}/../meta-freescale-distro \
-  ${OEROOT}/../meta-nxp-demo-experience \
-  ${OEROOT}/../meta-qt5 \
-  ${OEROOT}/../meta-rauc \
+  ${OEROOT}/../meta-imx/meta-bsp \
+  ${OEROOT}/../meta-imx/meta-ml \
   ${OEROOT}/../meta-phytec \
-  ${OEROOT}/../meta-ampliphy \
-  ${OEROOT}/../meta-security \
-  ${OEROOT}/../meta-security/meta-tpm \
   \
   ${OEROOT}/../ams/meta-ams-bsp/ \
   ${OEROOT}/../ams/meta-ams-bsp-phytecimx8/ \
   "
-# Python2 layer needed by meta-imx/meta-bsp to deal with diskutil (old setuptools)
-BBLAYERS += " ${OEROOT}/../meta-python2 "
 
-REMOVED_LAYERS = "\
-  "
