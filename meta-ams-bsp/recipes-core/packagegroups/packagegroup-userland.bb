@@ -1,15 +1,15 @@
 DESCRIPTION = "Userland software services for bsp development"
 LICENSE = "MIT"
-
-PACKAGE_ARCH = "${MACHINE_ARCH}"
+PR = "r1"
 
 inherit packagegroup
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
+    bc \
     crda \
     gdbserver \
     git \
-    htop \
+    jq \
     kbd \
     kbd-keymaps \
     openssh \
