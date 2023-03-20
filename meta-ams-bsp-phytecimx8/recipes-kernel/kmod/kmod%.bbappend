@@ -1,1 +1,1 @@
-PACKAGECONFIG_append_kernelmodsign = " xz"
+PACKAGECONFIG:append:kernelmodsign = " xz"
