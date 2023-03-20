@@ -1,9 +1,10 @@
 DESCRIPTION = "Benchmark tools used for benchmarking"
 LICENSE = "MIT"
+PR = "r1"
 
 inherit packagegroup
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     bonnie++ \
     hdparm \
     iozone3 \
