@@ -1,10 +1,11 @@
 DESCRIPTION = "Packagegroup Secure Key Storage for Kernel keyring access"
 LICENSE = "MIT"
+PR = "r1"
 
 inherit packagegroup
 
 # Runtime packages used in 'securestorage-ramdisk-init'
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     util-linux \
     cryptsetup \
     lvm2 \
