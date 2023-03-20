@@ -1,11 +1,12 @@
 DESCRIPTION = "Userlandtools for gstreamer and cameras"
 LICENSE = "MIT"
+PR = "r1"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit packagegroup
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
     media-ctl \
     v4l-utils \
     gstreamer1.0 \
@@ -28,7 +29,7 @@ RDEPENDS_${PN} = " \
     gst-plugin-i2c \
 "
 
-RDEPENDS_${PN}:append:mx8mm = " \
+RDEPENDS:${PN}:append:mx8mm = " \
     bvtest \
     gstreamer1.0-plugins-bad-geometrictransform \
     gstreamer1.0-plugins-bad-zbar \
