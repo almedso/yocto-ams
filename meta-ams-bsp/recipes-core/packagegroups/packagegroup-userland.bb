@@ -9,11 +9,14 @@ RDEPENDS:${PN} = " \
     crda \
     gdbserver \
     git \
+    glibc-utils \
     jq \
     kbd \
     kbd-keymaps \
+    localedef \
     openssh \
-    openssh-sftp-server \
+    opkg \
+    python3-pip \
     rsync \
     strace \
     tmux \
