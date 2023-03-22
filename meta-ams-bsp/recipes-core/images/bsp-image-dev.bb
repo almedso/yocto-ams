@@ -26,6 +26,3 @@ IMAGE_FEATURES:append = " \
     tools-debug \
     tools-profile \
 "
-
-IMAGE_LINGUAS = " "
-
