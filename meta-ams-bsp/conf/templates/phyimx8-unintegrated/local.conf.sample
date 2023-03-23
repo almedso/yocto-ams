@@ -1,5 +1,6 @@
 MACHINE ?= "phyboard-polis-imx8mm-4"
 DISTRO ?= "ampliphy-vendor-xwayland"
+YOCTO_VERSION = "kirkstone"
 
 ########################
 # global configuration #
@@ -45,6 +46,10 @@ BB_DISKMON_DIRS ??= "\
     ABORT,${DL_DIR},100M,1K \
     ABORT,${SSTATE_DIR},100M,1K \
     ABORT,/tmp,10M,1K"
+
+# overwrite in site.conf
+DL_DIR ?= "${TOPDIR}/downloads-cache/"
+SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
 
 #######################
 # Image configuration #
