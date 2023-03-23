@@ -1,6 +1,6 @@
 CONF_VERSION = "1"
-DISTRO = 'ams'
-YOCTO_VERSION = 'hardknott'
+DISTRO ?= "ams"
+YOCTO_VERSION = "kirkstone"
 
 PACKAGE_CLASSES ?= "package_ipk"
 
@@ -22,26 +22,14 @@ PACKAGECONFIG:append:pn-qemu-native = " sdl"
 PACKAGECONFIG:append:pn-nativesdk-qemu = " sdl"
 
 # default machines
-MACHINE ?= 'qemuarm'
-MACHINE ?= 'qemuarma9'
-MACHINE ?= 'raspberrypi0-wifi'
-MACHINE ?= 'raspberrypi3'
-MACHINE ?= 'imx6dl-riotboard'
-MACHINE ?= 'rigoletto'
-MACHINE ?= 'ricardo'
-MACHINE ?= 'ruiz'
-MACHINE ?= 'rodolfo'
-MACHINE ?= 'quirin'
-
 
 # freescale/nxp predefinitions
 ACCEPT_FSL_EULA = "1"
 
 # raspberry pre-definitions
-#
 
 # overwrite in site.conf
-DL_DIR ?= "${TOPDIR}/downloads-cache/"
+DL_DIR ?= "${TOPDIR}/download-cache/"
 SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
 
 # Fix the temp dir such that later rsync can refer to output
