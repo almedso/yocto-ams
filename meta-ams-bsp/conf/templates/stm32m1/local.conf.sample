@@ -1,6 +1,7 @@
 # This sets the default machine to be qemux86 if no other machine is selected:
 MACHINE ??= "qemux86"
 MACHINE ?= "stm32mp15-disco"
+YOCTO_VERSION = "kirkstone"
 #
 # DISTRO ?= "openstlinux-weston"
 DISTRO = "ams-bsp"
@@ -78,6 +79,10 @@ BB_DISKMON_DIRS ??= "\
     ABORT,${DL_DIR},100M,1K \
     ABORT,${SSTATE_DIR},100M,1K \
     ABORT,/tmp,10M,1K"
+
+# overwrite in site.conf
+DL_DIR ?= "${TOPDIR}/downloads-cache/"
+SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
 
 # Qemu configuration
 #
