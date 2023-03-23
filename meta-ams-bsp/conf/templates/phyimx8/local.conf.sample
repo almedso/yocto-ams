@@ -2,7 +2,8 @@
 
 MACHINE ?= "phyboard-polis-imx8mm-4"
 MACHINE ?= "phyboard-polis-imx8mm"
-DISTRO ?= 'ams-bsp'
+DISTRO ?= "ams-bsp"
+YOCTO_VERSION ?= "kirkstone"
 
 USER_CLASSES ?= "buildstats "
 PATCHRESOLVE = "noop"
@@ -25,6 +26,9 @@ BB_DISKMON_DIRS ??= "\
     HALT,${SSTATE_DIR},100M,1K \
     HALT,/tmp,10M,1K"
 
+# overwrite in site.conf
+DL_DIR ?= "${TOPDIR}/download-cache/"
+SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
 TMPDIR = "${TOPDIR}/tmp-${DISTRO}"
 
 BB_GENERATE_MIRROR_TARBALLS = "0"
