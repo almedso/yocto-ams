@@ -1,5 +1,6 @@
 CONF_VERSION = "2"
-DISTRO ?= 'ams'
+DISTRO ?= "ams-bsp"
+YOCTO_VERSION = "gatesgarth"
 
 PACKAGE_FEED_URIS ?= "https://ams.almedso.de/feeds/${DISTRO}"
 PACKAGE_FEED_BASE_PATHS ?= "ci release"
@@ -46,7 +47,7 @@ BB_NUMBER_THREADS ?= '4'
 PARALLEL_MAKE ?= '-j 4'
 
 # overwrite in site.conf
-DL_DIR ?= "${TOPDIR}/downloads-cache/"
+DL_DIR ?= "${TOPDIR}/download-cache/"
 SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
 
 # Fix the temp dir such that later rsync can refer to output
