@@ -21,5 +21,8 @@ RDEPENDS:${PN} = " \
     pulseaudio-module-sine-source \
     pulseaudio-module-rtp-send \
     pulseaudio-module-rtp-recv \
+"
+
+RDEPENDS_SPECIFIC_PHYTEC_BSP_LAYER = " \
     laird-sterling-firmware \
 "

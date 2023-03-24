@@ -12,5 +12,10 @@ RDEPENDS:${PN} = " \
     wpa-supplicant \
     iw \
     hostapd \
+"
+
+
+RDEPENDS_SPECIFIC_PHYTEC_BSP_LAYER = " \
     laird-sterling-firmware \
 "
+
