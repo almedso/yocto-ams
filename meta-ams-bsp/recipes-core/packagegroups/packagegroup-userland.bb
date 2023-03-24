@@ -9,11 +9,7 @@ RDEPENDS:${PN} = " \
     crda \
     gdbserver \
     git \
-    glibc-utils \
     jq \
-    kbd \
-    kbd-keymaps \
-    localedef \
     openssh \
     opkg \
     python3-pip \
