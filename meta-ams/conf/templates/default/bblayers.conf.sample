@@ -1,6 +1,6 @@
 # LCONF_VERSION is increased each time build/conf/bblayers.conf
 # changes incompatibly
-LCONF_VERSION = "7"
+# LCONF_VERSION = "7"
 
 BBPATH = "${TOPDIR}"
 BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../..')}"
@@ -18,8 +18,6 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-openembedded/meta-webserver \
   \
   ${BSPDIR}/sources/meta-raspberrypi \
-  \
-  ${BSPDIR}/sources/meta-rust \
   \
   ${BSPDIR}/sources/ams/meta-ams \
   ${BSPDIR}/sources/ams/meta-ams-bsp-rpi \
@@ -41,6 +39,8 @@ EXCLUDED_LAYERS = " \
   ${BSPDIR}/sources/meta-freescale \
   ${BSPDIR}/sources/meta-rauc \
   ${BSPDIR}/sources/meta-phytec \
+  \
+  ${BSPDIR}/sources/meta-rust \
 "
 
 
