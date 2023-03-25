@@ -9,7 +9,7 @@
 Welcome to almedso BSP-Yocto Linux buildsystem.
 
 Default distro: ams-bsp
-Default machine: stsm32mp15-disco (maps to eval board STM32MP157F-DK2)
+Default machine: stm32mp15-disco (maps to eval board STM32MP157F-DK2)
 
 Run
 
