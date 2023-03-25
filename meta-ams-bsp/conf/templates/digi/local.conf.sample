@@ -15,27 +15,17 @@ BB_DISKMON_DIRS ??= "\
     STOPTASKS,${DL_DIR},1G,100K \
     STOPTASKS,${SSTATE_DIR},1G,100K \
     STOPTASKS,/tmp,100M,100K \
-    ABORT,${TMPDIR},100M,1K \
-    ABORT,${DL_DIR},100M,1K \
-    ABORT,${SSTATE_DIR},100M,1K \
-    ABORT,/tmp,10M,1K"
+    HALT,${TMPDIR},100M,1K \
+    HALT,${DL_DIR},100M,1K \
+    HALT,${SSTATE_DIR},100M,1K \
+    HALT,/tmp,10M,1K"
 
 # qemu specifics
 PACKAGECONFIG:append:pn-qemu-native = " sdl"
 PACKAGECONFIG:append:pn-nativesdk-qemu = " sdl"
 
 # default machines
-MACHINE ?= 'qemuarm'
-MACHINE ?= 'qemuarma9'
-MACHINE ?= 'raspberrypi0-wifi'
-MACHINE ?= 'raspberrypi3'
-MACHINE ?= 'imx6dl-riotboard'
-MACHINE ?= 'rigoletto'
-MACHINE ?= 'ricardo'
-MACHINE ?= 'ruiz'
-MACHINE ?= 'rodolfo'
-MACHINE ?= 'quirin'
-
+MACHINE ?= "ccimx8mn-dvk"
 
 # freescale/nxp predefinitions
 ACCEPT_FSL_EULA = "1"
@@ -43,17 +33,9 @@ ACCEPT_FSL_EULA = "1"
 # raspberry pre-definitions
 #
 
-BB_NUMBER_THREADS ?= '4'
-PARALLEL_MAKE ?= '-j 4'
-
 # overwrite in site.conf
 DL_DIR ?= "${TOPDIR}/download-cache/"
 SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
-
-# Fix the temp dir such that later rsync can refer to output
-# make sure custom glibc recipes do not overwrite TMPDIR
-TCLIBCAPPEND = ""
-TMPDIR = "${TOPDIR}/tmp-${DISTRO}"
 
 GLIBC_GENERATE_LOCALES ?= "en_US.UTF-8 de_DE.UTF-8"
 IMAGE_LINGUAS ?= "en-us de-de"
@@ -69,3 +51,4 @@ FORTRAN_forcevariable = ",fortran"
 AMSBASE = "${TOPDIR}/sources/ams"
 TEMPLATE = "minimal"
 SANITY_SITECONF_SAMPLE = "${AMSBASE}/meta*/conf/templates/${TEMPLATE}/local.conf.sample"
+
