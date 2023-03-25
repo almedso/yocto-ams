@@ -12,7 +12,7 @@ OPERATOR_FEATURE = "\
 
 NETWORK_FEATURE = "\
     bridge-utils \
-    dhcp-client \
+    dhcpcd \
     hostapd \
     init-ifupdown \
     iptables \
