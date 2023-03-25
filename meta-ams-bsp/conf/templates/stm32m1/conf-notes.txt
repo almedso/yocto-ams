@@ -9,7 +9,7 @@
 Welcome to almedso BSP-Yocto Linux buildsystem.
 
 Default distro: ams-bsp
-Default machine: stsm32mp15-disco (maps to eval board STM32MP157F-DK2)
+Default machine: stm32mp15-disco (maps to eval board STM32MP157F-DK2)
 
 Run
 
@@ -30,4 +30,11 @@ Alternative OpenSTLinux (layer) images:
   - Other OpenSTLinux images:
       - Supported images:
           st-image-core         -   OpenSTLinux core image
+
+Flash the result via
+
+  - Go to image deploy directory of stm32mp15-disco
+        cd tmp-glibc/deploy/images/stm32mp15-disco/
+  - Create a raw image considering the flash layout and 'dd' the raw image to sdcard
+  		./scripts/create_sdcard_from_flashlayout.sh flashlayout_bsp-image-dev/extensible/FlashLayout_sdcard_stm32mp157f-dk2-extensible.tsv
 
