@@ -1,13 +1,12 @@
-SUMMARY = "AMS development image"
-DESCRIPTION = "A-l M-ed S-o development image"
+SUMMARY = "RPI + JOYIT Explore700 shield - development variant"
 LICENSE = "MIT"
 
 require include/ams-image-dev.inc
 
-PR = "1.2.${PR_INC}"
+PR = "1.${PR_INC}"
 
 # overwrite image name - to find it in tmp* tree
-export IMAGE_BASENAME = "ams-image-dev"
+export IMAGE_BASENAME = "explore700-image-dev"
 
 IMAGE_INSTALL:append = " \
     packagegroup-ams-tools \
