@@ -47,3 +47,4 @@ RM_OLD_IMAGE = "1"
 # in order to translate lapack fortran support (libgfortran) is required.
 # fortran support is enabled via
 FORTRAN_forcevariable = ",fortran"
+
