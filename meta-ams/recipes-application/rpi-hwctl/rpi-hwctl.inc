@@ -3,7 +3,9 @@ HOMEPAGE = "git@gitlab.com:almedso/rpi-hwctl.git"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE.md;md5=2132a6d3449ec2731209701beda95440"
 
-INC_PR = "r2"
+INC_PR = "r3"
+
+do_compile[network] = "1"
 
 inherit cargo systemd
 
