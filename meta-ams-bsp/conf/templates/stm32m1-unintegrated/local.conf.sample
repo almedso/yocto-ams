@@ -291,3 +291,7 @@ PRSERV_HOST = "localhost:0"
 # Set EULA acceptance
 # =========================================================================
 ACCEPT_EULA_stm32mp15-disco = "1"
+
+# Show cache directories at start of bitbake
+BUILDCFG_VARS += " DL_DIR SSTATE_DIR "
+

@@ -58,3 +58,6 @@ IMAGE_ROOTFS_EXTRA_SPACE = "524288"
 # EULA can then be found under ../sources/meta-freescale/EULA
 ACCEPT_FSL_EULA = "1"
 
+# Show cache directories at start of bitbake
+BUILDCFG_VARS += " DL_DIR SSTATE_DIR "
+

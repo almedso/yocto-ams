@@ -49,3 +49,6 @@ RM_OLD_IMAGE = "1"
 # fortran support is enabled via
 FORTRAN_forcevariable = ",fortran"
 
+# Show cache directories at start of bitbake
+BUILDCFG_VARS += " DL_DIR SSTATE_DIR "
+

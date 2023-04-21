@@ -22,6 +22,7 @@ PACKAGECONFIG:append:pn-qemu-native = " sdl"
 PACKAGECONFIG:append:pn-nativesdk-qemu = " sdl"
 
 # default machines
+MACHINE ??= "qemux86-64"
 
 # freescale/nxp predefinitions
 ACCEPT_FSL_EULA = "1"
@@ -47,4 +48,12 @@ RM_OLD_IMAGE = "1"
 # in order to translate lapack fortran support (libgfortran) is required.
 # fortran support is enabled via
 FORTRAN_forcevariable = ",fortran"
+
+# Injection variables into the build process
+BB_ENV_PASSTHROUGH = ""
+# Development branch for an application repo branch
+# BB_ENV_PASSTHROUGH += "APP_BRANCH"
+
+# Show cache directories at start of bitbake
+BUILDCFG_VARS += " DL_DIR SSTATE_DIR "
 

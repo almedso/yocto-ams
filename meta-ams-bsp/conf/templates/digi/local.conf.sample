@@ -37,6 +37,11 @@ ACCEPT_FSL_EULA = "1"
 DL_DIR ?= "${TOPDIR}/download-cache/"
 SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
 
+# Fix the temp dir such that later rsync can refer to output
+# make sure custom glibc recipes do not overwrite TMPDIR
+TCLIBCAPPEND = ""
+TMPDIR = "${TOPDIR}/tmp-${DISTRO}"
+
 GLIBC_GENERATE_LOCALES ?= "en_US.UTF-8 de_DE.UTF-8"
 IMAGE_LINGUAS ?= "en-us de-de"
 
@@ -51,4 +56,7 @@ FORTRAN_forcevariable = ",fortran"
 AMSBASE = "${TOPDIR}/sources/ams"
 TEMPLATE = "minimal"
 SANITY_SITECONF_SAMPLE = "${AMSBASE}/meta*/conf/templates/${TEMPLATE}/local.conf.sample"
+
+# Show cache directories at start of bitbake
+BUILDCFG_VARS += " DL_DIR SSTATE_DIR "
 
