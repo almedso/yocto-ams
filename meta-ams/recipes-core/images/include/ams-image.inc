@@ -1,5 +1,5 @@
 LICENSE = "MIT"
-PR_INC = "r1"
+PR:append = ".r1"
 
 inherit core-image
 require rootfs-post-install.inc

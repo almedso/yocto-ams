@@ -1,4 +1,4 @@
-PR_INC:append = ".dev.1"
+PR:append = ".dev.1"
 
 require ams-image.inc
 
