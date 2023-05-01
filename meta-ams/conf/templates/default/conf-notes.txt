@@ -8,7 +8,7 @@
 Welcome to almedso Yocto Linux buildsystem.
 
 Default distro: ams
-Default machine: qemuarm64
+Default machine: qemux86-64
 
 Run
 
