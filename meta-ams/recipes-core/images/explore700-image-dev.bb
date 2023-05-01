@@ -3,7 +3,7 @@ LICENSE = "MIT"
 
 require include/ams-image-dev.inc
 
-PR = "1.${PR_INC}"
+PR = "1"
 
 # overwrite image name - to find it in tmp* tree
 export IMAGE_BASENAME = "explore700-image-dev"
