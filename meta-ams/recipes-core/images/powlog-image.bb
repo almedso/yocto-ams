@@ -4,7 +4,7 @@ LICENSE = "MIT"
 
 require include/ams-image.inc
 
-PR = "1.0.${PR_INC}"
+PR = "1.0"
 
 # overwrite image name - to find it in tmp* tree
 export IMAGE_BASENAME = "powlog-image"

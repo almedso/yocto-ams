@@ -1,15 +1,13 @@
 SUMMMARY = "Packagegroup GUI applications"
 LICENSE = "MIT"
-PR = "r1"
+PR = "r2"
 
 inherit packagegroup
 
 RDEPENDS:${PN} = " \
-    qt-env \
-    qt5-browser \
-    emb-spa \
-    weston \
     weston-init \
+    weston \
+    chromium-ozone-wayland \
 "
 
 RDEPENDS:${PN}-dev = " \
@@ -17,13 +15,28 @@ RDEPENDS:${PN}-dev = " \
 "
 
 GUI_SAMPLES = " \
-    clutter-1.0-examples \
     gtk+3-demo \
+    weston-examples \
+"
+
+# Saparate QT staff
+QT_GUI_SAMPLES = " \
     qt5-simple \
     qt5-opengles2-test \
     qt5ledscreen \
     qtsmarthome \
     qt5everywheredemo \
     qt5nmapper \
-    weston-examples \
 "
+
+QT_RDEPENDS:${PN} = " \
+    qt-env \
+    qt5-browser \
+"
+
+EXCLUDED_STUFF = " \
+    clutter-1.0-examples \
+    iced-word-clock \
+    emb-spa \
+"
+
