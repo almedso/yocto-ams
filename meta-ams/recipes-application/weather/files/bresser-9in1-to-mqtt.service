@@ -1,0 +1,12 @@
+
+
+[Unit]
+Description=Collect data from Bresser 7 in 1 sensor 
+
+[Service]
+# run at 868 MHz, Bresser 7 in 1 is protocol 173
+# see https://github.com/merbanan/rtl_433
+ExecStart=/usr/bin/rtl_433 -f 868M -C si -R 173 -F json -M utc 
+
+[Install]
+WantedBy=multi-user.target
