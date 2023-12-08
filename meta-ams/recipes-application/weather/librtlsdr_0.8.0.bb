@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/librtlsdr/librtlsdr"
 LICENSE = "GPL-2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 
-PR = "r1"
+PR = "r2"
 
 SRC_URI = "https://github.com/librtlsdr/librtlsdr/archive/refs/tags/v${PV}.tar.gz"
 SRC_URI[md5sum] = "64f31f30f79cd91e4cd70b0a8edcff4e"
@@ -13,7 +13,15 @@ S = "${WORKDIR}/librtlsdr-${PV}"
 
 inherit cmake pkgconfig
 
+EXTRA_OECMAKE += " \
+    -DDETACH_KERNEL_DRIVER=ON \
+"
+
 DEPENDS = " \
+	libusb1 \
+"
+
+RDEPENDS:${PN} = " \
 	libusb1 \
 "
 
