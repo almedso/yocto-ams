@@ -10,7 +10,6 @@ RDEPENDS:${PN} = " \
     libopencv-imgproc \
     v4l-utils \
     python3-opencv \
-    python3-scipy \
 "
 
 RDEPENDS:${PN}-dev = " \

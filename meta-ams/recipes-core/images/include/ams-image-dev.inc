@@ -9,6 +9,10 @@ IMAGE_FEATURES:append= " \
     post-install-logging \
     "
 
+IMAGE_INSTALL:append = " \
+    packagegroup-ams-tools \
+    "
+
 # debug and profile image blow up the time needed
 # to create rootfs dramatically
 OTHER_IMAGE_FEATURE_CANDIDATES = "\

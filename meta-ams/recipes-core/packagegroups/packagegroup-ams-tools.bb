@@ -25,6 +25,8 @@ RDEPENDS:${PN} = " \
     ${SERBUSTOOLS} \
     can-config \
     can-utils \
+    lsof \
+    strace \
 "
 
 RDEPENDS:${PN}-dev = " \
