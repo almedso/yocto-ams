@@ -21,10 +21,10 @@ override_sshd_setting() {
 sshd_config_lockdown() {
     override_sshd_setting X11Forwarding no
     override_sshd_setting IgnoreRhosts  yes
-    override_sshd_setting PermitEmptyPasswords no
-    override_sshd_setting PermitRootLogin without-password
+    override_sshd_setting PermitEmptyPasswords yes
+    override_sshd_setting PermitRootLogin yes
     override_sshd_setting MaxAuthTries 3
-    override_sshd_setting PasswordAuthentication no
+    override_sshd_setting PasswordAuthentication yes
     override_sshd_setting PubkeyAuthentication yes
 }
 

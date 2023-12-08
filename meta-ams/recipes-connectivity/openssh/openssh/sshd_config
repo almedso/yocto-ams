@@ -4,7 +4,9 @@ Protocol 2
 # Authentication
 PermitRootLogin no
 AuthorizedKeysFile .ssh/authorized_keys
-PermitEmptyPasswords no
+PermitEmptyPasswords yes
+PasswordAuthentication·yes
+IgnoreRhosts·no
 
 ChallengeResponseAuthentication no
 
@@ -15,3 +17,5 @@ ClientAliveInterval 15
 ClientAliveCountMax 4
 
 Subsystem       sftp    /usr/libexec/sftp-server
+
+

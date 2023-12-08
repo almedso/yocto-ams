@@ -1,4 +1,4 @@
-PR:append = ".ams.1"
+PR:append = ".ams.2"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 SRC_URI += "file://sshd_config"
