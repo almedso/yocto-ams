@@ -1,6 +1,6 @@
 SUMMMARY = "AMS Testing tools/applications"
 LICENSE = "MIT"
-PR = "r1"
+PR = "r2"
 
 inherit packagegroup
 

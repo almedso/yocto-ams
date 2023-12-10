@@ -170,6 +170,16 @@ if [ "${BASH_SOURCE[0]}" != "${0}" ] ; then
 	   	ams-init-build-env)
    		   	main default
 		  	;;
+	   	jupyter-init-build-env)
+   		   	main jupyter
+		  	;;
+	   	timeseries-init-build-env)
+   		   	main timeseries
+		  	;;
+	   	browser-init-build-env)
+   		   	main timeseries
+		  	;;
+
 	   	phyimx8-init-build-env)
    		   	main phyimx8 meta-ams-bsp
 		  	;;

@@ -3,13 +3,12 @@ LICENSE = "MIT"
 
 require include/ams-image-dev.inc
 
-PR = "1"
+PR = "2"
 
 # overwrite image name - to find it in tmp* tree
 export IMAGE_BASENAME = "weather-image-dev"
 
 IMAGE_INSTALL:append = " \
     packagegroup-ams-tools \
-    waveshare-demo \
     packagegroup-weather \
     "
