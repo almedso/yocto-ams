@@ -1,0 +1,59 @@
+# CONF_VERSION = "2"
+DISTRO ?= "ams"
+YOCTO_VERSION = "kirkstone"
+
+PACKAGE_CLASSES ?= "package_ipk"
+
+USER_CLASSES ?= "buildstats"
+PATCHRESOLVE = "noop"
+
+BB_DISKMON_DIRS ??= "\
+    STOPTASKS,${TMPDIR},1G,100K \
+    STOPTASKS,${DL_DIR},1G,100K \
+    STOPTASKS,${SSTATE_DIR},1G,100K \
+    STOPTASKS,/tmp,100M,100K \
+    HALT,${TMPDIR},100M,1K \
+    HALT,${DL_DIR},100M,1K \
+    HALT,${SSTATE_DIR},100M,1K \
+    HALT,/tmp,10M,1K"
+
+# qemu specifics
+PACKAGECONFIG:append:pn-qemu-native = " sdl"
+PACKAGECONFIG:append:pn-nativesdk-qemu = " sdl"
+
+# default machines
+MACHINE ??= "qemux86-64"
+
+# freescale/nxp predefinitions
+ACCEPT_FSL_EULA = "1"
+
+# raspberry pre-definitions
+
+# overwrite in site.conf
+DL_DIR ?= "${TOPDIR}/download-cache/"
+SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
+
+# Fix the temp dir such that later rsync can refer to output
+# make sure custom glibc recipes do not overwrite TMPDIR
+# TCLIBCAPPEND = ""
+# TMPDIR = "${TOPDIR}/tmp-${DISTRO}"
+
+GLIBC_GENERATE_LOCALES ?= "en_US.UTF-8 de_DE.UTF-8"
+IMAGE_LINGUAS ?= "en-us de-de"
+
+BB_GENERATE_MIRROR_TARBALLS = "0"
+INHERIT += "rm_work"
+RM_OLD_IMAGE = "1"
+
+# in order to translate lapack fortran support (libgfortran) is required.
+# fortran support is enabled via
+FORTRAN_forcevariable = ",fortran"
+
+# Injection variables into the build process
+BB_ENV_PASSTHROUGH = ""
+# Development branch for an application repo branch
+# BB_ENV_PASSTHROUGH += "APP_BRANCH"
+
+# Show cache directories at start of bitbake
+BUILDCFG_VARS += " DL_DIR SSTATE_DIR "
+
