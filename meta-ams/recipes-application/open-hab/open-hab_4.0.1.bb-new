@@ -1,0 +1,16 @@
+# Copyright (C) 2023 Volker Kempert <volker.kempert@almedso.de>
+SUMMARY = "OpenHAB"
+HOMEPAGE = "www.openhab.org"
+LICENSE = ""
+
+
+SRC_URI = "https://github.com/openhab/openhab/releases/download/v${PV}/distribution-${PV}-runtime.zip;name=runtime \
+           https://github.com/openhab/openhab/releases/download/v${PV}/distribution-${PV}-addons.zip;name=addons \
+
+# runtime package
+SRC_URI[runtime.md5sum] = "99001ed7d1fec56ae5ad9834b14a0b93"
+SRC_URI[runtime.sha256sum] = "000a391e346015c0b1fa7fc129763593d495f6d9f77fb94723f196b075db016e"
+
+# Addon package
+SRC_URI[addons.md5sum] = "d401f705a7721324c9511b7ae641b17b"
+SRC_URI[addons.sha256sum] = "688b02e6ae937f377f37996e90b5b3a827b15c7f3c775b48756a5fcc56cdde41"
