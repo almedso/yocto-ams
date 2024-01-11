@@ -78,8 +78,8 @@ sanity_checks ()
       echo "       Sourcing the script failed"
       return 1
    fi
-   if [ ! -d "$(pwd)/sources/poky" ]; then
-      echo "ERROR: ./sources/poky does not exist"
+   if [ ! -d "$(pwd)/sources/poky" ] && [ ! -d "$(pwd)/sources/openembedded-core" ]; then
+      echo "ERROR: ./sources/poky or ./sources/openembedded-core does not exist"
       echo "       This script should be invoked from yocto project root directory"
       echo "       Sourcing the script failed"
       return 1
@@ -145,11 +145,19 @@ write_site_conf ()
 
 init_bitbake ()
 {
-	source sources/poky/oe-init-build-env ${BUILD_DIR}
-	unset TEMPLATECONF
-	unset BUILD_DIR
-    # now we cd'ed into the ${BUILD_DIR}
-    write_site_conf
+  # be robust if openembedded-core is available
+  if [ -d sources/openembedded-core ]; then
+    printf "\nSource init script from openembedded-core\n"
+    source sources/openembedded-core/oe-init-build-env ${BUILD_DIR}
+  else
+    printf "\nSource init script from poky\n"
+    source sources/openembedded-core/oe-init-build-env ${BUILD_DIR}
+    # source sources/poky/oe-init-build-env ${BUILD_DIR}
+  fi
+  unset TEMPLATECONF
+  unset BUILD_DIR
+  # now we cd'ed into the ${BUILD_DIR}
+  write_site_conf
 }
 
 main ()
