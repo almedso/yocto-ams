@@ -180,8 +180,8 @@ if [ "${BASH_SOURCE[0]}" != "${0}" ] ; then
    		   	main timeseries
 		  	;;
 
-	   	phyimx8-init-build-env)
-   		   	main phyimx8 meta-ams-bsp
+	   	phyimx8-not-integrated-init-build-env)
+   		   	main phyimx8-not-integrated meta-ams-bsp
 		  	;;
 	   	stm32m1-init-build-env)
 			main stm32m1 meta-ams-bsp

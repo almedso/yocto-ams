@@ -5,7 +5,7 @@ POKY_BBLAYERS_CONF_VERSION = "2"
 BBPATH = "${TOPDIR}"
 BBFILES ?= ""
 
-OEROOT := "/yocto/root/sources/poky"
+OEROOT := "/home/volker/yocto/ams-kirkstone/sources/poky"
 # add BSPDIR variable, as it is needed by recipes of NXP
 BSPDIR := "${OEROOT}/../.."
 
@@ -22,20 +22,23 @@ BBLAYERS += "\
   ${OEROOT}/../meta-openembedded/meta-filesystems \
   ${OEROOT}/../meta-openembedded/meta-perl \
   ${OEROOT}/../meta-openembedded/meta-gnome \
+  ${OEROOT}/../meta-browser/meta-chromium \
+  ${OEROOT}/../meta-clang \
   ${OEROOT}/../meta-imx/meta-bsp \
   ${OEROOT}/../meta-imx/meta-sdk \
   ${OEROOT}/../meta-imx/meta-ml \
-  ${OEROOT}/../meta-browser/meta-chromium \
-  ${OEROOT}/../meta-clang \
   ${OEROOT}/../meta-freescale \
   ${OEROOT}/../meta-freescale-3rdparty \
   ${OEROOT}/../meta-freescale-distro \
   ${OEROOT}/../meta-nxp-demo-experience \
-  ${OEROOT}/../meta-python2 \
-  ${OEROOT}/../meta-qt5 \
+  ${OEROOT}/../meta-virtualization \
   ${OEROOT}/../meta-rauc \
+  ${OEROOT}/../meta-qt6 \
   ${OEROOT}/../meta-phytec \
   ${OEROOT}/../meta-ampliphy \
+  ${OEROOT}/../meta-qt6-phytec \
   ${OEROOT}/../meta-security \
   ${OEROOT}/../meta-security/meta-tpm \
+  ${OEROOT}/../meta-arm/meta-arm \
+  ${OEROOT}/../meta-arm/meta-arm-toolchain \
   "
