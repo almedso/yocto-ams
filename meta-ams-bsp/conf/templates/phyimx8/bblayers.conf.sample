@@ -22,30 +22,16 @@ BBLAYERS += "\
   ${OEROOT}/../meta-openembedded/meta-multimedia \
   ${OEROOT}/../meta-openembedded/meta-filesystems \
   ${OEROOT}/../meta-openembedded/meta-perl \
-  ${OEROOT}/../meta-openembedded/meta-gnome \
   \
-  ${OEROOT}/../meta-clang \
   ${OEROOT}/../meta-imx/meta-bsp \
   ${OEROOT}/../meta-imx/meta-sdk \
   ${OEROOT}/../meta-imx/meta-ml \
   ${OEROOT}/../meta-freescale \
   ${OEROOT}/../meta-freescale-3rdparty \
   ${OEROOT}/../meta-freescale-distro \
-  ${OEROOT}/../meta-virtualization \
-  ${OEROOT}/../meta-qt6 \
   ${OEROOT}/../meta-phytec \
   ${OEROOT}/../meta-arm/meta-arm \
   ${OEROOT}/../meta-arm/meta-arm-toolchain \
   \
   ${BSPDIR}/sources/ams/meta-ams-bsp \
-  ${BSPDIR}/sources/ams/meta-ams-bsp-phytecimx8 \
   "
-EXCLUDED_LAYERS = "\
-  ${OEROOT}/../meta-ampliphy \
-  ${OEROOT}/../meta-qt6-phytec \
-  ${OEROOT}/../meta-security \
-  ${OEROOT}/../meta-security/meta-tpm \
-  ${OEROOT}/../meta-rauc \
-  ${OEROOT}/../meta-browser/meta-chromium \
-  ${OEROOT}/../meta-nxp-demo-experience \
-"
