@@ -7,7 +7,7 @@ inherit core-image
 IMAGE_ROOTFS_SIZE ?= "2048"
 
 IMAGE_INSTALL = " \
-    packagegroup-base \
+    packagegroup-machine-base \
     packagegroup-core-boot \
     packagegroup-hwtools \
     packagegroup-benchmark \

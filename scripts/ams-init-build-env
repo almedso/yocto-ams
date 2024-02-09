@@ -151,8 +151,7 @@ init_bitbake ()
     source sources/openembedded-core/oe-init-build-env ${BUILD_DIR}
   else
     printf "\nSource init script from poky\n"
-    source sources/openembedded-core/oe-init-build-env ${BUILD_DIR}
-    # source sources/poky/oe-init-build-env ${BUILD_DIR}
+    source sources/poky/oe-init-build-env ${BUILD_DIR}
   fi
   unset TEMPLATECONF
   unset BUILD_DIR
@@ -190,6 +189,9 @@ if [ "${BASH_SOURCE[0]}" != "${0}" ] ; then
 
 	   	phyimx8-not-integrated-init-build-env)
    		   	main phyimx8-not-integrated meta-ams-bsp
+		  	;;
+	   	phyimx8-init-build-env)
+   		   	main phyimx8 meta-ams-bsp
 		  	;;
 	   	stm32mp1-not-integrated-init-build-env)
 			  main stm32mp1-not-integrated meta-ams-bsp
