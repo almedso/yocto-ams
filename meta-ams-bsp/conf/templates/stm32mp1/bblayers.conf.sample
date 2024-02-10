@@ -27,14 +27,12 @@ BBLAYERS += " \
     ${OEROOT}/sources/meta-openembedded/meta-python \
     ${OEROOT}/sources/meta-openembedded/meta-oe \
     \
-    ${@'${OEROOT}/sources/meta-st/meta-st-cannes2' if os.path.isfile('${OEROOT}/sources/meta-st/meta-st-cannes2/conf/layer.conf') else ''} \
-    ${@'${OEROOT}/sources/meta-st/meta-st-stm32mp' if os.path.isfile('${OEROOT}/sources/meta-st/meta-st-stm32mp/conf/layer.conf') else ''} \
+    ${OEROOT}/sources/meta-st/meta-st-stm32mp' \
     \
     ${@'${OEROOT}/sources/meta-security \
     ${OEROOT}/sources/meta-security/meta-tpm' \
     if os.path.isfile('${OEROOT}/sources/meta-security/conf/layer.conf') else ''} \
     \
-    ${@'${OEROOT}/sources/meta-st/meta-st-openstlinux' if os.path.isfile('${OEROOT}/sources/meta-st/meta-st-openstlinux/conf/layer.conf') else ''} \
     ${@'${OPENEMBEDDED}' if os.path.isfile('${OEROOT}/sources/openembedded-core/meta/conf/layer.conf') else '${POKY}'} \
     \
     ${OEROOT}/sources/ams/meta-ams-bsp \
@@ -42,6 +40,7 @@ BBLAYERS += " \
 
 #--------------------------
 ADDONSLAYERS = " \
+    ${@'${OEROOT}/sources/meta-st/meta-st-openstlinux' if os.path.isfile('${OEROOT}/sources/meta-st/meta-st-openstlinux/conf/layer.conf') else ''} \
     "
 
 # linaro
