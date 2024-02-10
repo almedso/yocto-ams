@@ -193,8 +193,12 @@ if [ "${BASH_SOURCE[0]}" != "${0}" ] ; then
 	   	phyimx8-init-build-env)
    		   	main phyimx8 meta-ams-bsp
 		  	;;
+
 	   	stm32mp1-not-integrated-init-build-env)
 			  main stm32mp1-not-integrated meta-ams-bsp
+		  	;;
+	   	stm32mp1-init-build-env)
+			  main stm32mp1 meta-ams-bsp
 		  	;;
 	   	*)
    		   	main $1 $2

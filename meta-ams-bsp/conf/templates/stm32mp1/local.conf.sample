@@ -1,0 +1,107 @@
+## CONF_VERSION is increased each time build/conf/ changes incompatibly and is used to
+# track the version of this file when it was generated. This can safely be ignored if
+# this doesn't mean anything to you.
+CONF_VERSION = "2"
+DISTRO ?= "ams-bsp"
+YOCTO_VERSION = "kirkstone"
+
+PACKAGE_CLASSES ?= "package_ipk"
+
+USER_CLASSES ?= "buildstats"
+PATCHRESOLVE = "noop"
+
+BB_DISKMON_DIRS ??= "\
+    STOPTASKS,${TMPDIR},1G,100K \
+    STOPTASKS,${DL_DIR},1G,100K \
+    STOPTASKS,${SSTATE_DIR},1G,100K \
+    STOPTASKS,/tmp,100M,100K \
+    HALT,${TMPDIR},100M,1K \
+    HALT,${DL_DIR},100M,1K \
+    HALT,${SSTATE_DIR},100M,1K \
+    HALT,/tmp,10M,1K"
+
+# qemu specifics
+PACKAGECONFIG:append:pn-qemu-native = " sdl"
+PACKAGECONFIG:append:pn-nativesdk-qemu = " sdl"
+
+# default machines
+MACHINE ?= "stm32mp15-disco"
+
+# overwrite in site.conf
+DL_DIR ?= "${TOPDIR}/download-cache/"
+SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
+
+# Fix the temp dir such that later rsync can refer to output
+# make sure custom glibc recipes do not overwrite TMPDIR
+# TCLIBCAPPEND = ""
+# TMPDIR = "${TOPDIR}/tmp-${DISTRO}"
+
+GLIBC_GENERATE_LOCALES ?= "en_US.UTF-8 de_DE.UTF-8"
+IMAGE_LINGUAS ?= "en-us de-de"
+
+BB_GENERATE_MIRROR_TARBALLS = "0"
+INHERIT += "rm_work"
+RM_OLD_IMAGE = "1"
+
+# in order to translate lapack fortran support (libgfortran) is required.
+# fortran support is enabled via
+FORTRAN_forcevariable = ",fortran"
+
+# Injection variables into the build process
+BB_ENV_PASSTHROUGH = ""
+# Development branch for an application repo branch
+# BB_ENV_PASSTHROUGH += "APP_BRANCH"
+
+# Show cache directories at start of bitbake
+BUILDCFG_VARS += " DL_DIR SSTATE_DIR "
+
+#   ST SPecific
+# =========================================================================
+
+# Additional image generation features
+#
+# The following is a list of classes to import to use in the generation of images
+# currently an example class is image_types_uboot
+# IMAGE_CLASSES = " image_types_uboot"
+
+# Support of devshell
+INHERIT += "devshell"
+
+# Remove the old image before the new one generated to save disk space
+RM_OLD_IMAGE = "1"
+
+# Nice debug data
+INHERIT += "buildhistory"
+BUILDHISTORY_COMMIT = "1"
+
+# Clean up working directory after build
+INHERIT += "rm_work"
+
+# To generate debug image with all symbol
+#IMAGE_GEN_DEBUGFS = "1"
+
+# To enable archiver for recipes that are configured
+#ST_ARCHIVER_ENABLE = "1"
+
+# Setup environment for builds binary reproducibility
+REPRODUCIBLE_TIMESTAMP_ROOTFS = ""
+
+# Setup eSDK
+SDK_EXT_TYPE="minimal"
+SDK_INCLUDE_TOOLCHAIN="1"
+
+# Enable PR server to avoid version-going-backward issue
+PRSERV_HOST = "localhost:0"
+
+# =========================================================================
+# Configure STM32MP default version to github
+# =========================================================================
+#STM32MP_SOURCE_SELECTION:pn-linux-stm32mp = "github"
+#STM32MP_SOURCE_SELECTION:pn-optee-os-stm32mp = "github"
+#STM32MP_SOURCE_SELECTION:pn-tf-a-stm32mp = "github"
+#STM32MP_SOURCE_SELECTION:pn-u-boot-stm32mp = "github"
+
+# =========================================================================
+# Set EULA acceptance
+# =========================================================================
+ACCEPT_EULA_stm32mp15-disco = "1"
