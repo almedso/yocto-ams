@@ -27,7 +27,7 @@ BBLAYERS += " \
     ${OEROOT}/sources/meta-openembedded/meta-python \
     ${OEROOT}/sources/meta-openembedded/meta-oe \
     \
-    ${OEROOT}/sources/meta-st/meta-st-stm32mp' \
+    ${OEROOT}/sources/meta-st/meta-st-stm32mp \
     \
     ${@'${OEROOT}/sources/meta-security \
     ${OEROOT}/sources/meta-security/meta-tpm' \
