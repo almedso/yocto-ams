@@ -19,8 +19,20 @@ BBLAYERS = " \
   \
   ${BSPDIR}/sources/meta-raspberrypi \
   \
+  ${OEROOT}/../meta-imx/meta-bsp \
+  ${OEROOT}/../meta-imx/meta-sdk \
+  ${OEROOT}/../meta-imx/meta-ml \
+  ${OEROOT}/../meta-freescale \
+  ${OEROOT}/../meta-freescale-3rdparty \
+  ${OEROOT}/../meta-freescale-distro \
+  ${OEROOT}/../meta-phytec \
+  ${OEROOT}/../meta-arm/meta-arm \
+  ${OEROOT}/../meta-arm/meta-arm-toolchain \
+  \
+  ${OEROOT}/sources/meta-st/meta-st-stm32mp \
+  \
   ${BSPDIR}/sources/ams/meta-ams \
-  ${BSPDIR}/sources/ams/meta-ams-bsp-rpi \
+  ${BSPDIR}/sources/ams/meta-ams-bsp \
 "
 
 # core layer same as openembedded-core/meta
@@ -30,15 +42,7 @@ EXCLUDED_LAYERS = " \
   ${BSPDIR}/sources/meta-qt6 \
   ${BSPDIR}/sources/meta-jupyter \
   ${BSPDIR}/sources/meta-scipy \
-  \
-  ${BSPDIR}/sources/ams/meta-ams-bsp \
-  \
-  ${BSPDIR}/sources/meta-imx/meta-bsp \
-  ${BSPDIR}/sources/meta-imx/meta-sdk \
-  ${BSPDIR}/sources/meta-imx/meta-ml \
-  ${BSPDIR}/sources/meta-freescale \
   ${BSPDIR}/sources/meta-rauc \
-  ${BSPDIR}/sources/meta-phytec \
   \
   ${BSPDIR}/sources/meta-rust \
 "

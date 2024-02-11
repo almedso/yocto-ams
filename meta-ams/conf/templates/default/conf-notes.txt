@@ -10,6 +10,11 @@ Welcome to almedso Yocto Linux buildsystem.
 Default distro: ams
 Default machine: qemux86-64
 
+other machines are:
+
+- stm32mp15-disco
+- phyboard-polis-imx8mm-4
+
 Run
 
    bitbake core-image-minimal
