@@ -19,18 +19,6 @@ BBLAYERS = " \
   \
   ${BSPDIR}/sources/meta-raspberrypi \
   \
-  ${OEROOT}/../meta-imx/meta-bsp \
-  ${OEROOT}/../meta-imx/meta-sdk \
-  ${OEROOT}/../meta-imx/meta-ml \
-  ${OEROOT}/../meta-freescale \
-  ${OEROOT}/../meta-freescale-3rdparty \
-  ${OEROOT}/../meta-freescale-distro \
-  ${OEROOT}/../meta-phytec \
-  ${OEROOT}/../meta-arm/meta-arm \
-  ${OEROOT}/../meta-arm/meta-arm-toolchain \
-  \
-  ${OEROOT}/sources/meta-st/meta-st-stm32mp \
-  \
   ${BSPDIR}/sources/ams/meta-ams \
   ${BSPDIR}/sources/ams/meta-ams-bsp \
 "
@@ -45,6 +33,19 @@ EXCLUDED_LAYERS = " \
   ${BSPDIR}/sources/meta-rauc \
   \
   ${BSPDIR}/sources/meta-rust \
+  \
+  ${BSPDIR}/sources/meta-imx/meta-bsp \
+  ${BSPDIR}/sources/meta-imx/meta-sdk \
+  ${BSPDIR}/sources/meta-imx/meta-ml \
+  ${BSPDIR}/sources/meta-freescale \
+  ${BSPDIR}/sources/meta-freescale-3rdparty \
+  ${BSPDIR}/sources/meta-freescale-distro \
+  ${BSPDIR}/sources/meta-phytec \
+  ${BSPDIR}/sources/meta-arm/meta-arm \
+  ${BSPDIR}/sources/meta-arm/meta-arm-toolchain \
+  \
+  ${BSPDIR}/sourcesurces/meta-st/meta-st-stm32mp \
+  \
 "
 
 
