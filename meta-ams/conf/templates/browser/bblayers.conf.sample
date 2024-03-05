@@ -3,46 +3,49 @@
 # LCONF_VERSION = "7"
 
 BBPATH = "${TOPDIR}"
-BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../..')}"
+LAYERS_BASE_DIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../../sources')}"
 
 BBFILES ?= ""
 BBLAYERS = " \
-  ${BSPDIR}/sources/poky/meta \
-  ${BSPDIR}/sources/poky/meta-yocto-bsp \
+  ${LAYERS_BASE_DIR}/poky/meta \
+  ${LAYERS_BASE_DIR}/poky/meta-yocto-bsp \
   \
-  ${BSPDIR}/sources/meta-openembedded/meta-filesystems \
-  ${BSPDIR}/sources/meta-openembedded/meta-multimedia \
-  ${BSPDIR}/sources/meta-openembedded/meta-networking \
-  ${BSPDIR}/sources/meta-openembedded/meta-oe \
-  ${BSPDIR}/sources/meta-openembedded/meta-python \
-  ${BSPDIR}/sources/meta-openembedded/meta-webserver \
+  ${LAYERS_BASE_DIR}/meta-openembedded/meta-filesystems \
+  ${LAYERS_BASE_DIR}/meta-openembedded/meta-multimedia \
+  ${LAYERS_BASE_DIR}/meta-openembedded/meta-networking \
+  ${LAYERS_BASE_DIR}/meta-openembedded/meta-oe \
+  ${LAYERS_BASE_DIR}/meta-openembedded/meta-python \
+  ${LAYERS_BASE_DIR}/meta-openembedded/meta-webserver \
   \
-  ${BSPDIR}/sources/meta-browser \
+  ${LAYERS_BASE_DIR}/meta-browser \
+  ${LAYERS_BASE_DIR}/meta-qt6 \
+  ${LAYERS_BASE_DIR}/meta-rust \
   \
-  ${BSPDIR}/sources/meta-raspberrypi \
+  ${LAYERS_BASE_DIR}/meta-raspberrypi \
   \
-  ${BSPDIR}/sources/ams/meta-ams \
-  ${BSPDIR}/sources/ams/meta-ams-bsp-rpi \
+  ${LAYERS_BASE_DIR}/meta-imx/meta-bsp \
+  ${LAYERS_BASE_DIR}/meta-imx/meta-sdk \
+  ${LAYERS_BASE_DIR}/meta-imx/meta-ml \
+  ${LAYERS_BASE_DIR}/meta-freescale \
+  ${LAYERS_BASE_DIR}/meta-freescale \
+  ${LAYERS_BASE_DIR}/meta-freescale-3rdparty \
+  ${LAYERS_BASE_DIR}/meta-freescale-distro \
+  ${LAYERS_BASE_DIR}/meta-phytec \
+  ${LAYERS_BASE_DIR}/meta-arm/meta-arm \
+  ${LAYERS_BASE_DIR}/meta-arm/meta-arm-toolchain \
+  \
+  ${LAYERS_BASE_DIR}/ams/meta-ams \
+  ${LAYERS_BASE_DIR}/ams/meta-ams-bsp \
 "
 
 # core layer same as openembedded-core/meta
 EXCLUDED_LAYERS = " \
-  ${BSPDIR}/sources/poky/meta-poky \
+  ${LAYERS_BASE_DIR}/poky/meta-poky \
   \
-  ${BSPDIR}/sources/meta-qt6 \
-  ${BSPDIR}/sources/meta-jupyter \
-  ${BSPDIR}/sources/meta-scipy \
+  ${LAYERS_BASE_DIR}/meta-jupyter \
+  ${LAYERS_BASE_DIR}/meta-scipy \
   \
-  ${BSPDIR}/sources/ams/meta-ams-bsp \
-  \
-  ${BSPDIR}/sources/meta-imx/meta-bsp \
-  ${BSPDIR}/sources/meta-imx/meta-sdk \
-  ${BSPDIR}/sources/meta-imx/meta-ml \
-  ${BSPDIR}/sources/meta-freescale \
-  ${BSPDIR}/sources/meta-rauc \
-  ${BSPDIR}/sources/meta-phytec \
-  \
-  ${BSPDIR}/sources/meta-rust \
+  ${LAYERS_BASE_DIR}/meta-rauc \
 "
 
 
