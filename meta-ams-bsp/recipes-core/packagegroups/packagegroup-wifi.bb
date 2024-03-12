@@ -1,17 +1,17 @@
 DESCRIPTION = "Wifi tooling software"
 LICENSE = "MIT"
-PR = "r1"
+PR = "r2"
 
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit packagegroup
 
-# wpa_supplicant and wireless-tools are already install in packagegroup-base-wifi
+# iw - to show information about wireless devices
+# hostapd - WPA and radius authenticator
+
 RDEPENDS:${PN} = " \
-    wpa-supplicant \
-    iw \
-    hostapd \
+     ${@bb.utils.contains('MACHINE_FEATURES','wifi','wpa-supplicant iw hostapd ','',d)} \
 "
 
 
