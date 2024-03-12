@@ -10,3 +10,5 @@ PR = "1.0"
 export IMAGE_BASENAME = "ams-image-minimal"
 
 IMAGE_FEATURES:append = " debug-tweaks"
+
+IMAGE_EXTRA_RDEPENDS += "kernel-module-morse-mod"
