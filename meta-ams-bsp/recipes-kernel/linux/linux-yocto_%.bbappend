@@ -1,15 +1,13 @@
-# Add gpio-mockup driver to qemu/quirin kernel
-FILESEXTRAPATHS:prepend := "${THISDIR}/linux-yocto:"
+PR:append = ".4"
 
-# inherit configfragment
-# SRC_URI_append_quirin += " \
-#     file://quirin-gpio-mockup.cfg \
-# "
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-# do_merge_default_config_prepend() {
-#     mergeConfigFragments ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG}
-# }
+# inherit config fragments
+SRC_URI += "file://defconfig"
+# SRC_URI:append = " file://0001-enable-rust-modules.cfg "
+# SRC_URI:append = " file://0002-rust-sample.cfg "
 
-KERNEL_MODULE_AUTOLOAD_quirin += "gpio-mockup"
-KERNEL_MODULE_PROBECONF += "gpio-mockup"
-module_conf_gpio-mockup = "options gpio-mockup gpio_mockup_ranges=0,39"
+# SRC_URI:append:quirin = "file://quirin-gpio-mockup.cfg:"
+# KERNEL_MODULE_AUTOLOAD:append:quirin = " gpio-mockup "
+# KERNEL_MODULE_PROBECONF:append:quirin += "gpio-mockup"
+# module_conf_gpio-mockup = "options gpio-mockup gpio_mockup_ranges=0,39"
