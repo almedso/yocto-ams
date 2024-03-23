@@ -1,6 +1,19 @@
-MACHINE ??= 'imx8mm-var-dart'
+
+# CONF_VERSION = "2"
+DISTRO ?= "ams-bsp"
+YOCTO_VERSION = "mickledore"
+
+# overwrite in site.conf
+DL_DIR ?= "${TOPDIR}/download-cache/"
+SSTATE_DIR ?= "${TOPDIR}/sstate-cache/${DISTRO}"
+
+PACKAGE_CLASSES ?= "package_ipk"
+
+USER_CLASSES ?= "buildstats"
+
+MACHINE ??= 'imx93-var-som'
 DISTRO ?= 'fsl-imx-xwayland'
-EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
+DISTRO ?= 'ams-bsp'
 USER_CLASSES ?= "buildstats"
 PATCHRESOLVE = "noop"
 BB_DISKMON_DIRS ??= "\
@@ -13,8 +26,6 @@ BB_DISKMON_DIRS ??= "\
     HALT,${SSTATE_DIR},100M,1K \
     HALT,/tmp,10M,1K"
 PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
-CONF_VERSION = "2"
 
-DL_DIR ?= "${BSPDIR}/downloads/"
 ACCEPT_FSL_EULA = "1"
 
