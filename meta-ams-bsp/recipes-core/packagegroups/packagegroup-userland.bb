@@ -6,7 +6,6 @@ inherit packagegroup
 
 RDEPENDS:${PN} = " \
     bc \
-    crda \
     gdbserver \
     git \
     jq \
