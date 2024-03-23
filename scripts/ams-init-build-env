@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #-----------------------------------------------------------------------------
-# Copyright (c) 2019-2023, almedso GmbH
+# Copyright (c) 2019-2024, almedso GmbH
 # SPDX-License-Identifier: MIT
 #
 # !!! THIS SCRIPT NEEDS TO BE SOURCED. !!!
@@ -29,39 +29,40 @@
 
 clean_up ()
 {
-   unset AMS_BUILD_DIR
-   unset AMS_TEMPLATE_LAYER_ROOT_DIR
-   set +x  # aka set +o xtrace
-   set +o pipefail
+  set +x  # aka set +o xtrace
+  set +o pipefail
 }
 
 usage ()
 {
-   echo -e "\nUsage: source $PROGNAME template_dir
+  echo -e "\nUsage: source ams-init-build-env TEMPLATE LAYER
 
-   Establish a new build environment in '$BUILD_DIR':
-   - create local.conf from template
-   - create bblayer.conf from template
-   - optionally create site.conf from existing site.conf.sample in project dir.
+  1) Establish a new build environment in 'build-$TEMPLATE' (if it does not exist):
+     - create local.conf from template
+     - create bblayer.conf from template
+     - optionally create site.conf from existing site.conf.sample in project dir.
+  2) Source the (newly created or existing) build environment via 
 
+  It must be sourced from project root directory.
 
-   Control variables (to be evaluated when sourced)
+  Arguments:
+    TEMPLATE - The template to derive local.conf and bbayers.conf from
+             - It is optional, if not present default from poky is used
+    LAYER:   - The layer in which the template is defined.
+               It is optional, if not present the template is searched in
+               'meta-ams'
 
-   BUILD_DIR
-      specifies build directory location; default is 'build'
+  If a site.conf.sample template or a site.conf exists in project root it is used
 
+  Furthermore, generated  site.conf is extended (if it exits):
+  PARALLEL_MAKE & BB_NUMBER_THREADS is set according to computing capabilities
 
-   TEMPLATE_LAYER_ROOT_DIR
-      specifies the Layer where the template is created from
-	  default is 'sources/ams/meta-ams'
-   TEMPLATE
-      specifies the templates to be applied in case; default 'default'
+  Sourcing Shortcut:
+    source <TEMPLATE>[@LAYER(w/o meta)-init-build-env]
 
-   If a site.conf.sample template or a site.conf exists in project root it is used
-
-   Furthermore, site.conf is extended (if it exits):
-   PARALLEL_MAKE & BB_NUMBER_THREADS is set according to computing capabilities
-   "
+    The init script will self-extract template name and optional layer name w/o meta
+    from its name if located in project root directory.
+  "
 }
 
 sanity_checks ()
@@ -95,52 +96,52 @@ sanity_checks ()
 # BUILD_DIR variable is set
 set_layer_and_template_vars ()
 {
-	local TEMPLATE=${1:-"not-set"}
-	local LAYER=${2:-"meta-ams"}
-   declare -g BUILD_DIR="build"
-	if [ "${TEMPLATE}" != "not-set" ]; then
+  local TEMPLATE=${1:-"not-set"}
+  local LAYER=${2:-"meta-ams"}
+  declare -g BUILD_DIR="build"
+  if [ "${TEMPLATE}" != "not-set" ]; then
       local LAYER_REL_PATH=""
       while read LAYER_REL_PATH; do
-      	TEMPLATECONF="$(pwd)/${LAYER_REL_PATH}/conf/templates/${TEMPLATE}"
-      	if [ -d ${TEMPLATECONF} ]; then
-			   BUILD_DIR="build-${TEMPLATE}"
+        TEMPLATECONF="$(pwd)/${LAYER_REL_PATH}/conf/templates/${TEMPLATE}"
+        if [ -d ${TEMPLATECONF} ]; then
+            BUILD_DIR="build-${TEMPLATE}"
             break
          fi
       done <<< "$(find sources -type d -name "${LAYER}")"
-		if [ ${BUILD_DIR} = "build" ]; then
-			echo "ERROR: Template \"${TEMPLATE}\" not found in a layer \"${LAYER}\"."
+    if [ ${BUILD_DIR} = "build" ]; then
+      echo "ERROR: Template \"${TEMPLATE}\" not found in a layer \"${LAYER}\"."
          echo "       Sourcing the script failed"
-			unset TEMPLATECONF
+      unset TEMPLATECONF
          unset BUILD_DIR
          return 1
-		fi
+    fi
    fi
-	printf "\nUse template ${TEMPLATE} from layer ${LAYER}\n\n"
+  printf "\nUse template ${TEMPLATE} from layer ${LAYER}\n\n"
 }
 
 write_site_conf ()
 {
-	# when called currend working directory is already the build directory
-   	if [ -d conf ] && [ ! -f conf/site.conf ]; then
-		local SITECONF=""
-   		# write site.conf only if it does not exist
-   		# i.e. never ever modify if it exists or the conf directory does not exist
-       	if [ -f ../site.conf.sample ]; then
-			SITECONF="../site.conf.sample"
-		fi
-       	if [ -f ../site.conf ]; then
-			SITECONF="../site.conf"
-		fi
-        if [ -n ${SITECONF} ]; then
-			printf "\nUpdate site.conf - from sample in project root\n"
-		    cp $SITECONF conf/site.conf
-		    local NCPU=$(grep -c processor /proc/cpuinfo)
-		    echo "BB_NUMBER_THREADS = \"${NCPU}\" " >> conf/site.conf
-		    echo "PARALLEL_MAKE = \"-j ${NCPU}\" " >> conf/site.conf
-   	   	else
-			printf "\nSite.conf template not found, no site.conf established\n"
-		fi
-   fi
+  # when called currend working directory is already the build directory
+  if [ -d conf ] && [ ! -f conf/site.conf ]; then
+    local SITECONF=""
+    # write site.conf only if it does not exist
+    # i.e. never ever modify if it exists or the conf directory does not exist
+    if [ -f ../site.conf.sample ]; then
+      SITECONF="../site.conf.sample"
+    fi
+    if [ -f ../site.conf ]; then
+      SITECONF="../site.conf"
+    fi
+    if [ -n ${SITECONF} ]; then
+      printf "\nUpdate site.conf - from sample in project root\n"
+      cp $SITECONF conf/site.conf
+      local NCPU=$(grep -c processor /proc/cpuinfo)
+      echo "BB_NUMBER_THREADS = \"${NCPU}\" " >> conf/site.conf
+      echo "PARALLEL_MAKE = \"-j ${NCPU}\" " >> conf/site.conf
+    else
+      printf "\nSite.conf template not found, no site.conf established\n"
+    fi
+  fi
 }
 
 init_bitbake ()
@@ -161,49 +162,50 @@ init_bitbake ()
 
 main ()
 {
-   if set_layer_and_template_vars $1 $2; then
-      if sanity_checks; then
-         init_bitbake
-         write_site_conf
-      fi
-   fi
-   clean_up
+  if set_layer_and_template_vars $1 $2; then
+     if sanity_checks; then
+        init_bitbake
+        write_site_conf
+     fi
+  fi
+  clean_up
+}
+
+split_template_and_layer_from_command_name_and_invoke_main ()
+{
+  # Args: $1 - full command name
+  #
+  # command name is something like <template>@<layer w/o meta- prefix>-init-build-env
+  # example: "variscite-not-integrated@ams-init-bild-env"
+  #   template name is "variscite-not-integrated"
+  #   layer name is "meta-ams"
+  # the layer extension is optional - in this case the delimiter '_' does not exist
+  # example: "variscite-not-integrated-init-bild-env"
+  #   template name is "variscite-not-integrated"
+  #   layer is skipped and the default layer is used
+  local cmd_prefix=${1%-init-build-env}
+  cmd_prefix=${cmd_prefix#./}
+  local arr=(${cmd_prefix//@/ })
+  local template=${arr[0]}
+  local layer=${arr[1]}
+  if [ -n "$layer" ]; then
+    main $template "meta-$layer"
+  else
+    main $template
+  fi
 }
 
 # execute main
 if [ "${BASH_SOURCE[0]}" != "${0}" ] ; then
-   	# callage via sourcing => ok
-   	case ${BASH_SOURCE[0]} in
-	   	ams-init-build-env)
-   		   	main default
-		  	;;
-	   	jupyter-init-build-env)
-   		   	main jupyter
-		  	;;
-	   	timeseries-init-build-env)
-   		   	main timeseries
-		  	;;
-	   	browser-init-build-env)
-   		   	main timeseries
-		  	;;
-
-	   	phyimx8-not-integrated-init-build-env)
-   		   	main phyimx8-not-integrated meta-ams-bsp
-		  	;;
-	   	phyimx8-init-build-env)
-   		   	main phyimx8 meta-ams-bsp
-		  	;;
-
-	   	stm32mp1-not-integrated-init-build-env)
-			  main stm32mp1-not-integrated meta-ams-bsp
-		  	;;
-	   	stm32mp1-init-build-env)
-			  main stm32mp1 meta-ams-bsp
-		  	;;
-	   	*)
-   		   	main $1 $2
-		  	;;
-	esac
+   # callage via sourcing => ok
+   case ${BASH_SOURCE[0]} in
+     *-init-build-env)
+       split_template_and_layer_from_command_name_and_invoke_main ${BASH_SOURCE[0]}
+       ;;
+     *)
+       main $1 $2
+       ;;
+  esac
 else
    echo "!!! ERROR: This script should be sourced !!!"
    usage
