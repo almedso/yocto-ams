@@ -1,4 +1,4 @@
-PR:append = ".dev.1"
+PR:append = ".dev.2"
 
 require ams-image.inc
 
@@ -6,6 +6,8 @@ IMAGE_FEATURES:append= " \
     debug-tweaks \
     tools-debug \
     tools-profile \
+    tools-sdk \
+    package-management \
     post-install-logging \
     "
 
