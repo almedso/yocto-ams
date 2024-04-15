@@ -35,6 +35,7 @@ BBLAYERS = " \
   ${LAYERS_BASE_DIR}/meta-arm/meta-arm-toolchain \
   \
   ${LAYERS_BASE_DIR}/ams/meta-ams \
+  ${LAYERS_BASE_DIR}/ams/meta-ams-app \
   ${LAYERS_BASE_DIR}/ams/meta-ams-bsp \
 "
 

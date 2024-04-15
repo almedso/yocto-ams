@@ -17,12 +17,10 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-openembedded/meta-python \
   ${BSPDIR}/sources/meta-openembedded/meta-webserver \
   \
-  ${BSPDIR}/sources/meta-rust \
-  ${BSPDIR}/sources/meta-clang \
-  \
   ${BSPDIR}/sources/meta-raspberrypi \
   \
   ${BSPDIR}/sources/ams/meta-ams \
+  ${BSPDIR}/sources/ams/meta-ams-app \
   ${BSPDIR}/sources/ams/meta-ams-bsp \
 "
 
@@ -34,6 +32,8 @@ EXCLUDED_LAYERS = " \
   ${BSPDIR}/sources/meta-jupyter \
   ${BSPDIR}/sources/meta-scipy \
   ${BSPDIR}/sources/meta-rauc \
+  \
+  ${BSPDIR}/sources/meta-rust \
   \
   ${BSPDIR}/sources/meta-imx/meta-bsp \
   ${BSPDIR}/sources/meta-imx/meta-sdk \

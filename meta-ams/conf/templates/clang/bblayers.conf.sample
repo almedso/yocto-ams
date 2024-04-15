@@ -17,12 +17,14 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-openembedded/meta-python \
   ${BSPDIR}/sources/meta-openembedded/meta-webserver \
   \
-  ${BSPDIR}/sources/meta-jupyter \
+  ${BSPDIR}/sources/meta-rust \
+  ${BSPDIR}/sources/meta-clang \
   \
   ${BSPDIR}/sources/meta-raspberrypi \
   \
   ${BSPDIR}/sources/ams/meta-ams \
-  ${BSPDIR}/sources/ams/meta-ams-bsp-rpi \
+  ${BSPDIR}/sources/ams/meta-ams-app \
+  ${BSPDIR}/sources/ams/meta-ams-bsp \
 "
 
 # core layer same as openembedded-core/meta
@@ -30,18 +32,22 @@ EXCLUDED_LAYERS = " \
   ${BSPDIR}/sources/poky/meta-poky \
   \
   ${BSPDIR}/sources/meta-qt6 \
+  ${BSPDIR}/sources/meta-jupyter \
   ${BSPDIR}/sources/meta-scipy \
-  \
-  ${BSPDIR}/sources/ams/meta-ams-bsp \
+  ${BSPDIR}/sources/meta-rauc \
   \
   ${BSPDIR}/sources/meta-imx/meta-bsp \
   ${BSPDIR}/sources/meta-imx/meta-sdk \
   ${BSPDIR}/sources/meta-imx/meta-ml \
   ${BSPDIR}/sources/meta-freescale \
-  ${BSPDIR}/sources/meta-rauc \
+  ${BSPDIR}/sources/meta-freescale-3rdparty \
+  ${BSPDIR}/sources/meta-freescale-distro \
   ${BSPDIR}/sources/meta-phytec \
+  ${BSPDIR}/sources/meta-arm/meta-arm \
+  ${BSPDIR}/sources/meta-arm/meta-arm-toolchain \
   \
-  ${BSPDIR}/sources/meta-rust \
+  ${BSPDIR}/sourcesurces/meta-st/meta-st-stm32mp \
+  \
 "
 
 

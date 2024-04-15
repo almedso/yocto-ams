@@ -17,9 +17,12 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-openembedded/meta-python \
   ${BSPDIR}/sources/meta-openembedded/meta-webserver \
   \
+  ${BSPDIR}/sources/meta-influx \
+  \
   ${BSPDIR}/sources/meta-raspberrypi \
   \
   ${BSPDIR}/sources/ams/meta-ams \
+  ${BSPDIR}/sources/ams/meta-ams-app \
   ${BSPDIR}/sources/ams/meta-ams-bsp \
 "
 
@@ -30,22 +33,17 @@ EXCLUDED_LAYERS = " \
   ${BSPDIR}/sources/meta-qt6 \
   ${BSPDIR}/sources/meta-jupyter \
   ${BSPDIR}/sources/meta-scipy \
-  ${BSPDIR}/sources/meta-rauc \
   \
-  ${BSPDIR}/sources/meta-rust \
+  ${BSPDIR}/sources/ams/meta-ams-bsp \
   \
   ${BSPDIR}/sources/meta-imx/meta-bsp \
   ${BSPDIR}/sources/meta-imx/meta-sdk \
   ${BSPDIR}/sources/meta-imx/meta-ml \
   ${BSPDIR}/sources/meta-freescale \
-  ${BSPDIR}/sources/meta-freescale-3rdparty \
-  ${BSPDIR}/sources/meta-freescale-distro \
+  ${BSPDIR}/sources/meta-rauc \
   ${BSPDIR}/sources/meta-phytec \
-  ${BSPDIR}/sources/meta-arm/meta-arm \
-  ${BSPDIR}/sources/meta-arm/meta-arm-toolchain \
   \
-  ${BSPDIR}/sourcesurces/meta-st/meta-st-stm32mp \
-  \
+  ${BSPDIR}/sources/meta-rust \
 "
 
 

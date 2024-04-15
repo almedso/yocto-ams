@@ -30,6 +30,7 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-variscite-hab \
   \
   ${BSPDIR}/sources/ams/meta-ams \
+  ${BSPDIR}/sources/ams/meta-ams-app \
   ${BSPDIR}/sources/ams/meta-ams-bsp \
 "
 

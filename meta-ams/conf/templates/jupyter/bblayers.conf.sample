@@ -17,11 +17,12 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-openembedded/meta-python \
   ${BSPDIR}/sources/meta-openembedded/meta-webserver \
   \
-  ${BSPDIR}/sources/meta-influx \
+  ${BSPDIR}/sources/meta-jupyter \
   \
   ${BSPDIR}/sources/meta-raspberrypi \
   \
   ${BSPDIR}/sources/ams/meta-ams \
+  ${BSPDIR}/sources/ams/meta-ams-app \
   ${BSPDIR}/sources/ams/meta-ams-bsp-rpi \
 "
 
@@ -30,7 +31,6 @@ EXCLUDED_LAYERS = " \
   ${BSPDIR}/sources/poky/meta-poky \
   \
   ${BSPDIR}/sources/meta-qt6 \
-  ${BSPDIR}/sources/meta-jupyter \
   ${BSPDIR}/sources/meta-scipy \
   \
   ${BSPDIR}/sources/ams/meta-ams-bsp \
