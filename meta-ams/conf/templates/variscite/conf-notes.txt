@@ -7,7 +7,7 @@
 
 Welcome to almedso BSP-Yocto Linux buildsystem.
 
-Default distro: ams-bsp
+Default distro: ams
 Default machine: imx93-var-som
 
 Run

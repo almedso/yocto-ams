@@ -1,6 +1,6 @@
 
 # CONF_VERSION = "2"
-DISTRO ?= "ams-bsp"
+DISTRO ?= "ams"
 YOCTO_VERSION = "mickledore"
 
 # overwrite in site.conf
