@@ -35,6 +35,7 @@ BBLAYERS += " \
     \
     ${@'${OPENEMBEDDED}' if os.path.isfile('${OEROOT}/sources/openembedded-core/meta/conf/layer.conf') else '${POKY}'} \
     \
+    ${OEROOT}/sources/ams/meta-ams \
     ${OEROOT}/sources/ams/meta-ams-bsp \
     "
 

@@ -33,5 +33,6 @@ BBLAYERS += "\
   ${OEROOT}/../meta-arm/meta-arm \
   ${OEROOT}/../meta-arm/meta-arm-toolchain \
   \
+  ${BSPDIR}/sources/ams/meta-ams \
   ${BSPDIR}/sources/ams/meta-ams-bsp \
   "

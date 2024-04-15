@@ -1,6 +1,6 @@
 CONF_VERSION = "2"
-DISTRO ?= "ams-bsp"
-YOCTO_VERSION = "gatesgarth"
+DISTRO ?= "ams"
+YOCTO_VERSION = "kirkstone"
 
 PACKAGE_FEED_URIS ?= "https://ams.almedso.de/feeds/${DISTRO}"
 PACKAGE_FEED_BASE_PATHS ?= "ci release"
