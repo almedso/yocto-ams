@@ -17,18 +17,18 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-openembedded/meta-python \
   ${BSPDIR}/sources/meta-openembedded/meta-webserver \
   \
-  ${BSPDIR}/sources/meta-freescale \
-  ${BSPDIR}/sources/meta-freescale-3rdparty \
-  ${BSPDIR}/sources/meta-freescale-distro \
   ${BSPDIR}/sources/meta-clang \
   ${BSPDIR}/sources/meta-browser/meta-chromium \
   \
-  ${BSPDIR}/sources/meta-swupdate \
-  ${BSPDIR}/sources/meta-virtualization \
+  ${BSPDIR}/sources/meta-arm/meta-arm \
+  ${BSPDIR}/sources/meta-arm/meta-arm-toolchain \
+  ${BSPDIR}/sources/meta-freescale \
+  ${BSPDIR}/sources/meta-freescale-3rdparty \
+  ${BSPDIR}/sources/meta-freescale-distro \
+  ${BSPDIR}/sources/meta-imx/meta-bsp \
+  ${BSPDIR}/sources/meta-imx/meta-sdk \
   ${BSPDIR}/sources/meta-variscite-bsp-imx \
-  ${BSPDIR}/sources/meta-variscite-sdk-imx \
   ${BSPDIR}/sources/meta-variscite-bsp-common \
-  ${BSPDIR}/sources/meta-variscite-sdk-common \
   ${BSPDIR}/sources/meta-variscite-hab \
   \
   ${BSPDIR}/sources/meta-raspberrypi \
@@ -49,13 +49,13 @@ EXCLUDED_LAYERS = " \
   \
   ${BSPDIR}/sources/meta-rust \
   \
-  ${BSPDIR}/sources/meta-imx/meta-bsp \
-  ${BSPDIR}/sources/meta-imx/meta-sdk \
   ${BSPDIR}/sources/meta-imx/meta-ml \
   ${BSPDIR}/sources/meta-phytec \
-  ${BSPDIR}/sources/meta-arm/meta-arm \
-  ${BSPDIR}/sources/meta-arm/meta-arm-toolchain \
+  ${BSPDIR}/sources/meta-variscite-sdk-imx \
+  ${BSPDIR}/sources/meta-variscite-sdk-common \
   \
+  ${BSPDIR}/sources/meta-swupdate \
+  ${BSPDIR}/sources/meta-virtualization \
   ${BSPDIR}/sourcesurces/meta-st/meta-st-stm32mp \
   \
 "
