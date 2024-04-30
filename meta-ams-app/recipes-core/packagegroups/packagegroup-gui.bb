@@ -7,7 +7,8 @@ inherit packagegroup
 RDEPENDS:${PN} = " \
     weston-init \
     weston \
-    chromium-ozone-wayland \
+    wpewebkit \
+    cog \
 "
 
 RDEPENDS:${PN}-dev = " \
@@ -38,5 +39,8 @@ EXCLUDED_STUFF = " \
     clutter-1.0-examples \
     iced-word-clock \
     emb-spa \
+    chromium-ozone-wayland \
 "
+# cog is a web browser for wpewebkit in fdo (free desktop variante)
+# for rdo no desktop is required. since rdo is a browser
 
