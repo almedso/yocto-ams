@@ -1,0 +1,37 @@
+From 0f54adbda7b29793e503468ca47a3593e0b00d9f Mon Sep 17 00:00:00 2001
+From: Volker Kempert <volker.kempert@almedso.de>
+Date: Mon, 29 Apr 2024 08:59:41 +0000
+Subject: [PATCH] Configure m33 startup as free-rtos.bin
+
+---
+ include/configs/imx93_var_som.h | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/include/configs/imx93_var_som.h b/include/configs/imx93_var_som.h
+index 20ab6b6f61..ffa6823ed1 100644
+--- a/include/configs/imx93_var_som.h
++++ b/include/configs/imx93_var_som.h
+@@ -58,16 +58,17 @@
+ 	"cntr_file=os_cntr_signed.bin\0" \
+ 	"boot_fit=no\0" \
+ 	"bootdir=/boot\0" \
+-	"fdt_file=undefined\0" \
++	"fdt_file=imx93-var-som-symphony-m33.dtb\0" \
+ 	"bootm_size=0x10000000\0" \
++	"kernelargs=clk_ignore_unused\0" \
+ 	"mmcdev=" __stringify(CONFIG_SYS_MMC_ENV_DEV)"\0" \
+ 	"mmcpart=1\0" \
+ 	"mmcroot=/dev/mmcblk1p2 rootwait rw\0" \
+ 	"mmcautodetect=yes\0" \
+ 	"m33_addr=0x201e0000\0" \
+ 	"m33_addr_auxview=0x1ffe0000\0" \
+-	"m33_bin=cm_hello_world.bin.release\0" \
+-	"use_m33=no\0" \
++	"m33_bin=m33-firmware.bin.release\0" \
++	"use_m33=yes\0" \
+ 	"loadm33bin=" \
+ 	         "load mmc ${mmcdev}:${mmcpart} ${loadaddr} ${bootdir}/${m33_bin} && " \
+ 	         "cp.b ${loadaddr} ${m33_addr} ${filesize};\0" \
+-- 
+2.25.1
+
