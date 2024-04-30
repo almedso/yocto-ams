@@ -4,7 +4,7 @@ LICENSE = "MIT"
 
 require include/ams-image-dev.inc
 
-PR = "1.2"
+PR = "1.3"
 
 # overwrite image name - to find it in tmp* tree
 export IMAGE_BASENAME = "gui-image-dev"
@@ -14,6 +14,8 @@ IMAGE_INSTALL += " \
     packagegroup-ams-tools \
     packagegroup-gui \
 "
+
+IMAGE_INSTALL:remove:imx93-var-som = "gstreamer1.0-plugins-good"
 
 ## Select Image Features
 IMAGE_FEATURES += " \
