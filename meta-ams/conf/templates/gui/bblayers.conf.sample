@@ -17,9 +17,13 @@ BBLAYERS = " \
   ${LAYERS_BASE_DIR}/meta-openembedded/meta-python \
   ${LAYERS_BASE_DIR}/meta-openembedded/meta-webserver \
   \
-  ${LAYERS_BASE_DIR}/meta-browser \
+  ${LAYERS_BASE_DIR}/meta-arm/meta-arm \
+  ${LAYERS_BASE_DIR}/meta-arm/meta-arm-toolchain \
+  ${LAYERS_BASE_DIR}/meta-browser/meta-chromium \
+  ${LAYERS_BASE_DIR}/meta-clang \
   ${LAYERS_BASE_DIR}/meta-qt6 \
   ${LAYERS_BASE_DIR}/meta-rust \
+  ${LAYERS_BASE_DIR}/meta-webkit \
   \
   ${LAYERS_BASE_DIR}/meta-raspberrypi \
   \
@@ -27,26 +31,31 @@ BBLAYERS = " \
   ${LAYERS_BASE_DIR}/meta-imx/meta-sdk \
   ${LAYERS_BASE_DIR}/meta-imx/meta-ml \
   ${LAYERS_BASE_DIR}/meta-freescale \
-  ${LAYERS_BASE_DIR}/meta-freescale \
-  ${LAYERS_BASE_DIR}/meta-freescale-3rdparty \
-  ${LAYERS_BASE_DIR}/meta-freescale-distro \
+  \
   ${LAYERS_BASE_DIR}/meta-phytec \
-  ${LAYERS_BASE_DIR}/meta-arm/meta-arm \
-  ${LAYERS_BASE_DIR}/meta-arm/meta-arm-toolchain \
+  \
+  ${LAYERS_BASE_DIR}/meta-variscite-bsp-imx \
+  ${LAYERS_BASE_DIR}/meta-variscite-bsp-common \
+  ${LAYERS_BASE_DIR}/meta-variscite-hab \
   \
   ${LAYERS_BASE_DIR}/ams/meta-ams \
   ${LAYERS_BASE_DIR}/ams/meta-ams-app \
   ${LAYERS_BASE_DIR}/ams/meta-ams-bsp \
 "
 
-# core layer same as openembedded-core/meta
 EXCLUDED_LAYERS = " \
   ${LAYERS_BASE_DIR}/poky/meta-poky \
-  \
+  ${LAYERS_BASE_DIR}/meta-freescale-3rdparty \
+  ${LAYERS_BASE_DIR}/meta-freescale-distro \
   ${LAYERS_BASE_DIR}/meta-jupyter \
-  ${LAYERS_BASE_DIR}/meta-scipy \
-  \
   ${LAYERS_BASE_DIR}/meta-rauc \
+  ${LAYERS_BASE_DIR}/meta-scipy \
+  ${LAYERS_BASE_DIR}/meta-security/meta-parsec \
+  ${LAYERS_BASE_DIR}/meta-security/meta-tpm \
+  ${LAYERS_BASE_DIR}/meta-swupdate \
+  ${LAYERS_BASE_DIR}/meta-virtualization \
+  ${LAYERS_BASE_DIR}/meta-variscite-sdk-imx \
+  ${LAYERS_BASE_DIR}/meta-variscite-sdk-common \
 "
 
 

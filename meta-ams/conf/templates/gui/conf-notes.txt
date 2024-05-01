@@ -10,9 +10,16 @@ Welcome to almedso Yocto Linux buildsystem.
 Default distro: ams
 Default machine: qemux86-64
 
+Other machines with gui are:
+
+- imx93-var-som
+- phyboard-polis-imx8mm-4
+- rpi3-touch-hmi
+- stm32mp15-disco
+
 Run
 
-   bitbake core-image-minimal
+   bitbake gui-image-dev
 
-To build a minimal development image.
+To build a gui development image based on weston/wayland.
 
