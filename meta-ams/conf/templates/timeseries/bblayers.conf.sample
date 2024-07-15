@@ -17,8 +17,6 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-openembedded/meta-python \
   ${BSPDIR}/sources/meta-openembedded/meta-webserver \
   \
-  ${BSPDIR}/sources/meta-influx \
-  \
   ${BSPDIR}/sources/meta-raspberrypi \
   \
   ${BSPDIR}/sources/ams/meta-ams \

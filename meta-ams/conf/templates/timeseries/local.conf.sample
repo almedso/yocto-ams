@@ -57,3 +57,5 @@ BB_ENV_PASSTHROUGH = ""
 # Show cache directories at start of bitbake
 BUILDCFG_VARS += " DL_DIR SSTATE_DIR "
 
+# Allow rpi BCM43530 license
+LICENSE_FLAGS_ACCEPTED += " synaptics-killswitch "
